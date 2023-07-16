@@ -7,11 +7,10 @@ import {
   EditorSpace, 
   EditorTools, 
   Footer, 
-  HeaderBackground, 
   HeaderForeground,
   NavigationBar, 
-  NavFirst,
-  NavSecond,
+  Nav1,
+  Nav2,
   CanvasSpace,
   EditorToolDetails} from './components/MainPageStyles';
 
@@ -40,18 +39,19 @@ function App() {
     <>
     <Container>
       <Header>
-        <HeaderBackground>
-          <NavigationBar>
-            <NavFirst>
-              Make your Folaroid!
-            </NavFirst>
-            <NavSecond>
-              What is Y.O.P?
-            </NavSecond>
-          </NavigationBar>
-          <HeaderForeground>
-          </HeaderForeground>
-        </HeaderBackground>
+        
+        <NavigationBar>
+          <Nav1>
+            Make your Polaroid!
+          </Nav1>
+          <Nav2>
+            What is Y.O.P?
+          </Nav2>
+        </NavigationBar>
+          
+        
+        <HeaderForeground>
+        </HeaderForeground>
       </Header>
       <EditorSpace>
         <EditorTools>
@@ -68,6 +68,7 @@ function App() {
         
       </Footer>
     </Container>
+    
     </>
   );
 }
