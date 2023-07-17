@@ -1,41 +1,64 @@
 import styled from 'styled-components';
-import { pointColor, primaryColor, secondaryColor, whiteColor } from '../GlobalStyles';
+import { pointColor, 
+    primaryColor, 
+    secondaryColor, 
+    whiteColor } from '../GlobalStyles';
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    justfy-content: center;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
 
 `
 export const Header = styled.div`
-    color: ${pointColor};
+    // color: ${pointColor};
+    
     width: 100%;
-    height: 2vh;
-`
-export const HeaderBackground = styled.div`
+    height: 12vh;
+    background-color: ${pointColor};
     display: flex;
     flex-direction: column;
-    justfy-content: center;
+    justify-content: flex-end;
     align-items: center;
-`
+    `
 
 export const NavigationBar = styled.div`
+    width: 100%;
+    height: 5vh;
     display: flex;
     flex-direction: row;
-    justfy-content: flex-end;
-    align-items: flex-end;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: ${pointColor};
+    
 `
 
-export const NavFirst = styled.button`
+export const Nav1 = styled.button`
+    width: 10%;
+    height: 100%;
+    border-color: ${whiteColor};
+    border-radius: 15px;
+    background-color: ${whiteColor};
+    
+
 `
-
-export const NavSecond = styled.button`
+export const Nav2 = styled.button`
+    width: 10%;
+    height: 100%;
+    border-color: ${whiteColor};
+    border-radius: 15px;
+    background-color: ${whiteColor};
+    margin-right: 20px;
 
 `
-
 export const HeaderForeground = styled.div`
-    color: ${whiteColor};
+    width: 100%;
+    height: 25%;
+    background-color: ${whiteColor};
+    margin: -15px;
 `
 
 export const EditorSpace = styled.div`
@@ -43,10 +66,11 @@ export const EditorSpace = styled.div`
     flex-direction: row;
     justfy-content: center;
     align-items: center;
+    background-color: ${whiteColor};
 `
 
 export const EditorTools = styled.div`
-    color = ${secondaryColor};
+    background-color = ${secondaryColor};
 `
 
 export const CanvasSpace = styled.div`
@@ -58,7 +82,9 @@ export const EditorToolDetails = styled.div`
 `
 
 export const Footer = styled.div`
-    color = ${primaryColor};
+    height: 10vh;
+    width: 100%;
+    background-color: ${secondaryColor};
 `
 //--------여기까지 유림------------
 //--------여기서부터 수정----------

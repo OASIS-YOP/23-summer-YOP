@@ -4,11 +4,11 @@ import reset from "styled-reset";
 // 글꼴
 
 // 색깔
-export const pointColor = "7198FF";
-export const primaryColor = "E0E0E0";
-export const secondaryColor = "C1C1C1";
-export const whiteColor = "FFFFFF";
-export const blackColor = "000000";
+export const pointColor = "#7198FF";
+export const primaryColor = "#E0E0E0";
+export const secondaryColor = "#C1C1C1";
+export const whiteColor = "#FFFFFF";
+export const blackColor = "#000000";
 
 export const GlobalStyle = createGlobalStyle`
     ${reset};
