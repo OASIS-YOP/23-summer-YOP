@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components';     
 import { pointColor, 
     primaryColor, 
     secondaryColor, 
@@ -14,7 +14,6 @@ export const Container = styled.div`
 
 `
 export const Header = styled.div`
-    // color: ${pointColor};
     
     width: 100%;
     height: 12vh;
@@ -60,13 +59,20 @@ export const HeaderForeground = styled.div`
     background-color: ${whiteColor};
     margin: -15px;
 `
+export const Body = styled.div`
+    height: 78vh;
+    width: 100%;
+`
 
-export const EditorSpace = styled.div`
+export const LeftContainer = styled.div`
     display: flex;
-    flex-direction: row;
     justfy-content: center;
     align-items: center;
-    background-color: ${whiteColor};
+    background-color: #EDEDED;
+    height: 760px;
+    width: 1010px;
+    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+    border-radius: 15px;
 `
 
 export const EditorTools = styled.div`
@@ -76,6 +82,9 @@ export const EditorTools = styled.div`
 export const CanvasSpace = styled.div`
     justfy-content: center;
     align-items: center;
+    height: 590px;
+    width: 425px;
+    border: 5px dashed #979797;
 `
 
 export const EditorToolDetails = styled.div`
