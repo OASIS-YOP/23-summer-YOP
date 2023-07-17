@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react';
 import { fabric } from 'fabric';
-import { TabMenuContainer } from './components/TabMenuContainer';
 
-import {
+import { 
   Header,
-  Container,
-  EditorSpace,
-  EditorTools,
-  Footer,
+  Container, 
+  EditorSpace,  
+  Footer, 
   HeaderForeground,
-  NavigationBar,
+  NavigationBar, 
   Nav1,
   Nav2,
   CanvasSpace,
-  EditorToolDetails,
-} from './components/MainPageStyles';
+  EditorToolDetails} from './components/MainPageStyles';
+import { ButtonGroupContainer } from './components/ButtonGroupContainer';
 
 function App() {
   const [canvas, setCanvas] = useState(null);
@@ -37,27 +35,40 @@ function App() {
     }
   }, [canvas]);
 
+  
+
   return (
     <>
-      <Container>
-        <Header>
-          <NavigationBar>
-            <Nav1>Make your Polaroid!</Nav1>
-            <Nav2>What is Y.O.P?</Nav2>
-          </NavigationBar>
+    <Container>
+      <Header>
+        
+        <NavigationBar>
+          <Nav1>
+            Make your Polaroid!
+          </Nav1>
+          <Nav2>
+            What is Y.O.P?
+          </Nav2>
+        </NavigationBar>
+          
+        
+        <HeaderForeground>
+        </HeaderForeground>
+      </Header>
+      <EditorSpace>
+        <ButtonGroupContainer />
+        <CanvasSpace>
+          <canvas id="canvas" />
+        </CanvasSpace>
+        <EditorToolDetails>
 
-          <HeaderForeground></HeaderForeground>
-        </Header>
-        <EditorSpace>
-          <EditorTools></EditorTools>
-          <CanvasSpace>
-            <canvas id='canvas' />
-          </CanvasSpace>
-          <EditorToolDetails></EditorToolDetails>
-        </EditorSpace>
-        <TabMenuContainer />
-        <Footer></Footer>
-      </Container>
+        </EditorToolDetails>
+      </EditorSpace>
+      <Footer>
+        
+      </Footer>
+    </Container>
+    
     </>
   );
 }
