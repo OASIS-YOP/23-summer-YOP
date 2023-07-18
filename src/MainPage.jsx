@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const initCanvas = () =>
       new fabric.Canvas('canvas', {
-        height: 580,
+        height: 500,
         width: 415,
         backgroundColor: 'white',
       });
