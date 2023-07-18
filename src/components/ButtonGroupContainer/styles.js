@@ -9,7 +9,7 @@ import {
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-contents: space-between;
+  justify-content: space-between;
   align-items: center;
   width: 60px;
   height: 450px;
