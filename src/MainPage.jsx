@@ -3,16 +3,16 @@ import { fabric } from 'fabric';
 
 import { 
   Header,
+  Body,
   Container, 
-  EditorSpace, 
-  EditorTools, 
+  LeftContainer, 
   Footer, 
   HeaderForeground,
   NavigationBar, 
   Nav1,
   Nav2,
-  CanvasSpace,
-  EditorToolDetails} from './components/MainPageStyles';
+  CanvasSpace,} from './components/MainPageStyles';
+import { ButtonGroupContainer } from './components/ButtonGroupContainer';
 
 function App() {
   const [canvas, setCanvas] = useState(null);
@@ -20,9 +20,9 @@ function App() {
   useEffect(() => {
     const initCanvas = () =>
       new fabric.Canvas('canvas', {
-        height: 700,
-        width: 700,
-        backgroundColor: 'gray',
+        height: 500,
+        width: 415,
+        backgroundColor: 'white',
       });
 
     setCanvas(initCanvas());
@@ -34,6 +34,8 @@ function App() {
       canvas.initialize('canvas');
     }
   }, [canvas]);
+
+  
 
   return (
     <>
@@ -53,17 +55,14 @@ function App() {
         <HeaderForeground>
         </HeaderForeground>
       </Header>
-      <EditorSpace>
-        <EditorTools>
-
-        </EditorTools>
-        <CanvasSpace>
-          <canvas id="canvas" />
-        </CanvasSpace>
-        <EditorToolDetails>
-
-        </EditorToolDetails>
-      </EditorSpace>
+      <Body>
+        <LeftContainer>
+          <ButtonGroupContainer />
+          <CanvasSpace>
+            <canvas id="canvas" />
+          </CanvasSpace>
+        </LeftContainer>
+      </Body>
       <Footer>
         
       </Footer>

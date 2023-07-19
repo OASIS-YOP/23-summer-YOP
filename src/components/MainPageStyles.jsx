@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components';     
 import { pointColor, 
     primaryColor, 
     secondaryColor, 
@@ -7,17 +7,16 @@ import { pointColor,
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100%;
 
 `
 export const Header = styled.div`
-    // color: ${pointColor};
     
     width: 100%;
-    height: 12vh;
+    height: 130px;
     background-color: ${pointColor};
     display: flex;
     flex-direction: column;
@@ -27,7 +26,7 @@ export const Header = styled.div`
 
 export const NavigationBar = styled.div`
     width: 100%;
-    height: 5vh;
+    height: 40%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -60,13 +59,21 @@ export const HeaderForeground = styled.div`
     background-color: ${whiteColor};
     margin: -15px;
 `
+export const Body = styled.div`
+    height: calc(1024-250)px;
+    width: 100%;
+`
 
-export const EditorSpace = styled.div`
+export const LeftContainer = styled.div`
     display: flex;
-    flex-direction: row;
-    justfy-content: center;
+    justify-content: flex-start;
     align-items: center;
-    background-color: ${whiteColor};
+    background-color: #EDEDED;
+    height: 700px;
+    width: 1010px;
+    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+    border-radius: 15px;
+    margin: 5px 20px 25px 20px;
 `
 
 export const EditorTools = styled.div`
@@ -74,15 +81,18 @@ export const EditorTools = styled.div`
 `
 
 export const CanvasSpace = styled.div`
-    justfy-content: center;
+    justify-content: center;
     align-items: center;
+    height: 508px;
+    width: 423px;
+    border: 5px dashed #979797;
 `
 
 export const EditorToolDetails = styled.div`
 `
 
 export const Footer = styled.div`
-    height: 10vh;
+    height: 120px;
     width: 100%;
     background-color: ${secondaryColor};
 `
