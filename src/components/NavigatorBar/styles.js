@@ -8,12 +8,12 @@ import {
 
 export const NavigationBar = styled.div`
     width: 100%;
-    height: 60%;
+    height: 70%;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     margin-right: 2%;
-    align-items: bottom;   
+    align-items: end; 
 `
 
 export const LeftContainer = styled.section`
@@ -40,20 +40,20 @@ export const Header = styled.div`
     
     width: 100%;
     height: 130px;
-    background-color: ${pointColor};
+    background: linear-gradient(to bottom, ${pointColor}, ${whiteColor});
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
 `
 
-// export const HeaderForeground = styled.div`
-//     width: 100%;
-//     height: 100%;
-//     margin: -15px;
-//     display: flex;
-//     align-items: bottom;   
-// `
+export const HeaderForeground = styled.div`
+    width: 100%;
+    height: 100%;
+    margin: -15px;
+    display: flex;
+    align-items: bottom;   
+`
 export const Body = styled.div`
     height: calc(1024-250)px;
     width: 100%;

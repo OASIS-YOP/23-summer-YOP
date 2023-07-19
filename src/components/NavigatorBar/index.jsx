@@ -9,7 +9,7 @@ export const NavigatorBar = () => {
 
     const [canvas, setCanvas] = useState(null);
 
-    const [toggleState, setToggleState] = useState(1);
+    const [toggleState, setToggleState] = useState(0);
     const toggleTab = (index) => {
       setToggleState(index);
     }
@@ -38,20 +38,35 @@ export const NavigatorBar = () => {
         <s.Header>
           {/* <s.HeaderForeground> */}
             <s.NavigationBar className="bloc-nav-tabs">
-                    <div
+                  <div
                     className={toggleState === 0 ? "nav-tabs active-nav-tabs" : "nav-tabs"}
                     onClick={() => toggleTab(0)}
                     >
-                      <img
-                        src='폴라로이드.jpg'
-                        height='60%'  
-                      />
+                      {toggleState === 0 && (
+                        <>
+                          <img
+                          src='폴라로이드.jpg'
+                          height='53em'
+                          width='53em'  
+                          />
+                        </>
+                      )}
                       Make Own Polaroid
                     </div>
                     <div
                     className={toggleState === 1 ? "nav-tabs active-nav-tabs" : "nav-tabs"}
                     onClick={() => toggleTab(1)}
-                    >What is YOP?</div>
+                    >
+                      {toggleState === 1 && (
+                        <>
+                          <img
+                          src='하트 보석.png'
+                          height='50em'
+                          width='50em'
+                          />
+                        </>
+                      )}
+                      What is YOP?</div>
             </s.NavigationBar>
           {/*         
             <NavigationBar className='nav-menu'>
