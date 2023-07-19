@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react';
 import { fabric } from 'fabric';
-import { TabMenuContainer } from './components/TabMenuContainer';
 
-import {
+import { 
   Header,
-  Container,
-  EditorSpace,
-  EditorTools,
-  Footer,
+  Body,
+  Container, 
+  LeftContainer, 
+  Footer, 
   HeaderForeground,
-  NavigationBar,
+  NavigationBar, 
   Nav1,
   Nav2,
-  CanvasSpace,
-  EditorToolDetails,
-} from './components/MainPageStyles';
+  CanvasSpace,} from './components/MainPageStyles';
+import { ButtonGroupContainer } from './components/ButtonGroupContainer';
 
 function App() {
   const [canvas, setCanvas] = useState(null);
@@ -22,9 +20,9 @@ function App() {
   useEffect(() => {
     const initCanvas = () =>
       new fabric.Canvas('canvas', {
-        height: 700,
-        width: 700,
-        backgroundColor: 'gray',
+        height: 500,
+        width: 415,
+        backgroundColor: 'white',
       });
 
     setCanvas(initCanvas());
@@ -37,27 +35,39 @@ function App() {
     }
   }, [canvas]);
 
+  
+
   return (
     <>
-      <Container>
-        <Header>
-          <NavigationBar>
-            <Nav1>Make your Polaroid!</Nav1>
-            <Nav2>What is Y.O.P?</Nav2>
-          </NavigationBar>
-
-          <HeaderForeground></HeaderForeground>
-        </Header>
-        <EditorSpace>
-          <EditorTools></EditorTools>
+    <Container>
+      <Header>
+        
+        <NavigationBar>
+          <Nav1>
+            Make your Polaroid!
+          </Nav1>
+          <Nav2>
+            What is Y.O.P?
+          </Nav2>
+        </NavigationBar>
+          
+        
+        <HeaderForeground>
+        </HeaderForeground>
+      </Header>
+      <Body>
+        <LeftContainer>
+          <ButtonGroupContainer />
           <CanvasSpace>
-            <canvas id='canvas' />
+            <canvas id="canvas" />
           </CanvasSpace>
-          <EditorToolDetails></EditorToolDetails>
-        </EditorSpace>
-        <TabMenuContainer />
-        <Footer></Footer>
-      </Container>
+        </LeftContainer>
+      </Body>
+      <Footer>
+        
+      </Footer>
+    </Container>
+    
     </>
   );
 }
