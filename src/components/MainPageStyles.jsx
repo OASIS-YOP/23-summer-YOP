@@ -105,4 +105,6 @@ export const RightContainer = styled.div`
   height: 700px;
   min-width: 350px;
   border-radius: 15px;
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+  margin: 5px 20px 25px 0px;
 `;
