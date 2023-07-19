@@ -1,18 +1,21 @@
 import styled from 'styled-components';
-import {
-  pointColor,
-  primaryColor,
-  secondaryColor,
-  whiteColor,
-} from '../../GlobalStyles';
+// import {
+//   pointColor,
+//   primaryColor,
+//   secondaryColor,
+//   whiteColor,
+// } from '../../GlobalStyles';
 
 export const TabNavBar = styled.div`
   display: flex;
   width: 350px;
-  height: 40px;
+  height: 35px;
 `;
 
 export const TabMenu = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
   width: 70px;
@@ -22,6 +25,10 @@ export const TabMenu = styled.div`
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
 
   &:hover {
+    cursor: pointer;
+    background-color: white;
+  }
+  &.active {
     background-color: white;
   }
 `;
