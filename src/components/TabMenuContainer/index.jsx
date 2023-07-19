@@ -15,7 +15,7 @@ export const TabMenuContainer = ({ tabMenuLabelList }) => {
         <s.TabNavBar>
           {tabMenuLabelList.map((item, index) => (
             <s.TabMenu
-              key={`list_${index}`}
+              key={`tabMenuLabellist_${index}`}
               onClick={() => onClickButton(index)}
               className={onButtonClicked === index ? 'active' : ''}
             >
