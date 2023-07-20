@@ -77,7 +77,7 @@ export const LeftContainer = styled.div`
 `
 
 export const EditorTools = styled.div`
-    background-color = ${secondaryColor};
+    background-color : ${secondaryColor};
 `
 
 
@@ -101,3 +101,4 @@ export const Footer = styled.div`
 `
 //--------여기까지 유림------------
 //--------여기서부터 수정----------
+
