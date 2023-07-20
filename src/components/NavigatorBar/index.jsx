@@ -56,7 +56,7 @@ export const NavigatorBar = () => {
                           />
                         </>
                       )}
-                      Make Own Polaroid
+                      Make your Polaroid
                     </div>
                     <div
                     className={toggleState === 1 ? "nav-tabs active-nav-tabs" : "nav-tabs"}
