@@ -80,12 +80,15 @@ export const EditorTools = styled.div`
     background-color = ${secondaryColor};
 `
 
+
+
 export const CanvasSpace = styled.div`
     justify-content: center;
     align-items: center;
-    height: 508px;
-    width: 423px;
+    height: 510px;
+    width: 425px;
     border: 5px dashed #979797;
+    box-sizing: border-box;
 `
 
 export const EditorToolDetails = styled.div`
