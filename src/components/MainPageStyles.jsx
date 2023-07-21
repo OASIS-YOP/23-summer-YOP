@@ -23,36 +23,6 @@ export const Header = styled.div`
     justify-content: flex-end;
     align-items: center;
     `
-
-export const NavigationBar = styled.div`
-    width: 100%;
-    height: 40%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    background-color: ${pointColor};
-    
-`
-
-export const Nav1 = styled.button`
-    width: 10%;
-    height: 100%;
-    border-color: ${whiteColor};
-    border-radius: 15px;
-    background-color: ${whiteColor};
-    
-
-`
-export const Nav2 = styled.button`
-    width: 10%;
-    height: 100%;
-    border-color: ${whiteColor};
-    border-radius: 15px;
-    background-color: ${whiteColor};
-    margin-right: 20px;
-
-`
 export const HeaderForeground = styled.div`
     width: 100%;
     height: 25%;

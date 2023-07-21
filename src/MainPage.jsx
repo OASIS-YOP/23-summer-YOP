@@ -1,11 +1,11 @@
 import { Container, Footer } from './components/MainPageStyles';
-import { NavigatorBar } from './components/NavigatorBar';
+import { NavigationBar } from './components/NavigationBar';
 
 function App() {
   return (
     <>
       <Container>
-        <NavigatorBar />
+        <NavigationBar />
         <Footer></Footer>
       </Container>
     </>
