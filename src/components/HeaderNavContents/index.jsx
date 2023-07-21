@@ -1,12 +1,11 @@
 import * as s from './styles';
-// import * as s from '../MainPageStyles'
-import { ButtonGroupContainer } from '../ButtonGroupContainer';
-import { useState, useEffect } from 'react';
 import { fabric } from 'fabric';
+import { useState, useEffect } from 'react';
+import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 
 
-export const NavigationBar = () => {
+export const HeaderNavContents = () => {
     const [canvas, setCanvas] = useState(null);
 
     const tabMenuLabelList = ['편집', '필터', '테스트'];
@@ -34,8 +33,6 @@ export const NavigationBar = () => {
         canvas.initialize('canvas');
       }
     }, [canvas]);
-
-  
 
     return (
       <>

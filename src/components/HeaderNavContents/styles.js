@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import {
   pointColor,
-  primaryColor,
-  secondaryColor,
+//   primaryColor,
+//   secondaryColor,
   whiteColor,
 } from '../../GlobalStyles';
 
 
-// 헤더
+//--------------Header--------------
 export const Header = styled.div`
     
     width: 100%;
@@ -19,6 +19,7 @@ export const Header = styled.div`
     align-items: center;
 `
 
+// 안 쓰임
 // export const HeaderForeground = styled.div`
 //     width: 100%;
 //     height: 100%;
@@ -28,6 +29,7 @@ export const Header = styled.div`
 // `
 
 
+//--------------NavBar--------------
 export const NavigationBar = styled.div`
     width: 100%;
     height: 70%;
@@ -71,7 +73,7 @@ export const NavTabs = styled.div`
         background-color: #FFFFFF
     }
 `
-
+  // 어떤 기능인지 모르겠어서 빼놓음
   // &.active-nav-tabs::before {
     //     width: auto;
     //     height: auto;
@@ -83,21 +85,12 @@ export const NavTabs = styled.div`
     //     align-items: start;
     //     text-align: center;
     //     box-shadow: 5px 2px 2px 1px rgb(0, 0, 0, 0.2);
-    // 어떤 기능인지 모르겠어서 빼놓음
 
-
-// body
+//--------------Body--------------
 export const Body = styled.div`
     height: calc(1024-250)px;
     width: 100%;
     z-index: 99;
-`
-
-export const ContentWrapper = styled.div`
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    padding: 0;
 `
 
 export const Content = styled.div`
@@ -115,6 +108,14 @@ export const Content = styled.div`
     }
 `
 
+// 플렉스 설정 위해 편집 페이지 좌우 컨테이너 한번 더 감싸줌
+export const ContentWrapper = styled.div`
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0;
+`
+
 export const LeftContainer = styled.section`
     display: flex;
     justify-content: flex-start;
@@ -126,6 +127,26 @@ export const LeftContainer = styled.section`
     border-radius: 15px;
     margin: 5px 20px 25px 20px;
 `
+
+export const CanvasSpace = styled.div`
+    justify-content: center;
+    align-items: center;
+    height: 510px;
+    width: 425px;
+    border: 5px dashed #979797;
+    z-index: 10;
+`
+// export const CanvasSpace = styled.div`
+//     justify-content: center;
+//     align-items: center;
+//     height: 510px;
+//     width: 425px;
+//     border: 5px dashed #979797;
+//     box-sizing: border-box;
+// `
+// -> 이전 버전 설정
+
+
 export const RightContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -139,13 +160,19 @@ export const RightContainer = styled.div`
     margin: 5px 20px 25px 0px;
 `;
 
-
-export const CanvasSpace = styled.div`
-    justify-content: center;
+// 소개페이지 콘텐츠 컨테이너 따로 만들어줌
+export const InfoContainer = styled.section`
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
-    height: 510px;
-    width: 425px;
-    border: 5px dashed #979797;
-    z-index: 10;
+    background-color: #EDEDED;
+    height: 700px;
+    width: 1010px;
+    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+    border-radius: 15px;
+    margin: 5px 20px 25px 20px;
 `
+
+
+
 
