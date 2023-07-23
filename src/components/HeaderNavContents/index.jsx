@@ -7,24 +7,34 @@ import { TabMenuContainer } from '../TabMenuContainer';
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
   const [toggleState, setToggleState] = useState(0);
-  const [imageURL, setImageURL] = useState();
-
   const fileInputRef = useRef(null);
-  const toggleTab = (index) => {
-    setToggleState(index);
-  };
 
   const tabMenuLabelList = ['편집', '필터', '테스트'];
   const tabMenuLabelList2 = ['스티커', '프레임'];
 
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
+
   const handleChangedFile = (e) => {
     const reader = new FileReader();
     if (e.target.files) {
+      //선택한 img파일의 URL을 읽어옴
       reader.readAsDataURL(e.target.files[0]);
+      console.log(reader);
     }
     reader.onloadend = () => {
+      //선택한 img파일의 base64
       const resultImage = reader.result;
-      setImageURL(resultImage);
+      const loadImage = () => {
+        fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
+          canvas.backgroundImage = imgFile;
+          imgFile.scaleToHeight(510);
+          imgFile.scaleToWidth(425);
+          canvas.renderAll();
+        });
+      };
+      loadImage();
     };
   };
 
