@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import * as s from './styles';
 
-export const SelectSizePage = () => {
+// eslint-disable-next-line react/prop-types
+export const SelectSizePage = ({ isClickedOk }) => {
   const [selectSize, setSelectSize] = useState(999);
 
-  const sizeList = ['사진프레임1.png', '사진프레임2.png', '사진프레임3.png'];
+  // const sizeList = ['사진프레임1.png', '사진프레임2.png', '사진프레임3.png'];
 
   const onClickSize = (index) => {
     setSelectSize(index);
@@ -67,7 +68,7 @@ export const SelectSizePage = () => {
           />
         </s.SizeImageWrapper>
       </s.SizeImageContainer>
-      <s.OkButton>확인</s.OkButton>
+      <s.OkButton onClick={isClickedOk}>확인</s.OkButton>
     </s.ContentContainer>
   );
 };
