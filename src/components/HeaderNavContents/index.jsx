@@ -19,8 +19,8 @@ export const HeaderNavContents = () => {
     useEffect(() => {
       const initCanvas = () =>
         new fabric.Canvas('canvas', {
-          height: 500,
-          width: 415,
+          height: 510,
+          width: 425,
           backgroundColor: 'white',
         });
   
