@@ -1,7 +1,7 @@
 import { Container, Footer } from './components/MainPageStyles';
 import { HeaderNavContents } from './components/HeaderNavContents';
 
-function App() {
+function MainPage() {
   return (
     <>
       <Container>
@@ -12,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainPage;
