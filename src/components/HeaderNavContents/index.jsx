@@ -3,6 +3,7 @@ import { fabric } from 'fabric';
 import { useState, useEffect, useRef } from 'react';
 import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
+import { SelectSizePage } from '../SelectSizePage';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -88,7 +89,8 @@ export const HeaderNavContents = () => {
       <s.Body>
         <s.Content className={toggleState === 0 ? 'active' : ''}>
           <s.ContentWrapper>
-            <s.LeftContainer>
+            <SelectSizePage />
+            {/* <s.LeftContainer>
               <ButtonGroupContainer
                 handleChangedFile={handleChangedFile}
                 fileInputRef={fileInputRef}
@@ -100,7 +102,7 @@ export const HeaderNavContents = () => {
             <s.RightContainer>
               <TabMenuContainer tabMenuLabelList={tabMenuLabelList} />
               <TabMenuContainer tabMenuLabelList={tabMenuLabelList2} />
-            </s.RightContainer>
+            </s.RightContainer> */}
           </s.ContentWrapper>
         </s.Content>
         <s.Content className={toggleState === 1 ? 'active' : ''}>
