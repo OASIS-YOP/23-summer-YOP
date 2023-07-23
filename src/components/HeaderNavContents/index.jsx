@@ -9,7 +9,7 @@ export const HeaderNavContents = () => {
   const [toggleState, setToggleState] = useState(0);
   const fileInputRef = useRef(null);
 
-  const tabMenuLabelList = ['편집', '필터', '테스트'];
+  const tabMenuLabelList = ['편집', '필터', '텍스트'];
   const tabMenuLabelList2 = ['스티커', '프레임'];
 
   const toggleTab = (index) => {
