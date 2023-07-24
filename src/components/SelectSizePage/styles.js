@@ -33,22 +33,63 @@ export const SizeImageContainer = styled.div`
 `;
 
 export const SizeImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: fit-content;
   height: fit-content;
-  text-align: center;
   margin: 0 15px 0 15px;
   box-sizing: border-box;
   cursor: pointer;
+`;
+
+export const Size1 = styled.div`
+  width: 220px;
+  height: 340px;
+  background-color: ${whiteColor};
+
+  border: 2px dotted #979797;
   &:hover {
-    border: 2px solid ${pointColor};
+    background-color: ${primaryColor};
+    border: 2px dotted black;
   }
   &.active {
-    border: 2px solid ${pointColor};
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
+`;
+export const Size2 = styled.div`
+  width: 340px;
+  height: 340px;
+  border: 2px dotted #979797;
+  background-color: ${whiteColor};
+  &:hover {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
+  &.active {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
+`;
+export const Size3 = styled.div`
+  width: 400px;
+  height: 340px;
+  border: 2px dotted #979797;
+  background-color: ${whiteColor};
+  &:hover {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
+  &.active {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
   }
 `;
 
-export const SizeImage = styled.img`
-  -webkit-user-drag: none;
+export const SizeLabel = styled.p`
+  font-size: 1rem;
 `;
 
 export const OkButton = styled.button`
@@ -58,10 +99,8 @@ export const OkButton = styled.button`
   border-style: none;
   border-radius: 10px;
   cursor: pointer;
-  margin-top: 40px;
   font-size: 1rem;
-
   &:hover {
-    background-color: ${pointColor};
+    background-color: ${primaryColor};
   }
 `;
