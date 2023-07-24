@@ -36,6 +36,7 @@ export const HeaderNavContents = () => {
           canvas.backgroundImage = imgFile;
           imgFile.scaleToHeight(510);
           imgFile.scaleToWidth(425);
+          canvas.add(imgFile);
           canvas.renderAll();
         });
       };
