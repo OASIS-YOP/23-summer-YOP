@@ -3,15 +3,20 @@ import { fabric } from 'fabric';
 import { useState, useEffect, useRef } from 'react';
 import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
+import { SelectSizePage } from '../SelectSizePage';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
   const [toggleState, setToggleState] = useState(0);
+  const [isSelectPage, setIsSelectPage] = useState(true);
   const fileInputRef = useRef(null);
 
   const tabMenuLabelList = ['편집', '필터', '텍스트'];
   const tabMenuLabelList2 = ['스티커', '프레임'];
 
+  const isClickedOk = () => {
+    setIsSelectPage(false);
+  };
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -47,7 +52,7 @@ export const HeaderNavContents = () => {
       });
 
     setCanvas(initCanvas());
-  }, []);
+  }, [isSelectPage]);
 
   useEffect(() => {
     if (canvas) {
@@ -88,19 +93,25 @@ export const HeaderNavContents = () => {
       <s.Body>
         <s.Content className={toggleState === 0 ? 'active' : ''}>
           <s.ContentWrapper>
-            <s.LeftContainer>
-              <ButtonGroupContainer
-                handleChangedFile={handleChangedFile}
-                fileInputRef={fileInputRef}
-              />
-              <s.CanvasSpace>
-                <canvas id='canvas' />
-              </s.CanvasSpace>
-            </s.LeftContainer>
-            <s.RightContainer>
-              <TabMenuContainer tabMenuLabelList={tabMenuLabelList} />
-              <TabMenuContainer tabMenuLabelList={tabMenuLabelList2} />
-            </s.RightContainer>
+            {isSelectPage ? (
+              <SelectSizePage isClickedOk={isClickedOk} />
+            ) : (
+              <>
+                <s.LeftContainer>
+                  <ButtonGroupContainer
+                    handleChangedFile={handleChangedFile}
+                    fileInputRef={fileInputRef}
+                  />
+                  <s.CanvasSpace>
+                    <canvas id='canvas' />
+                  </s.CanvasSpace>
+                </s.LeftContainer>
+                <s.RightContainer>
+                  <TabMenuContainer tabMenuLabelList={tabMenuLabelList} />
+                  <TabMenuContainer tabMenuLabelList={tabMenuLabelList2} />
+                </s.RightContainer>
+              </>
+            )}
           </s.ContentWrapper>
         </s.Content>
         <s.Content className={toggleState === 1 ? 'active' : ''}>
