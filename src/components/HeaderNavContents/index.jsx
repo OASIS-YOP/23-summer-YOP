@@ -52,7 +52,7 @@ export const HeaderNavContents = () => {
       });
 
     setCanvas(initCanvas());
-  }, []);
+  }, [isSelectPage]);
 
   useEffect(() => {
     if (canvas) {
@@ -93,7 +93,7 @@ export const HeaderNavContents = () => {
       <s.Body>
         <s.Content className={toggleState === 0 ? 'active' : ''}>
           <s.ContentWrapper>
-            {isSelectPage === true ? (
+            {isSelectPage ? (
               <SelectSizePage isClickedOk={isClickedOk} />
             ) : (
               <>
