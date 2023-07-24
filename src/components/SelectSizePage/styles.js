@@ -74,7 +74,7 @@ export const Size2 = styled.div`
   }
 `;
 export const Size3 = styled.div`
-  width: 400px;
+  width: 420px;
   height: 340px;
   border: 2px dotted #979797;
   background-color: ${whiteColor};

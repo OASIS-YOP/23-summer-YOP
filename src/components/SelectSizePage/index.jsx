@@ -57,7 +57,7 @@ export const SelectSizePage = ({ isClickedOk }) => {
             }}
             className={selectSize == 3 ? 'active' : ''}
           />
-          <s.SizeLabel>20:17</s.SizeLabel>
+          <s.SizeLabel>21:17</s.SizeLabel>
         </s.SizeImageWrapper>
       </s.SizeImageContainer>
       <s.OkButton onClick={isClickedOk}>확인</s.OkButton>
