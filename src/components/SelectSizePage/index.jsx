@@ -13,7 +13,7 @@ export const SelectSizePage = ({ isClickedOk }) => {
 
   return (
     <s.ContentContainer>
-      <s.SelectSizeLabel>폴라로이드의 크기를 선택 후 아래의 확인 버튼을 누르세요!</s.SelectSizeLabel>
+      <s.SelectSizeLabel>폴라로이드의 크기를 선택 후 확인 버튼을 누르세요!</s.SelectSizeLabel>
       <s.SizeImageContainer>
         {/* {sizeList.map((item, index) => {
           return (
