@@ -128,11 +128,10 @@ export const LeftContainer = styled.section`
 export const CanvasSpace = styled.div`
   justify-content: center;
   align-items: center;
-  height: 510px;
-  width: 425px;
+  height: 650px;
+  width: 650px;
   border: 5px dashed #979797;
-  z-index: 10;
-`;
+;
 // export const CanvasSpace = styled.div`
 //     justify-content: center;
 //     align-items: center;
