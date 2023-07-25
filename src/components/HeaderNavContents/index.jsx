@@ -11,8 +11,37 @@ export const HeaderNavContents = () => {
   const [isSelectPage, setIsSelectPage] = useState(true);
   const fileInputRef = useRef(null);
 
-  const tabMenuLabelList = ['이미지', '그리기', '텍스트'];
-  const tabMenuLabelList2 = ['스티커', '프레임'];
+  //tabMenuDataList : tabMenuContainer의 props.
+  const tabMenuDataList = [
+    {
+      label: '이미지',
+      function: '',
+      level: 'top',
+    },
+    {
+      label: '그리기',
+      function: '',
+      level: 'top',
+    },
+    {
+      label: '텍스트',
+      function: '',
+      level: 'top',
+    },
+    {
+      label: '스티커',
+      function: '',
+      level: 'bottom',
+    },
+    {
+      label: '프레임',
+      function: '',
+      level: 'bottom',
+    },
+  ];
+
+  const topData = tabMenuDataList.filter((data) => data.level === 'top'); //위의 tabMenucontainer
+  const bottomData = tabMenuDataList.filter((data) => data.level === 'bottom'); //아래 tabMenucontainer
 
   const isClickedOk = () => {
     setIsSelectPage(false);
@@ -108,8 +137,9 @@ export const HeaderNavContents = () => {
                   </s.CanvasSpace>
                 </s.LeftContainer>
                 <s.RightContainer>
-                  <TabMenuContainer tabMenuLabelList={tabMenuLabelList} />
-                  <TabMenuContainer tabMenuLabelList={tabMenuLabelList2} />
+                  <TabMenuContainer tabMenuDataList={topData} />
+
+                  <TabMenuContainer tabMenuDataList={bottomData} />
                 </s.RightContainer>
               </>
             )}

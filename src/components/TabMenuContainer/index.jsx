@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import * as s from './styles';
 
-export const TabMenuContainer = ({ tabMenuLabelList }) => {
-  const [onButtonClicked, setOnButtonClicked] = useState(999);
+export const TabMenuContainer = ({ tabMenuDataList }) => {
+  const [onButtonClicked, setOnButtonClicked] = useState(0);
 
   const onClickButton = (index) => {
     setOnButtonClicked(index);
@@ -13,13 +13,13 @@ export const TabMenuContainer = ({ tabMenuLabelList }) => {
     <>
       <s.Wrapper>
         <s.TabNavBar>
-          {tabMenuLabelList.map((item, index) => (
+          {tabMenuDataList.map((item, index) => (
             <s.TabMenu
               key={`tabMenuLabellist_${index}`}
               onClick={() => onClickButton(index)}
               className={onButtonClicked === index ? 'active' : ''}
             >
-              {item}
+              {item.label}
             </s.TabMenu>
           ))}
         </s.TabNavBar>
@@ -28,4 +28,3 @@ export const TabMenuContainer = ({ tabMenuLabelList }) => {
     </>
   );
 };
-
