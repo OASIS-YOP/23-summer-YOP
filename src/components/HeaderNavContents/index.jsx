@@ -11,7 +11,7 @@ export const HeaderNavContents = () => {
   const [isSelectPage, setIsSelectPage] = useState(true);
   const fileInputRef = useRef(null);
 
-  const tabMenuLabelList = ['편집', '필터', '텍스트'];
+  const tabMenuLabelList = ['이미지', '그리기', '텍스트'];
   const tabMenuLabelList2 = ['스티커', '프레임'];
 
   const isClickedOk = () => {
