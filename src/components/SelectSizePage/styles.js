@@ -60,7 +60,7 @@ export const Size1 = styled.div`
   }
 `;
 export const Size2 = styled.div`
-  width: 340px;
+  width: 280px;
   height: 340px;
   border: 2px dotted #979797;
   background-color: ${whiteColor};

@@ -48,7 +48,7 @@ export const SelectSizePage = ({ isClickedOk }) => {
             }}
             className={selectSize == 2 ? 'active' : ''}
           />
-          <s.SizeLabel>1:1</s.SizeLabel>
+          <s.SizeLabel>14:17</s.SizeLabel>
         </s.SizeImageWrapper>
         <s.SizeImageWrapper>
           <s.Size3
