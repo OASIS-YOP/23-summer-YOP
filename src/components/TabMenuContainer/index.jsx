@@ -9,6 +9,7 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
     setOnButtonClicked(index);
   };
 
+
   return (
     <>
       <s.Wrapper>
@@ -23,7 +24,14 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
             </s.TabMenu>
           ))}
         </s.TabNavBar>
-        <s.ContentBox />
+        {tabMenuDataList.map((item, index) => (
+          <s.ContentBox
+            key={`tabMenuContentlist_${index}`}
+            className={onButtonClicked === index ? 'active' : ''}
+          >
+            {item.function}
+          </s.ContentBox>
+        ))}
       </s.Wrapper>
     </>
   );

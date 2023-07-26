@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
+import { Stickers } from '../Stickers';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -31,7 +32,7 @@ export const HeaderNavContents = () => {
     },
     {
       label: '스티커',
-      function: [],
+      function: [Stickers()],
       level: 'bottom',
     },
     {
