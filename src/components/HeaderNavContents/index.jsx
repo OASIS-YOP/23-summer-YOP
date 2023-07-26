@@ -15,27 +15,27 @@ export const HeaderNavContents = () => {
   const tabMenuDataList = [
     {
       label: '이미지',
-      function: '',
+      function: [],
       level: 'top',
     },
     {
       label: '그리기',
-      function: '',
+      function: [],
       level: 'top',
     },
     {
       label: '텍스트',
-      function: '',
+      function: [],
       level: 'top',
     },
     {
       label: '스티커',
-      function: '',
+      function: [],
       level: 'bottom',
     },
     {
       label: '프레임',
-      function: '',
+      function: [],
       level: 'bottom',
     },
   ];
