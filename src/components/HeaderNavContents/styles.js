@@ -125,14 +125,28 @@ export const LeftContainer = styled.section`
   margin: 5px 20px 25px 20px;
 `;
 
-export const CanvasSpace = styled.div`
+export const ButtonGroupWrapper = styled.div`
+  text-align: center;
+  width: 10%;
+`;
+
+export const CanvasSpaceWrapper = styled.div`
+  display: flex;
   justify-content: center;
   align-items: center;
-  height: 510px;
-  width: 425px;
+  width: 90%;
+  height: 100%;
+`;
+
+export const CanvasSpace = styled.div`
+  margin: auto auto;
+  width: fit-content;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
   border: 5px dashed #979797;
-;
-// export const CanvasSpace = styled.div`
+  // export const CanvasSpace = styled.div
+`;
 //     justify-content: center;
 //     align-items: center;
 //     height: 510px;
