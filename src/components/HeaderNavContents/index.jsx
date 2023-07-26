@@ -69,8 +69,8 @@ export const HeaderNavContents = () => {
       const loadImage = () => {
         fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
           canvas.backgroundImage = imgFile;
-          imgFile.scaleToHeight(510);
-          imgFile.scaleToWidth(425);
+          imgFile.scaleToHeight(canvasSize[1]);
+          imgFile.scaleToWidth(canvasSize[0]);
           canvas.add(imgFile);
           canvas.renderAll();
         });
