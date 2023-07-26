@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as s from './styles';
+import {fabric} from 'fabric';
+
 
 export const TabMenuContainer = ({ tabMenuDataList }) => {
   const [onButtonClicked, setOnButtonClicked] = useState(0);
@@ -8,6 +10,28 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
   const onClickButton = (index) => {
     setOnButtonClicked(index);
   };
+
+  const [canvasTemp, setCanvasTemp] = useState(null);
+  useEffect(() => {
+    const initCanvas = () =>
+      new fabric.Canvas('canvasTemp', {
+        height: 200,
+        width: 300,
+        backgroundColor: 'gray',
+      });
+
+    setCanvasTemp(initCanvas());
+  }, []);
+
+  useEffect(() => {
+    if (canvasTemp) {
+      // 생성한 Canvas 인스턴스를 DOM에 추가
+      canvasTemp.initialize('canvasTemp');
+    }
+  }, [canvasTemp]);
+
+  
+  
 
   return (
     <>
@@ -23,7 +47,11 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
             </s.TabMenu>
           ))}
         </s.TabNavBar>
-        <s.ContentBox />
+        <s.ContentBox >
+          {/* <canvas id='canvasTemp' /> 
+          <TabText 
+            InsertText = {InsertText}/> */}
+        </s.ContentBox>
       </s.Wrapper>
     </>
   );

@@ -79,6 +79,20 @@ export const HeaderNavContents = () => {
     };
   };
 
+  const InsertText = () =>{
+    if(canvas){
+      let text = new fabric.IText('text',
+      {
+        fill: 'green',
+        editable: true,
+        hasControls: true,
+      });
+      text.set('selectable' ,true);
+      canvas.add(text);
+    }
+
+  };
+
   useEffect(() => {
     console.log(canvasSize);
     const initCanvas = () =>
@@ -147,6 +161,7 @@ export const HeaderNavContents = () => {
                   <s.CanvasSpaceWrapper>
                     <s.CanvasSpace>
                       <canvas id='canvas' />
+                      <button onClick={InsertText}>TEXT</button>
                     </s.CanvasSpace>
                   </s.CanvasSpaceWrapper>
                 </s.LeftContainer>
