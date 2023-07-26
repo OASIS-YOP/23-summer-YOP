@@ -9,6 +9,7 @@ export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
   const [toggleState, setToggleState] = useState(0);
   const [isSelectPage, setIsSelectPage] = useState(true);
+  const [canvasSize, setCanvasSize] = useState([0, 0]);
   const fileInputRef = useRef(null);
 
   //tabMenuDataList : tabMenuContainer의 props.
@@ -46,6 +47,11 @@ export const HeaderNavContents = () => {
   const isClickedOk = () => {
     setIsSelectPage(false);
   };
+
+  const selectCanvasSize = (size) => {
+    setCanvasSize(size);
+  };
+
   const toggleTab = (index) => {
     setToggleState(index);
   };
@@ -74,10 +80,11 @@ export const HeaderNavContents = () => {
   };
 
   useEffect(() => {
+    console.log(canvasSize);
     const initCanvas = () =>
       new fabric.Canvas('canvas', {
-        height: 510,
-        width: 425,
+        height: canvasSize[1],
+        width: canvasSize[0],
         backgroundColor: 'white',
       });
 
@@ -124,17 +131,24 @@ export const HeaderNavContents = () => {
         <s.Content className={toggleState === 0 ? 'active' : ''}>
           <s.ContentWrapper>
             {isSelectPage ? (
-              <SelectSizePage isClickedOk={isClickedOk} />
+              <SelectSizePage
+                isClickedOk={isClickedOk}
+                selectCanvasSize={selectCanvasSize}
+              />
             ) : (
               <>
                 <s.LeftContainer>
-                  <ButtonGroupContainer
-                    handleChangedFile={handleChangedFile}
-                    fileInputRef={fileInputRef}
-                  />
-                  <s.CanvasSpace>
-                    <canvas id='canvas' />
-                  </s.CanvasSpace>
+                  <s.ButtonGroupWrapper>
+                    <ButtonGroupContainer
+                      handleChangedFile={handleChangedFile}
+                      fileInputRef={fileInputRef}
+                    />
+                  </s.ButtonGroupWrapper>
+                  <s.CanvasSpaceWrapper>
+                    <s.CanvasSpace>
+                      <canvas id='canvas' />
+                    </s.CanvasSpace>
+                  </s.CanvasSpaceWrapper>
                 </s.LeftContainer>
                 <s.RightContainer>
                   <TabMenuContainer tabMenuDataList={topData} />

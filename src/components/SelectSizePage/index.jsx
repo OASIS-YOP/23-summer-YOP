@@ -2,10 +2,8 @@ import { useState } from 'react';
 import * as s from './styles';
 
 // eslint-disable-next-line react/prop-types
-export const SelectSizePage = ({ isClickedOk }) => {
+export const SelectSizePage = ({ isClickedOk, selectCanvasSize }) => {
   const [selectSize, setSelectSize] = useState(999);
-
-  // const sizeList = ['사진프레임1.png', '사진프레임2.png', '사진프레임3.png'];
 
   const onClickSize = (index) => {
     setSelectSize(index);
@@ -13,7 +11,9 @@ export const SelectSizePage = ({ isClickedOk }) => {
 
   return (
     <s.ContentContainer>
-      <s.SelectSizeLabel>폴라로이드의 크기를 선택 후 확인 버튼을 누르세요!</s.SelectSizeLabel>
+      <s.SelectSizeLabel>
+        폴라로이드의 크기를 선택 후 확인 버튼을 누르세요!
+      </s.SelectSizeLabel>
       <s.SizeImageContainer>
         {/* {sizeList.map((item, index) => {
           return (
@@ -36,6 +36,7 @@ export const SelectSizePage = ({ isClickedOk }) => {
           <s.Size1
             onClick={() => {
               onClickSize(1);
+              selectCanvasSize([330, 510]);
             }}
             className={selectSize == 1 ? 'active' : ''}
           />
@@ -45,6 +46,7 @@ export const SelectSizePage = ({ isClickedOk }) => {
           <s.Size2
             onClick={() => {
               onClickSize(2);
+              selectCanvasSize([420, 510]);
             }}
             className={selectSize == 2 ? 'active' : ''}
           />
@@ -54,6 +56,7 @@ export const SelectSizePage = ({ isClickedOk }) => {
           <s.Size3
             onClick={() => {
               onClickSize(3);
+              selectCanvasSize([630, 510]);
             }}
             className={selectSize == 3 ? 'active' : ''}
           />
