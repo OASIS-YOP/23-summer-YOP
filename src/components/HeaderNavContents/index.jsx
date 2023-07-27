@@ -5,6 +5,7 @@ import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
 import { Stickers } from '../Stickers';
+import { TextTab } from '../TextTab';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -27,7 +28,7 @@ export const HeaderNavContents = () => {
     },
     {
       label: '텍스트',
-      function: [],
+      function: [TextTab(canvas)],
       level: 'top',
     },
     {
@@ -80,19 +81,6 @@ export const HeaderNavContents = () => {
     };
   };
 
-  const InsertText = () =>{
-    if(canvas){
-      let text = new fabric.IText('text',
-      {
-        fill: 'green',
-        editable: true,
-        hasControls: true,
-      });
-      text.set('selectable' ,true);
-      canvas.add(text);
-    }
-
-  };
 
   useEffect(() => {
     console.log(canvasSize);
@@ -162,7 +150,6 @@ export const HeaderNavContents = () => {
                   <s.CanvasSpaceWrapper>
                     <s.CanvasSpace>
                       <canvas id='canvas' />
-                      <button onClick={InsertText}>TEXT</button>
                     </s.CanvasSpace>
                   </s.CanvasSpaceWrapper>
                 </s.LeftContainer>
