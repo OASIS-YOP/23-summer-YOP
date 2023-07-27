@@ -5,6 +5,7 @@ import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
 import { Stickers } from '../Stickers';
+import { TextTab } from '../TextTab';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -27,7 +28,7 @@ export const HeaderNavContents = () => {
     },
     {
       label: '텍스트',
-      function: [],
+      function: [TextTab(canvas)],
       level: 'top',
     },
     {
@@ -79,6 +80,7 @@ export const HeaderNavContents = () => {
       loadImage();
     };
   };
+
 
   useEffect(() => {
     console.log(canvasSize);
