@@ -42,10 +42,29 @@ export const TabMenu = styled.div`
 `;
 
 export const ContentBox = styled.div`
+  display: none;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin: 0px;
-  width: 100%;
+  padding: 15px;
+  width: 90%;
   height: 100%;
   background-color: white;
   border-radius: 0 0 15px 15px;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+    
+  &.active{
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    padding: 15px;
+    width: 90%;
+    height: 100%;
+    background-color: white;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+  }
 `;

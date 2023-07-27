@@ -11,27 +11,7 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
     setOnButtonClicked(index);
   };
 
-  const [canvasTemp, setCanvasTemp] = useState(null);
-  useEffect(() => {
-    const initCanvas = () =>
-      new fabric.Canvas('canvasTemp', {
-        height: 200,
-        width: 300,
-        backgroundColor: 'gray',
-      });
 
-    setCanvasTemp(initCanvas());
-  }, []);
-
-  useEffect(() => {
-    if (canvasTemp) {
-      // 생성한 Canvas 인스턴스를 DOM에 추가
-      canvasTemp.initialize('canvasTemp');
-    }
-  }, [canvasTemp]);
-
-  
-  
 
   return (
     <>
@@ -47,11 +27,16 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
             </s.TabMenu>
           ))}
         </s.TabNavBar>
-        <s.ContentBox >
-          {/* <canvas id='canvasTemp' /> 
-          <TabText 
-            InsertText = {InsertText}/> */}
-        </s.ContentBox>
+
+        {tabMenuDataList.map((item, index) => (
+          <s.ContentBox
+            key={`tabMenuContentlist_${index}`}
+            className={onButtonClicked === index ? 'active' : ''}
+          >
+            {item.function}
+          </s.ContentBox>
+        ))}
+
       </s.Wrapper>
     </>
   );

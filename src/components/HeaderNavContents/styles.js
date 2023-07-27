@@ -119,7 +119,7 @@ export const LeftContainer = styled.section`
   align-items: center;
   background-color: #ededed;
   height: 700px;
-  width: 1010px;
+  width: 60%;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
   border-radius: 15px;
   margin: 5px 20px 25px 20px;
@@ -163,7 +163,8 @@ export const RightContainer = styled.div`
   align-items: center;
   background-color: #ededed;
   height: 700px;
-  min-width: 350px;
+  max-width: 450px;
+  min-width: 450px;
   border-radius: 15px;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
   margin: 5px 20px 25px 0px;
