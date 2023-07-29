@@ -15,3 +15,6 @@ export const BtnFixImage = styled.button`
 export const BtnFixText = styled.button`
 
 `
+export const BtnChangeColor = styled.button`
+
+`
