@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import * as s from './styles';
 import {fabric} from 'fabric';
-
+import { TextTab } from '../TextTab';
 
 export const TabMenuContainer = ({ tabMenuDataList }) => {
   const [onButtonClicked, setOnButtonClicked] = useState(0);
@@ -33,7 +33,7 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
             key={`tabMenuContentlist_${index}`}
             className={onButtonClicked === index ? 'active' : ''}
           >
-            {item.function}
+            {typeof item.function === 'function' ? item.function() : null}
           </s.ContentBox>
         ))}
 

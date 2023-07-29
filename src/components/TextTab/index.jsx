@@ -1,6 +1,7 @@
+import { useEffect, useState } from 'react';
 import * as s from './styles';
 
-export const TextTab = (canvas, imgFile) =>{
+export const TextTab = ({canvas}) =>{
   
   const AddText = () =>{
     if(canvas){
@@ -16,7 +17,7 @@ export const TextTab = (canvas, imgFile) =>{
   };
 
   const FixImage = () =>{
-    if(canvas.getActiveObject){
+    if(canvas.getActiveObject() && canvas.getActiveObject() instanceof fabric.Image){
       // console.log(canvas.getActiveObject()._element.currentSrc);
       console.log(canvas.getActiveObject());
       let imag = canvas.getActiveObject()._element.currentSrc;
@@ -41,15 +42,30 @@ export const TextTab = (canvas, imgFile) =>{
         imgFile.selectable = false;
         
         canvas.add(imgFile);
-  });
+      });
     }
     
 };
+
+const FixText = () =>{
+  if(canvas.getActiveObject() && (canvas.getActiveObject() instanceof fabric.Text || canvas.getActiveObject() instanceof fabric.IText)){
+    let textSelected = canvas.getActiveObject();
+    textSelected.hasControls = false;
+    textSelected.hasBorders = false;
+    textSelected.lockMovementX = true;
+    textSelected.lockMovementY = true;
+    textSelected.selectable = false;
+
+    //canvas.add(textSelected);
+  }
+};
+
 
   return (
     <>
     <s.ContainerText>
       <s.BtnAddText onClick = {AddText}>TEXT</s.BtnAddText>
+      <s.BtnFixText onClick = {FixText}>텍스트 고정</s.BtnFixText>
       <s.BtnFixImage onClick = {FixImage}>이미지 고정</s.BtnFixImage>
     </s.ContainerText>
     
