@@ -41,8 +41,6 @@ export const TextTab = (canvas, imgFile) =>{
         imgFile.selectable = false;
         
         canvas.add(imgFile);
-        // canvas.renderAll();
-    
   });
     }
     
@@ -52,7 +50,7 @@ export const TextTab = (canvas, imgFile) =>{
     <>
     <s.ContainerText>
       <s.BtnAddText onClick = {AddText}>TEXT</s.BtnAddText>
-      <s.BtnImageFix onClick = {FixImage}>이미지 고정</s.BtnImageFix>
+      <s.BtnFixImage onClick = {FixImage}>이미지 고정</s.BtnFixImage>
     </s.ContainerText>
     
     </>

@@ -8,5 +8,5 @@ export const BtnAddText = styled.button`
 
 `
 
-export const BtnImageFix = styled.button`
+export const BtnFixImage = styled.button`
 `
