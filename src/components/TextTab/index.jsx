@@ -50,13 +50,14 @@ export const TextTab = ({canvas}) =>{
 const FixText = () =>{
   if(canvas.getActiveObject() && (canvas.getActiveObject() instanceof fabric.Text || canvas.getActiveObject() instanceof fabric.IText)){
     let textSelected = canvas.getActiveObject();
+    const textSelectedText = textSelected.text;
+    console.log(canvas.getActiveObject());
     textSelected.hasControls = false;
     textSelected.hasBorders = false;
     textSelected.lockMovementX = true;
     textSelected.lockMovementY = true;
     textSelected.selectable = false;
-
-    //canvas.add(textSelected);
+    textSelected.editable = false;
   }
 };
 
