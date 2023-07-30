@@ -55,6 +55,7 @@ export const TextTab = ({canvas}) =>{
         imgFile.hasBorders = false;
         imgFile.lockMovementX = true;
         imgFile.selectable = false;
+        imgFile.evented = false;
         
         canvas.add(imgFile);
         canvas.renderAll();
@@ -74,6 +75,7 @@ const FixText = () =>{
     textSelected.lockMovementY = true;
     textSelected.selectable = false;
     textSelected.editable = false;
+    textSelected.evented = false;
   }
 };
 
@@ -84,7 +86,6 @@ const ChangeTextColor = () => {
     text.set('fill', textColor); // Update the fill property directly
     text.setCoords(); // Update the object's coordinates
     canvas.renderAll(); // Render the canvas
-    //text.text.set('fill', textColor);
     console.log(text);
 
     canvas.requestRenderAll();
