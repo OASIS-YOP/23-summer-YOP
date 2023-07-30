@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react';
 import * as s from './styles';
+import { fabric } from 'fabric';
 import {Demo} from '../ColorPicker';
 
 
 export const TextTab = ({canvas}) =>{
 
-  const [textColor, setTextColor] = useState('#4b5c7053');
+  const [textColor, setTextColor] = useState('#6979ffff');
   
+  const removeText = () => {
+    if(canvas.getActiveObject()){
+      console.log(canvas.getActiveObject());
+      canvas.remove(canvas.getActiveObject());
+      canvas.renderAll();
+    }
+    
+  };
+
   const AddText = () =>{
     if(canvas){
       let text = new fabric.IText('text',
@@ -40,13 +50,14 @@ export const TextTab = ({canvas}) =>{
         imgFile.scaleToHeight(imagHeight*imagScaleY);
         imgFile.left = imagLeft;
         imgFile.top = imagTop;
-        imgFile.angle = 0;
+        //imgFile.angle = 0;
         imgFile.hasControls = false;
         imgFile.hasBorders = false;
         imgFile.lockMovementX = true;
         imgFile.selectable = false;
         
         canvas.add(imgFile);
+        canvas.renderAll();
       });
     }
     
@@ -68,12 +79,16 @@ const FixText = () =>{
 
 const ChangeTextColor = () => {
   if(canvas.getActiveObject() && (canvas.getActiveObject() instanceof fabric.Text || canvas.getActiveObject() instanceof fabric.IText)){
-    let cValue = 'black';
-
     console.log(canvas.getActiveObject());
     let text = canvas.getActiveObject();
-    text.fill = textColor;
-    canvas.renderAll();
+    text.set('fill', textColor); // Update the fill property directly
+    text.setCoords(); // Update the object's coordinates
+    canvas.renderAll(); // Render the canvas
+    //text.text.set('fill', textColor);
+    console.log(text);
+
+    canvas.requestRenderAll();
+    console.log("rendered");
   }
 };
 
@@ -96,6 +111,20 @@ const RGBtoCMYK = () => {
 //https://codepen.io/AudreyRBC/pen/MzmLYx
 }
 
+  // Add event listener for 'delete' key press
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Delete') {
+        removeText();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [canvas]); // Reattach the event listener when the canvas changes
 
   return (
     <>
