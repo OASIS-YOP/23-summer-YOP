@@ -14,29 +14,59 @@ export const HeaderNavContents = () => {
   const [canvasSize, setCanvasSize] = useState([0, 0]);
   const fileInputRef = useRef(null);
 
+  //crop part
+
+  //좌우반전 part
+
+  //filter part
+  const filterImage = () => {};
+
+  const applyFilter = (filter) => {
+    const obj = canvas.getActiveObject();
+    obj.filters.push(filter);
+    obj.applyFilters();
+    canvas.renderAll();
+  };
+
+  const cropImage = () => {
+    canvas.set({
+      left: 80,
+      top: 80,
+      clipPath: new fabric.Rect({
+        originX: 'center',
+        originY: 'center',
+      }),
+    });
+  };
+
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
     {
+      id: 1,
       label: '이미지',
-      function: [],
+      function: [cropImage],
       level: 'top',
     },
     {
+      id: 2,
       label: '그리기',
-      function: [],
+      function: [applyFilter],
       level: 'top',
     },
     {
+      id: 3,
       label: '텍스트',
       function: [TextTab(canvas)],
       level: 'top',
     },
     {
+      id: 4,
       label: '스티커',
       function: [Stickers()],
       level: 'bottom',
     },
     {
+      id: 5,
       label: '프레임',
       function: [],
       level: 'bottom',
@@ -80,7 +110,6 @@ export const HeaderNavContents = () => {
       loadImage();
     };
   };
-
 
   useEffect(() => {
     console.log(canvasSize);
@@ -149,6 +178,33 @@ export const HeaderNavContents = () => {
                   </s.ButtonGroupWrapper>
                   <s.CanvasSpaceWrapper>
                     <s.CanvasSpace>
+                      <>
+                        <button onClick={cropImage}>crop</button>
+                        <button onClick={filterImage}>filter</button>{' '}
+                        <>
+                          <button
+                            onClick={() =>
+                              applyFilter(new fabric.Image.filters.Sepia())
+                            }
+                          >
+                            sepia
+                          </button>
+                          <button
+                            onClick={() =>
+                              applyFilter(new fabric.Image.filters.Brownie())
+                            }
+                          >
+                            Brownie
+                          </button>
+                          <button
+                            onClick={() =>
+                              applyFilter(new fabric.Image.filters.Grayscale())
+                            }
+                          >
+                            Gray
+                          </button>
+                        </>
+                      </>
                       <canvas id='canvas' />
                     </s.CanvasSpace>
                   </s.CanvasSpaceWrapper>
