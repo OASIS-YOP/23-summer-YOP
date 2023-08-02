@@ -130,6 +130,7 @@ export const HeaderNavContents = () => {
         width: canvasSize[0],
         backgroundColor: 'white',
       });
+    });
 
 
   const bringToFront = () => {

@@ -93,7 +93,7 @@ const ChangeTextColor = () => {
   }
 };
 
-<<<<<<< HEAD
+
 const changeTextFont = () => {
   if(canvas.getActiveObject() && (canvas.getActiveObject() instanceof fabric.Text || canvas.getActiveObject() instanceof fabric.IText)){
     console.log(canvas.getActiveObject());
@@ -108,14 +108,10 @@ const changeTextFont = () => {
   }
 };
 
-const RGBtoCMYK = () => {
-  const cmykHtml = document.querySelector('.cmyk_value');
-=======
+
 
 // const RGBtoCMYK = () => {
 //   const cmykHtml = document.querySelector('.cmyk_value');
->>>>>>> 36c6fc4879b779774d671ea982da0acb688db75a
-  
 //   let b = 1;
 //   let cmyk = [] ;
 //   for (var i = 0; i < rgb.length; i++) {
