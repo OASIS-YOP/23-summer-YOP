@@ -63,6 +63,7 @@ export const HeaderNavContents = () => {
     console.log(canvasSize);
     const initCanvas = () =>
       new fabric.Canvas('canvas', {
+        preserveObjectStacking: true,
         height: canvasSize[1],
         width: canvasSize[0],
         backgroundColor: 'white',
@@ -120,11 +121,21 @@ export const HeaderNavContents = () => {
   // };
 
   const bringToFront = () => {
-    canvas.getActiveObject().bringToFront();
+    const activeObject = canvas.getActiveObject(); 
+    if(activeObject) {
+      activeObject.bringToFront();
+    } else {
+      console.log("no object selected");
+    }
   };
 
   const sendToBack = () => {
-    canvas.getActiveObject().sendToBack();
+    const activeObject = canvas.getActiveObject(); 
+    if(activeObject) {
+      activeObject.sendToBack();
+    } else {
+      console.log("no object selected");
+    }
   };
 
   return (
