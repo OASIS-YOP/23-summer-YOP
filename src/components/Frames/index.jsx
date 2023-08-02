@@ -4,9 +4,7 @@ import {Component} from 'react';
 
 
 
-class Stickers extends Component {
-
-
+class Frames extends Component {
 
   handleImageClick = (event) => {
     const { offsetX, offsetY } = event.nativeEvent;
@@ -26,22 +24,19 @@ class Stickers extends Component {
       img.scaleToHeight(canvasHeight * scaleRatio);
       
       canvas.add(img);
+      img.bringToFront();
     });
   };
-
-
-  
   
   render() {
     return (
       <>
-        <s.StickerList>
-          <img src='GoodVibesST.svg' onClick={this.handleImageClick} />
-          <img src='HelloST.svg' onClick={this.handleImageClick} />
-        </s.StickerList>
+        <s.FrameList>
+          <img src='FrameWB3.svg' onClick={this.handleImageClick} />
+        </s.FrameList>
       </>
     );
   }
 }
 
-export default Stickers;
+export default Frames;
