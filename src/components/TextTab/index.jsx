@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import * as s from './styles';
 import { fabric } from 'fabric';
 import {Demo} from '../ColorPicker';
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Diphylleia&family=Gamja+Flower&family=Gowun+Batang&family=Jua&family=Nanum+Gothic:wght@400;700&family=Noto+Sans+KR:wght@100;500;900&family=Orbit&display=swap');
+</style>
 
 
 export const TextTab = ({canvas}) =>{
