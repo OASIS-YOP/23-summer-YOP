@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
-import * as s from './styles';
-import { fabric } from 'fabric';
-import {Demo} from '../ColorPicker';
 
-export const PaintTab = ({canvas}) => {
+// // import { useEffect } from 'react';
+// import * as s from './styles';
+// // import { fabric } from 'fabric';
+// // import {Demo} from '../ColorPicker';
 
-  return(
-    <>
-    <s.PaintContainer>
+// export const PaintTab = ({canvas}) => {
+
+//   return(
+//     <>
+//     <s.PaintContainer>
       
-    </s.PaintContainer>
-    </>
-  )
+//     </s.PaintContainer>
+//     </>
+//   )
 
-};
+// };
+

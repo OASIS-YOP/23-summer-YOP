@@ -1,8 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 import * as s from './styles';
-import {fabric} from 'fabric';
-import { TextTab } from '../TextTab';
 
 export const TabMenuContainer = ({ tabMenuDataList }) => {
   const [onButtonClicked, setOnButtonClicked] = useState(0);

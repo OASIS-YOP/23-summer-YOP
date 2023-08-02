@@ -4,8 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
-import { Stickers } from '../Stickers';
+import Stickers from '../Stickers';
 import { TextTab } from '../TextTab';
+import Frames from '../Frames';
+
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -33,12 +35,12 @@ export const HeaderNavContents = () => {
     },
     {
       label: '스티커',
-      function: () => <Stickers canvas = {canvas} />,
+      function: () => <Stickers canvas={canvas} />,
       level: 'bottom',
     },
     {
       label: '프레임',
-      function: [],
+      function: () => <Frames canvas={canvas}/>,
       level: 'bottom',
     },
   ];
@@ -58,30 +60,6 @@ export const HeaderNavContents = () => {
     setToggleState(index);
   };
 
-  const handleChangedFile = (e) => {
-    const reader = new FileReader();
-    if (e.target.files) {
-      //선택한 img파일의 URL을 읽어옴
-      reader.readAsDataURL(e.target.files[0]);
-      console.log(reader);
-    }
-    reader.onloadend = () => {
-      //선택한 img파일의 base64
-      const resultImage = reader.result;
-      const loadImage = () => {
-        fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
-          canvas.backgroundImage = imgFile;
-          imgFile.scaleToHeight(canvasSize[1]);
-          imgFile.scaleToWidth(canvasSize[0]);
-          canvas.add(imgFile);
-          canvas.renderAll();
-        });
-      };
-      loadImage();
-    };
-  };
-
-
   useEffect(() => {
     console.log(canvasSize);
     const initCanvas = () =>
@@ -100,6 +78,67 @@ export const HeaderNavContents = () => {
       canvas.initialize('canvas');
     }
   }, [canvas]);
+
+  const handleChangedFile = (e) => {
+    const reader = new FileReader();
+    if (e.target.files) {
+      //선택한 img파일의 URL을 읽어옴
+      reader.readAsDataURL(e.target.files[0]);
+      console.log(reader);
+    }
+    reader.onloadend = () => {
+      //선택한 img파일의 base64
+      const resultImage = reader.result;
+      const loadImage = () => {
+        fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
+          imgFile.set ({ objectCaching: false, });
+          imgFile.scaleToHeight(canvasSize[1]);
+          imgFile.scaleToWidth(canvasSize[0]);
+          // canvas.add(imgFile);
+          canvas.backgroundImage = imgFile;
+          canvas.renderAll();
+        }, { crossOrigin: 'anonymous' }
+        );
+      };
+      loadImage();
+    };
+  };
+
+
+  // const moveBackgroundImage = (leftOffset, topOffset) => {
+  //   if (canvas.backgroundImage) {
+  //     // 현재 배경 이미지의 위치 가져오기
+  //     const currentLeft = canvas.backgroundImage.left;
+  //     const currentTop = canvas.backgroundImage.top;
+  
+  //     // 새로운 위치로 배경 이미지 이동
+  //     canvas.backgroundImage.set({
+  //       left: currentLeft + leftOffset,
+  //       top: currentTop + topOffset,
+  //     });
+  
+  //     canvas.renderAll();
+  //   }
+  // };
+
+
+  useEffect(() => {
+    console.log(canvasSize);
+    const initCanvas = () =>
+      new fabric.Canvas('canvas', {
+        height: canvasSize[1],
+        width: canvasSize[0],
+        backgroundColor: 'white',
+      });
+
+
+  const bringToFront = () => {
+    canvas.getActiveObject().bringToFront();
+  };
+
+  const sendToBack = () => {
+    canvas.getActiveObject().sendToBack();
+  };
 
   return (
     <>
@@ -151,6 +190,10 @@ export const HeaderNavContents = () => {
                     <s.CanvasSpace>
                       <canvas id='canvas' />
                     </s.CanvasSpace>
+                    <s.LayerBtnWrapper>
+                      <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
+                      <s.BringTo onClick={bringToFront}>맨 앞으로</s.BringTo>
+                    </s.LayerBtnWrapper>
                   </s.CanvasSpaceWrapper>
                 </s.LeftContainer>
                 <s.RightContainer>
