@@ -8,6 +8,7 @@ import Stickers from '../Stickers';
 import { TextTab } from '../TextTab';
 import Frames from '../Frames';
 
+
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
   const [toggleState, setToggleState] = useState(0);
@@ -104,6 +105,7 @@ export const HeaderNavContents = () => {
     };
   };
 
+
   // const moveBackgroundImage = (leftOffset, topOffset) => {
   //   if (canvas.backgroundImage) {
   //     // 현재 배경 이미지의 위치 가져오기
@@ -119,6 +121,17 @@ export const HeaderNavContents = () => {
   //     canvas.renderAll();
   //   }
   // };
+
+
+  useEffect(() => {
+    console.log(canvasSize);
+    const initCanvas = () =>
+      new fabric.Canvas('canvas', {
+        height: canvasSize[1],
+        width: canvasSize[0],
+        backgroundColor: 'white',
+      });
+
 
   const bringToFront = () => {
     const activeObject = canvas.getActiveObject(); 

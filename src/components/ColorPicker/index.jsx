@@ -1,4 +1,3 @@
-// import React from 'react';
 import Chrome from '@uiw/react-color-chrome';
 import { GithubPlacement } from '@uiw/react-color-github';
 
