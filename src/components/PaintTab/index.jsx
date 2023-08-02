@@ -1,3 +1,4 @@
+
 // // import { useEffect } from 'react';
 // import * as s from './styles';
 // // import { fabric } from 'fabric';
@@ -14,3 +15,4 @@
 //   )
 
 // };
+

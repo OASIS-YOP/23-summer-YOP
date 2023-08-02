@@ -93,6 +93,27 @@ const ChangeTextColor = () => {
   }
 };
 
+
+// const RGBtoCMYK = () => {
+//   const cmykHtml = document.querySelector('.cmyk_value');
+  
+//   let b = 1;
+//   let cmyk = [] ;
+//   for (var i = 0; i < rgb.length; i++) {
+//     let color =  1 - ( rgb[i] / 255 );
+//     if	( color < b ) b = color;
+//     if ( b === 1 ) color = 1
+//     else color = ( ( color - b ) / ( 1 - b ) ) * 100 
+//     cmyk[i] = Math.round(color)
+//   }
+//   const k = Math.round(b * 100);
+//   cmyk.push(k)
+//   cmykHtml.innerHTML = cmyk.join( ' ' )
+//   //from:
+// //https://codepen.io/AudreyRBC/pen/MzmLYx
+// }
+
+
   // Add event listener for 'delete' key press
   useEffect(() => {
     const handleKeyDown = (event) => {
