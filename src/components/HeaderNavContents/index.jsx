@@ -33,7 +33,7 @@ export const HeaderNavContents = () => {
     },
     {
       label: '스티커',
-      function: [Stickers()],
+      function: () => <Stickers canvas = {canvas} />,
       level: 'bottom',
     },
     {
