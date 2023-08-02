@@ -6,8 +6,6 @@ import {Component} from 'react';
 
 class Stickers extends Component {
 
-
-
   handleImageClick = (event) => {
     const { offsetX, offsetY } = event.nativeEvent;
     const imageUrl = event.target.src;
@@ -17,6 +15,7 @@ class Stickers extends Component {
       img.set({
         left: offsetX - img.width / 1000,
         top: offsetY - img.height / 1000,
+        evented: true,
       });
 
       const canvasWidth = canvas.getWidth();
@@ -24,13 +23,9 @@ class Stickers extends Component {
       const scaleRatio = 0.25; // 이미지 크기를 조절할 비율
       img.scaleToWidth(canvasWidth * scaleRatio);
       img.scaleToHeight(canvasHeight * scaleRatio);
-      
       canvas.add(img);
     });
   };
-
-
-  
   
   render() {
     return (

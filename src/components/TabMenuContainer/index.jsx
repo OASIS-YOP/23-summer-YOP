@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import * as s from './styles';
+// import {fabric} from 'fabric';
+// import { TextTab } from '../TextTab';
 
 export const TabMenuContainer = ({ tabMenuDataList }) => {
   const [onButtonClicked, setOnButtonClicked] = useState(0);
@@ -8,6 +10,7 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
   const onClickButton = (index) => {
     setOnButtonClicked(index);
   };
+
 
 
   return (
@@ -24,6 +27,7 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
             </s.TabMenu>
           ))}
         </s.TabNavBar>
+
         {tabMenuDataList.map((item, index) => (
           <s.ContentBox
             key={`tabMenuContentlist_${index}`}
@@ -32,6 +36,7 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
             {typeof item.function === 'function' ? item.function() : null}
           </s.ContentBox>
         ))}
+
       </s.Wrapper>
     </>
   );

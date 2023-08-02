@@ -5,6 +5,7 @@ import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
 import Stickers from '../Stickers';
+import { TextTab } from '../TextTab';
 import Frames from '../Frames';
 
 export const HeaderNavContents = () => {
@@ -28,17 +29,17 @@ export const HeaderNavContents = () => {
     },
     {
       label: '텍스트',
-      function: [],
+      function:  () => <TextTab canvas={canvas} />,
       level: 'top',
     },
     {
       label: '스티커',
-      function: <Stickers canvas={canvas} />,
+      function: () => <Stickers canvas={canvas} />,
       level: 'bottom',
     },
     {
       label: '프레임',
-      function: <Frames canvas={canvas}/>,
+      function: () => <Frames canvas={canvas}/>,
       level: 'bottom',
     },
   ];
@@ -92,6 +93,7 @@ export const HeaderNavContents = () => {
           imgFile.set ({ objectCaching: false, });
           imgFile.scaleToHeight(canvasSize[1]);
           imgFile.scaleToWidth(canvasSize[0]);
+          // canvas.add(imgFile);
           canvas.backgroundImage = imgFile;
           canvas.renderAll();
         }, { crossOrigin: 'anonymous' }
