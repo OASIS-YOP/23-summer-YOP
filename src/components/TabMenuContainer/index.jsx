@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import * as s from './styles';
 
-
 export const TabMenuContainer = ({ tabMenuDataList }) => {
   const [onButtonClicked, setOnButtonClicked] = useState(0);
 

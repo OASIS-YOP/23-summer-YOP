@@ -125,6 +125,18 @@ export const LeftContainer = styled.section`
   margin: 5px 20px 25px 20px;
 `;
 
+export const LayerBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70%;
+`
+
+export const BringTo = styled.button`
+  width: 20%;
+  margin: 0 5px;
+
+`
+
 export const ButtonGroupWrapper = styled.div`
   text-align: center;
   width: 10%;
@@ -132,14 +144,14 @@ export const ButtonGroupWrapper = styled.div`
 
 export const CanvasSpaceWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   width: 90%;
   height: 100%;
 `;
 
 export const CanvasSpace = styled.div`
-  margin: auto auto;
   width: fit-content;
   height: fit-content;
   justify-content: center;

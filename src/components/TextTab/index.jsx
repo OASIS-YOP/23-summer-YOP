@@ -93,6 +93,7 @@ const ChangeTextColor = () => {
   }
 };
 
+<<<<<<< HEAD
 const changeTextFont = () => {
   if(canvas.getActiveObject() && (canvas.getActiveObject() instanceof fabric.Text || canvas.getActiveObject() instanceof fabric.IText)){
     console.log(canvas.getActiveObject());
@@ -109,22 +110,28 @@ const changeTextFont = () => {
 
 const RGBtoCMYK = () => {
   const cmykHtml = document.querySelector('.cmyk_value');
+=======
+
+// const RGBtoCMYK = () => {
+//   const cmykHtml = document.querySelector('.cmyk_value');
+>>>>>>> 36c6fc4879b779774d671ea982da0acb688db75a
   
-  let b = 1;
-  let cmyk = [] ;
-  for (var i = 0; i < rgb.length; i++) {
-    let color =  1 - ( rgb[i] / 255 );
-    if	( color < b ) b = color;
-    if ( b === 1 ) color = 1
-    else color = ( ( color - b ) / ( 1 - b ) ) * 100 
-    cmyk[i] = Math.round(color)
-  }
-  const k = Math.round(b * 100);
-  cmyk.push(k)
-  cmykHtml.innerHTML = cmyk.join( ' ' )
-  //from:
-//https://codepen.io/AudreyRBC/pen/MzmLYx
-}
+//   let b = 1;
+//   let cmyk = [] ;
+//   for (var i = 0; i < rgb.length; i++) {
+//     let color =  1 - ( rgb[i] / 255 );
+//     if	( color < b ) b = color;
+//     if ( b === 1 ) color = 1
+//     else color = ( ( color - b ) / ( 1 - b ) ) * 100 
+//     cmyk[i] = Math.round(color)
+//   }
+//   const k = Math.round(b * 100);
+//   cmyk.push(k)
+//   cmykHtml.innerHTML = cmyk.join( ' ' )
+//   //from:
+// //https://codepen.io/AudreyRBC/pen/MzmLYx
+// }
+
 
   // Add event listener for 'delete' key press
   useEffect(() => {
