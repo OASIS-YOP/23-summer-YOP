@@ -3,7 +3,7 @@ import { fabric } from 'fabric';
 import {Component} from 'react';
 
 
-export const Stickers = ({canvas}) => {
+// export const Stickers = ({canvas}) => {
 
 //   const addSticker = () =>{
 
@@ -53,6 +53,7 @@ class Stickers extends Component {
       img.scaleToWidth(canvasWidth * scaleRatio);
       img.scaleToHeight(canvasHeight * scaleRatio);
       canvas.add(img);
+      // canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
     });
   };
   
