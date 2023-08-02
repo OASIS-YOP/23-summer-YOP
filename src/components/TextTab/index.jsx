@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react';
 import * as s from './styles';
 import { fabric } from 'fabric';
 import {Demo} from '../ColorPicker';
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Diphylleia&family=Gamja+Flower&family=Gowun+Batang&family=Jua&family=Nanum+Gothic:wght@400;700&family=Noto+Sans+KR:wght@100;500;900&family=Orbit&display=swap');
-</style>
 
 
 export const TextTab = ({canvas}) =>{
@@ -87,6 +84,20 @@ const ChangeTextColor = () => {
     console.log(canvas.getActiveObject());
     let text = canvas.getActiveObject();
     text.set('fill', textColor); // Update the fill property directly
+    text.setCoords(); // Update the object's coordinates
+    canvas.renderAll(); // Render the canvas
+    console.log(text);
+
+    canvas.requestRenderAll();
+    console.log("rendered");
+  }
+};
+
+const changeTextFont = () => {
+  if(canvas.getActiveObject() && (canvas.getActiveObject() instanceof fabric.Text || canvas.getActiveObject() instanceof fabric.IText)){
+    console.log(canvas.getActiveObject());
+    let text = canvas.getActiveObject();
+    text.set('font-family', textColor); // Update the fill property directly
     text.setCoords(); // Update the object's coordinates
     canvas.renderAll(); // Render the canvas
     console.log(text);
