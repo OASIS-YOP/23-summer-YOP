@@ -28,12 +28,12 @@ export const HeaderNavContents = () => {
     },
     {
       label: '텍스트',
-      function: [TextTab(canvas)],
+      function:  () => <TextTab canvas={canvas} />,
       level: 'top',
     },
     {
       label: '스티커',
-      function: [Stickers()],
+      function: () => <Stickers canvas = {canvas} />,
       level: 'bottom',
     },
     {
