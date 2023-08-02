@@ -3,7 +3,7 @@ import { fabric } from 'fabric';
 import {Component} from 'react';
 
 
-export const Stickers = ({canvas}) => {
+// export const Stickers = ({canvas}) => {
 
 //   const addSticker = () =>{
 
