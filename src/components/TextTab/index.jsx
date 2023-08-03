@@ -36,7 +36,7 @@ export const TextTab = ({canvas}) =>{
       // console.log(canvas.getActiveObject()._element.currentSrc);
       console.log(canvas.getActiveObject());
       let imag = canvas.getActiveObject()._element.currentSrc;
-      let imagAngle = canvas.getActiveObject.angle;
+      // let imagAngle = canvas.getActiveObject.angle;
       let imagACoords = canvas.getActiveObject().oCoords;
       let imagWidth = canvas.getActiveObject().width;
       let imagHeight = canvas.getActiveObject().height;
@@ -67,7 +67,7 @@ export const TextTab = ({canvas}) =>{
 const FixText = () =>{
   if(canvas.getActiveObject() && (canvas.getActiveObject() instanceof fabric.Text || canvas.getActiveObject() instanceof fabric.IText)){
     let textSelected = canvas.getActiveObject();
-    const textSelectedText = textSelected.text;
+    // const textSelectedText = textSelected.text;
     console.log(canvas.getActiveObject());
     textSelected.hasControls = false;
     textSelected.hasBorders = false;
@@ -92,6 +92,7 @@ const ChangeTextColor = () => {
     console.log("rendered");
   }
 };
+
 
 
 const changeTextFont = () => {
@@ -129,6 +130,7 @@ const changeTextFont = () => {
 // }
 
 
+
   // Add event listener for 'delete' key press
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -141,8 +143,7 @@ const changeTextFont = () => {
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [canvas]); // Reattach the event listener when the canvas changes
+    }; }, [canvas]); // Reattach the event listener when the canvas changes
 
   return (
     <>
