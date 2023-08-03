@@ -23,7 +23,7 @@ class Frames extends Component {
       img.scaleToHeight(canvasHeight);
       
       canvas.add(img);
-      // img.sendToBack();
+      img.sendToBack();
     });
   };
   
