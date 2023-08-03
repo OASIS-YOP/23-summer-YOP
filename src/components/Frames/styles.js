@@ -14,7 +14,7 @@ export const FrameList = styled.div`
 
   & img {
     display: inline-block;
-    height='auto';
+    height: 'auto';
     width: 50%;
     margin: 10px;
   }
