@@ -56,7 +56,7 @@ export const HeaderNavContents = () => {
     {
       id: 3,
       label: '텍스트',
-      function:  () => <TextTab canvas={canvas} />,
+      function: () => <TextTab canvas={canvas} />,
       level: 'top',
     },
     {
@@ -68,7 +68,7 @@ export const HeaderNavContents = () => {
     {
       id: 5,
       label: '프레임',
-      function: () => <Frames canvas={canvas}/>,
+      function: () => <Frames canvas={canvas} />,
       level: 'bottom',
     },
   ];
@@ -180,62 +180,62 @@ export const HeaderNavContents = () => {
     }
   }, [canvas]);
 
-  const handleChangedFile = (e) => {
-    const reader = new FileReader();
-    if (e.target.files) {
-      //선택한 img파일의 URL을 읽어옴
-      reader.readAsDataURL(e.target.files[0]);
-      console.log(reader);
-    }
-    reader.onloadend = () => {
-      //선택한 img파일의 base64
-      const resultImage = reader.result;
-      const loadImage = () => {
-        fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
-          imgFile.set ({ objectCaching: false, });
-          imgFile.scaleToHeight(canvasSize[1]);
-          imgFile.scaleToWidth(canvasSize[0]);
-          // canvas.add(imgFile);
-          canvas.backgroundImage = imgFile;
-          canvas.renderAll();
-        }, { crossOrigin: 'anonymous' }
-        );
-      };
-      loadImage();
-    };
-  };
+  // const handleChangedFile = (e) => {
+  //   const reader = new FileReader();
+  //   if (e.target.files) {
+  //     //선택한 img파일의 URL을 읽어옴
+  //     reader.readAsDataURL(e.target.files[0]);
+  //     console.log(reader);
+  //   }
+  //   reader.onloadend = () => {
+  //     //선택한 img파일의 base64
+  //     const resultImage = reader.result;
+  //     const loadImage = () => {
+  //       fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
+  //         imgFile.set ({ objectCaching: false, });
+  //         imgFile.scaleToHeight(canvasSize[1]);
+  //         imgFile.scaleToWidth(canvasSize[0]);
+  //         // canvas.add(imgFile);
+  //         canvas.backgroundImage = imgFile;
+  //         canvas.renderAll();
+  //       }, { crossOrigin: 'anonymous' }
+  //       );
+  //     };
+  //     loadImage();
+  //   };
+  // };
 
   // const moveBackgroundImage = (leftOffset, topOffset) => {
   //   if (canvas.backgroundImage) {
   //     // 현재 배경 이미지의 위치 가져오기
   //     const currentLeft = canvas.backgroundImage.left;
   //     const currentTop = canvas.backgroundImage.top;
-  
+
   //     // 새로운 위치로 배경 이미지 이동
   //     canvas.backgroundImage.set({
   //       left: currentLeft + leftOffset,
   //       top: currentTop + topOffset,
   //     });
-  
+
   //     canvas.renderAll();
   //   }
   // };
 
   const bringToFront = () => {
-    const activeObject = canvas.getActiveObject(); 
-    if(activeObject) {
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
       activeObject.bringToFront();
     } else {
-      console.log("no object selected");
+      console.log('no object selected');
     }
   };
 
   const sendToBack = () => {
-    const activeObject = canvas.getActiveObject(); 
-    if(activeObject) {
-    activeObject.sendToBack();
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.sendToBack();
     } else {
-      console.log("no object selected");
+      console.log('no object selected');
     }
   };
 
