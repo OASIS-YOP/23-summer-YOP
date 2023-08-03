@@ -1,11 +1,15 @@
 import * as s from './styles';
 import { fabric } from 'fabric';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, createRef } from 'react';
 import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
 import { Stickers } from '../Stickers';
 import { TextTab } from '../TextTab';
+
+//crop
+import Cropper from 'react-cropper';
+import 'cropperjs/dist/cropper.css';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -13,31 +17,26 @@ export const HeaderNavContents = () => {
   const [isSelectPage, setIsSelectPage] = useState(true);
   const [canvasSize, setCanvasSize] = useState([0, 0]);
   const fileInputRef = useRef(null);
+  const [image, setImage] = useState(null);
 
-  //crop part
+  const [isCrop, setIsCrop] = useState(false);
+  const [cropData, setCropData] = useState('#');
+  const cropperRef = createRef(null);
+
+  const [isReversed, setIsReversed] = useState(false);
+  const [reverseXToggle, setReverseXToggle] = useState(true);
+  const [reverseYToggle, setReverseYToggle] = useState(true);
 
   //좌우반전 part
 
   //filter part
-  const filterImage = () => {};
-
   const applyFilter = (filter) => {
-    const obj = canvas.getActiveObject();
-    obj.filters.push(filter);
-    obj.applyFilters();
+    image.filters.push(filter);
+    image.applyFilters();
     canvas.renderAll();
   };
 
-  const cropImage = () => {
-    canvas.set({
-      left: 80,
-      top: 80,
-      clipPath: new fabric.Rect({
-        originX: 'center',
-        originY: 'center',
-      }),
-    });
-  };
+  const cropImage = () => {};
 
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
@@ -88,19 +87,22 @@ export const HeaderNavContents = () => {
     setToggleState(index);
   };
 
+  //handleChangedFile 함수 수정
   const handleChangedFile = (e) => {
-    const reader = new FileReader();
-    if (e.target.files) {
-      //선택한 img파일의 URL을 읽어옴
-      reader.readAsDataURL(e.target.files[0]);
-      console.log(reader);
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
     }
-    reader.onloadend = () => {
-      //선택한 img파일의 base64
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
       const resultImage = reader.result;
+      setImage(resultImage);
       const loadImage = () => {
         fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
-          canvas.backgroundImage = imgFile;
+          setImage(imgFile);
           imgFile.scaleToHeight(canvasSize[1]);
           imgFile.scaleToWidth(canvasSize[0]);
           canvas.add(imgFile);
@@ -111,8 +113,54 @@ export const HeaderNavContents = () => {
     };
   };
 
+  const reverseX = () => {
+    image.set('flipX', reverseXToggle);
+    setReverseXToggle((prev) => !prev);
+    canvas.renderAll();
+    console.log('반전 성공');
+  };
+  const reverseY = () => {
+    image.set('flipY', reverseYToggle);
+    setReverseYToggle((prev) => !prev);
+    canvas.renderAll();
+    console.log('반전 성공');
+  };
+
+  //crop part
+
+  // const getCropData = () => {
+  //   if (typeof cropperRef.current?.cropper !== 'undefined') {
+  //     setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
+  //   }
+  //   canvas.add(cropData);
+  //   canvas.renderAll();
+  // };
+
+  // const handleChangedFile = (e) => {
+  //   e.preventDefault();
+  //   const reader = new FileReader();
+  //   if (e.target.files) {
+  //     //선택한 img파일의 URL을 읽어옴
+  //     reader.readAsDataURL(e.target.files[0]);
+  //     console.log(reader);
+  //   }
+  //   reader.onloadend = () => {
+  //     //선택한 img파일의 base64
+  //     const resultImage = reader.result;
+  //     const loadImage = () => {
+  //       fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
+  //         canvas.backgroundImage = imgFile;
+  //         imgFile.scaleToHeight(canvasSize[1]);
+  //         imgFile.scaleToWidth(canvasSize[0]);
+  //         canvas.add(imgFile);
+  //         canvas.renderAll();
+  //       });
+  //     };
+  //     loadImage();
+  //   };
+  // };
+
   useEffect(() => {
-    console.log(canvasSize);
     const initCanvas = () =>
       new fabric.Canvas('canvas', {
         height: canvasSize[1],
@@ -179,33 +227,62 @@ export const HeaderNavContents = () => {
                   <s.CanvasSpaceWrapper>
                     <s.CanvasSpace>
                       <>
-                        <button onClick={cropImage}>crop</button>
-                        <button onClick={filterImage}>filter</button>{' '}
-                        <>
-                          <button
-                            onClick={() =>
-                              applyFilter(new fabric.Image.filters.Sepia())
-                            }
-                          >
-                            sepia
-                          </button>
-                          <button
-                            onClick={() =>
-                              applyFilter(new fabric.Image.filters.Brownie())
-                            }
-                          >
-                            Brownie
-                          </button>
-                          <button
-                            onClick={() =>
-                              applyFilter(new fabric.Image.filters.Grayscale())
-                            }
-                          >
-                            Gray
-                          </button>
-                        </>
+                        <button onClick={() => setIsCrop(true)}>crop</button>
+                        <button
+                        // onClick={getCropData}
+                        >
+                          ok
+                        </button>
+                        <button onClick={reverseX}>reverseX</button>
+                        <button onClick={reverseY}>reverseY</button>
+
+                        <button
+                          onClick={() =>
+                            applyFilter(new fabric.Image.filters.Sepia())
+                          }
+                        >
+                          sepia
+                        </button>
+                        <button
+                          onClick={() =>
+                            applyFilter(new fabric.Image.filters.Brownie())
+                          }
+                        >
+                          Brownie
+                        </button>
+                        <button
+                          onClick={() =>
+                            applyFilter(new fabric.Image.filters.Grayscale())
+                          }
+                        >
+                          Gray
+                        </button>
                       </>
-                      <canvas id='canvas' />
+
+                      <canvas
+                        id='canvas'
+                        transform={isReversed ? 'scaleX(-1)' : ''}
+                      />
+                      {/* {isCrop && (
+                        <>
+                          <canvas id='canvas' ref={cropperRef} />
+                          <Cropper
+                            ref={cropperRef}
+                            style={{ height: 400, width: '100%' }}
+                            zoomTo={0.5}
+                            initialAspectRatio={1}
+                            src={image}
+                            viewMode={1}
+                            minCropBoxHeight={10}
+                            minCropBoxWidth={10}
+                            background={false}
+                            responsive={true}
+                            autoCropArea={1}
+                            checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
+                            guides={true}
+                          />
+                        </>
+                      )} */}
                     </s.CanvasSpace>
                   </s.CanvasSpaceWrapper>
                 </s.LeftContainer>
