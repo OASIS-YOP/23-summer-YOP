@@ -53,7 +53,7 @@ class Stickers extends Component {
       img.scaleToWidth(canvasWidth * scaleRatio);
       img.scaleToHeight(canvasHeight * scaleRatio);
       canvas.add(img);
-      // canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
+      canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
     });
   };
   
