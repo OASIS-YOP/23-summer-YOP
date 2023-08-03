@@ -39,7 +39,7 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
             key={`tabMenuContentlist_${item.id}`}
             className={onButtonClicked === index ? 'active' : ''}
           >
-            {item.function}
+            {typeof item.function === 'function' ? item.function() : null}
           </s.ContentBox>
         ))}
       </s.Wrapper>
