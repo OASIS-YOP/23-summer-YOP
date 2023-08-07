@@ -1,7 +1,5 @@
 import * as s from './styles';
 import { fabric } from 'fabric';
-import {Component} from 'react';
-
 
 // export const Stickers = ({canvas}) => {
 
@@ -33,12 +31,10 @@ import {Component} from 'react';
 //       </s.StickerList>
 //     </>
 
-class Stickers extends Component {
-
-  handleImageClick = (event) => {
-    const { offsetX, offsetY } = event.nativeEvent;
-    const imageUrl = event.target.src;
-    const { canvas } = this.props;
+export const Stickers = ({ canvas }) => {
+  const handleImageClick = (e) => {
+    const { offsetX, offsetY } = e.nativeEvent;
+    const imageUrl = e.target.src;
 
     fabric.Image.fromURL(imageUrl, function (img) {
       img.set({
@@ -56,17 +52,11 @@ class Stickers extends Component {
       canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
     });
   };
-  
-  render() {
-    return (
-      <>
-        <s.StickerList>
-          <img src='GoodVibesST.svg' onClick={this.handleImageClick} />
-          <img src='HelloST.svg' onClick={this.handleImageClick} />
-        </s.StickerList>
-      </>
-    );
-  }
-}
 
-export default Stickers;
+  return (
+    <s.StickerList>
+      <img src='GoodVibesST.svg' onClick={handleImageClick} />
+      <img src='HelloST.svg' onClick={handleImageClick} />
+    </s.StickerList>
+  );
+};
