@@ -28,14 +28,16 @@ export const ImageTab = ({ canvas, image }) => {
 
   return (
     <>
+      <p>좌우반전</p>
       <button onClick={reverseX}>reverseX</button>
       <button onClick={reverseY}>reverseY</button>
       {/* <button onClick={() => applyFilter(new fabric.Image.filters.Sepia())}>
         sepia
-      </button>
+      </button>ㄴ
       <button onClick={() => applyFilter(new fabric.Image.filters.Brownie())}>
         Brownie
       </button> */}
+      <p>필터</p>
       <button onClick={() => applyGrayFilter()}>Gray</button>
     </>
   );
