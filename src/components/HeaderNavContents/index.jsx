@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
-import Stickers from '../Stickers';
-import { TextTab } from '../TextTab';
-import { ImageTab } from '../ImageTab';
-import Frames from '../Frames';
+import Stickers from '../TabMenuContainer/TabMenu/Stickers';
+import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
+import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
+import Frames from '../TabMenuContainer/TabMenu/Frames';
 
 //crop
 // import Cropper from 'react-cropper';
