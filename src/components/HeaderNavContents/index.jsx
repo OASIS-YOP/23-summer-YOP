@@ -1,16 +1,17 @@
 import * as s from './styles';
 import { fabric } from 'fabric';
-import { useState, useEffect, useRef, createRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
 import Stickers from '../Stickers';
 import { TextTab } from '../TextTab';
+import { ImageTab } from '../ImageTab';
 import Frames from '../Frames';
 
 //crop
-import Cropper from 'react-cropper';
-import 'cropperjs/dist/cropper.css';
+// import Cropper from 'react-cropper';
+// import 'cropperjs/dist/cropper.css';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -20,37 +21,18 @@ export const HeaderNavContents = () => {
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
 
-  const [isCrop, setIsCrop] = useState(false);
-  const [cropData, setCropData] = useState('#');
-  const cropperRef = createRef(null);
-
-  const [isReversed, setIsReversed] = useState(false);
-  const [reverseXToggle, setReverseXToggle] = useState(true);
-  const [reverseYToggle, setReverseYToggle] = useState(true);
-
-  //좌우반전 part
-
-  //filter part
-  const applyFilter = (filter) => {
-    image.filters.push(filter);
-    image.applyFilters();
-    canvas.renderAll();
-  };
-
-  const cropImage = () => {};
-
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
     {
       id: 1,
       label: '이미지',
-      function: [cropImage],
+      function: () => <ImageTab canvas={canvas} image={image} />,
       level: 'top',
     },
     {
       id: 2,
       label: '그리기',
-      function: [applyFilter],
+      function: [],
       level: 'top',
     },
     {
@@ -114,31 +96,7 @@ export const HeaderNavContents = () => {
     };
   };
 
-  const reverseX = () => {
-    image.set('flipX', reverseXToggle);
-    setReverseXToggle((prev) => !prev);
-    canvas.renderAll();
-    console.log('반전 성공');
-  };
-  const reverseY = () => {
-    image.set('flipY', reverseYToggle);
-    setReverseYToggle((prev) => !prev);
-    canvas.renderAll();
-    console.log('반전 성공');
-  };
-
-  //crop part
-
-  // const getCropData = () => {
-  //   if (typeof cropperRef.current?.cropper !== 'undefined') {
-  //     setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL());
-  //   }
-  //   canvas.add(cropData);
-  //   canvas.renderAll();
-  // };
-
   // const handleChangedFile = (e) => {
-  //   e.preventDefault();
   //   const reader = new FileReader();
   //   if (e.target.files) {
   //     //선택한 img파일의 URL을 읽어옴
@@ -149,13 +107,18 @@ export const HeaderNavContents = () => {
   //     //선택한 img파일의 base64
   //     const resultImage = reader.result;
   //     const loadImage = () => {
-  //       fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
-  //         canvas.backgroundImage = imgFile;
-  //         imgFile.scaleToHeight(canvasSize[1]);
-  //         imgFile.scaleToWidth(canvasSize[0]);
-  //         canvas.add(imgFile);
-  //         canvas.renderAll();
-  //       });
+  //       fabric.Image.fromURL(
+  //         resultImage.toString(),
+  //         (imgFile) => {
+  //           imgFile.set({ objectCaching: false });
+  //           imgFile.scaleToHeight(canvasSize[1]);
+  //           imgFile.scaleToWidth(canvasSize[0]);
+  //           // canvas.add(imgFile);
+  //           canvas.backgroundImage = imgFile;
+  //           canvas.renderAll();
+  //         },
+  //         { crossOrigin: 'anonymous' }
+  //       );
   //     };
   //     loadImage();
   //   };
@@ -287,63 +250,7 @@ export const HeaderNavContents = () => {
                   </s.ButtonGroupWrapper>
                   <s.CanvasSpaceWrapper>
                     <s.CanvasSpace>
-                      <>
-                        <button onClick={() => setIsCrop(true)}>crop</button>
-                        <button
-                        // onClick={getCropData}
-                        >
-                          ok
-                        </button>
-                        <button onClick={reverseX}>reverseX</button>
-                        <button onClick={reverseY}>reverseY</button>
-
-                        <button
-                          onClick={() =>
-                            applyFilter(new fabric.Image.filters.Sepia())
-                          }
-                        >
-                          sepia
-                        </button>
-                        <button
-                          onClick={() =>
-                            applyFilter(new fabric.Image.filters.Brownie())
-                          }
-                        >
-                          Brownie
-                        </button>
-                        <button
-                          onClick={() =>
-                            applyFilter(new fabric.Image.filters.Grayscale())
-                          }
-                        >
-                          Gray
-                        </button>
-                      </>
-
-                      <canvas
-                        id='canvas'
-                        transform={isReversed ? 'scaleX(-1)' : ''}
-                      />
-                      {/* {isCrop && (
-                        <>
-                          <canvas id='canvas' ref={cropperRef} />
-                          <Cropper
-                            ref={cropperRef}
-                            style={{ height: 400, width: '100%' }}
-                            zoomTo={0.5}
-                            initialAspectRatio={1}
-                            src={image}
-                            viewMode={1}
-                            minCropBoxHeight={10}
-                            minCropBoxWidth={10}
-                            background={false}
-                            responsive={true}
-                            autoCropArea={1}
-                            checkOrientation={false} // https://github.com/fengyuanchen/cropperjs/issues/671
-                            guides={true}
-                          />
-                        </>
-                      )} */}
+                      <canvas id='canvas' />
                     </s.CanvasSpace>
                     <s.LayerBtnWrapper>
                       <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
