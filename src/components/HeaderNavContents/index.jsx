@@ -96,12 +96,22 @@ export const HeaderNavContents = () => {
     };
   };
   const removeItem = () => {
-    if (canvas.getActiveObject()) {
-      console.log(canvas.getActiveObject());
-      canvas.remove(canvas.getActiveObject());
-      canvas.renderAll();
-    }
+    canvas.remove(canvas.getActiveObject());
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Delete') {
+        removeItem();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [canvas]);
 
   // const handleChangedFile = (e) => {
   //   const reader = new FileReader();

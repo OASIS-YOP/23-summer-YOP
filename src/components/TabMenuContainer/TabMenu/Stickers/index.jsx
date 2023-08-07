@@ -55,8 +55,8 @@ export const Stickers = ({ canvas }) => {
 
   return (
     <s.StickerList>
-      <img src='GoodVibesST.svg' onClick={handleImageClick} />
-      <img src='HelloST.svg' onClick={handleImageClick} />
+      <img src='GoodVibesST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='HelloST.svg' onClick={(e) => handleImageClick(e)} />
     </s.StickerList>
   );
 };
