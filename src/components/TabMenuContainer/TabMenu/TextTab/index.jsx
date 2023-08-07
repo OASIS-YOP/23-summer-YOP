@@ -6,13 +6,14 @@ import { Demo } from '../ColorPicker';
 export const TextTab = ({ canvas }) => {
   const [textColor, setTextColor] = useState('#6979ffff');
 
-  const removeText = () => {
-    if (canvas.getActiveObject()) {
-      console.log(canvas.getActiveObject());
-      canvas.remove(canvas.getActiveObject());
-      canvas.renderAll();
-    }
-  };
+  //전역함수로 바꾸겠습니다.
+  // const removeText = () => {
+  //   if (canvas.getActiveObject()) {
+  //     console.log(canvas.getActiveObject());
+  //     canvas.remove(canvas.getActiveObject());
+  //     canvas.renderAll();
+  //   }
+  // };
 
   const AddText = () => {
     if (canvas) {
@@ -99,19 +100,19 @@ export const TextTab = ({ canvas }) => {
   };
 
   // Add event listener for 'delete' key press
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.key === 'Delete') {
-        removeText();
-      }
-    };
+  // useEffect(() => {
+  //   const handleKeyDown = (event) => {
+  //     if (event.key === 'Delete') {
+  //       removeText();
+  //     }
+  //   };
 
-    document.addEventListener('keydown', handleKeyDown);
+  //   document.addEventListener('keydown', handleKeyDown);
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [canvas]); // Reattach the event listener when the canvas changes
+  //   return () => {
+  //     document.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, [canvas]); // Reattach the event listener when the canvas changes
 
   return (
     <>

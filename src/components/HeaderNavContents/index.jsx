@@ -82,7 +82,7 @@ export const HeaderNavContents = () => {
     reader.readAsDataURL(files[0]);
     reader.onload = () => {
       const resultImage = reader.result;
-      setImage(resultImage);
+
       const loadImage = () => {
         fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
           setImage(imgFile);
@@ -94,6 +94,13 @@ export const HeaderNavContents = () => {
       };
       loadImage();
     };
+  };
+  const removeItem = () => {
+    if (canvas.getActiveObject()) {
+      console.log(canvas.getActiveObject());
+      canvas.remove(canvas.getActiveObject());
+      canvas.renderAll();
+    }
   };
 
   // const handleChangedFile = (e) => {
@@ -142,6 +149,10 @@ export const HeaderNavContents = () => {
       canvas.initialize('canvas');
     }
   }, [canvas]);
+
+  // useEffect(() => {
+  //   loadImage();
+  // }, [image]);
 
   // const handleChangedFile = (e) => {
   //   const reader = new FileReader();
@@ -251,6 +262,9 @@ export const HeaderNavContents = () => {
                   <s.CanvasSpaceWrapper>
                     <s.CanvasSpace>
                       <canvas id='canvas' />
+                      <>
+                        <button onClick={removeItem}>delete</button>
+                      </>
                     </s.CanvasSpace>
                     <s.LayerBtnWrapper>
                       <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
