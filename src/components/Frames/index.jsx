@@ -13,18 +13,17 @@ class Frames extends Component {
 
     fabric.Image.fromURL(imageUrl, function (img) {
       img.set({
-        left: offsetX - img.width / 1000,
-        top: offsetY - img.height / 1000,
+        left: offsetX / img.width,
+        top: offsetY / img.height,
       });
-
+1
       const canvasWidth = canvas.getWidth();
       const canvasHeight = canvas.getHeight();
-      const scaleRatio = 0.25; // 이미지 크기를 조절할 비율
-      img.scaleToWidth(canvasWidth * scaleRatio);
-      img.scaleToHeight(canvasHeight * scaleRatio);
+      img.scaleToWidth(canvasWidth);
+      img.scaleToHeight(canvasHeight);
       
       canvas.add(img);
-      img.bringToFront();
+      img.sendToBack();
     });
   };
   
