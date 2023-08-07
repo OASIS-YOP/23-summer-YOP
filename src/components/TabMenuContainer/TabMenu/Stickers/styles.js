@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-import {
-  // pointColor,
-  //   primaryColor,
-  //   secondaryColor,
-  // whiteColor,
-} from '../../GlobalStyles';
-
+import // pointColor,
+//   primaryColor,
+//   secondaryColor,
+// whiteColor,
+'../../../../GlobalStyles';
 
 export const StickerList = styled.div`
   display: block;
@@ -16,8 +14,8 @@ export const StickerList = styled.div`
 
   & img {
     display: inline-block;
-    height='auto';
+    height: 'auto';
     width: 50%;
     margin: 10px;
   }
-`
+`;

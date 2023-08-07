@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-import {
-  // pointColor,
-  //   primaryColor,
-  //   secondaryColor,
-  // whiteColor,
-} from '../../GlobalStyles';
-
+import // pointColor,
+//   primaryColor,
+//   secondaryColor,
+// whiteColor,
+'../../../../GlobalStyles';
 
 export const FrameList = styled.div`
   display: block;
@@ -18,4 +16,4 @@ export const FrameList = styled.div`
     width: 50%;
     margin: 10px;
   }
-`
+`;
