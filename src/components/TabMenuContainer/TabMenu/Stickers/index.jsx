@@ -49,7 +49,8 @@ export const Stickers = ({ canvas }) => {
       img.scaleToWidth(canvasWidth * scaleRatio);
       img.scaleToHeight(canvasHeight * scaleRatio);
       canvas.add(img);
-      canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
+      //ghost문제때문에 주석처리했습니다.
+      // canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
     });
   };
 
