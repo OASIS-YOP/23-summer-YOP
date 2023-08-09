@@ -25,7 +25,7 @@ export const Frames = ({ canvas }) => {
         const canvasWidth = canvas.getWidth();
         const canvasHeight = canvas.getHeight();
         img.set({
-          left: offsetX / img.width,
+          left: offsetX / img.width - 4,
           top: offsetY / img.height,
         });
   
@@ -45,9 +45,9 @@ export const Frames = ({ canvas }) => {
 
   return (
     <>
-      <s.FrameList>
+      <s.FrameList3>
         <img src='FrameWB3.svg' onClick={handleImageClick} />
-      </s.FrameList>
+      </s.FrameList3>
     </>
   );
 };

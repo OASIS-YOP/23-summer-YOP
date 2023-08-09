@@ -223,6 +223,24 @@ export const HeaderNavContents = () => {
     }
   };
 
+  const bringForward = () => {
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.bringForward();
+    } else {
+      console.log('no object selected');
+    }
+  };
+
+  const sendBackwards = () => {
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.sendBackwards();
+    } else {
+      console.log('no object selected');
+    }
+  };
+
   return (
     <>
       <s.Header>
@@ -278,6 +296,8 @@ export const HeaderNavContents = () => {
                     </s.CanvasSpace>
                     <s.LayerBtnWrapper>
                       <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
+                      <s.BringTo onClick={sendBackwards}>뒤로</s.BringTo>
+                      <s.BringTo onClick={bringForward}>앞으로</s.BringTo>
                       <s.BringTo onClick={bringToFront}>맨 앞으로</s.BringTo>
                     </s.LayerBtnWrapper>
                   </s.CanvasSpaceWrapper>
