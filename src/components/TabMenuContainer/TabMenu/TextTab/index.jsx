@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as s from './styles';
 import { fabric } from 'fabric';
-import { Demo } from '../ColorPicker';
+import { Demo } from './ColorPicker';
 
 export const TextTab = ({ canvas }) => {
   const [textColor, setTextColor] = useState('#6979ffff');
@@ -155,8 +155,8 @@ export const TextTab = ({ canvas }) => {
         <s.BtnChangeColor onClick={ChangeTextColor}>
           색 바꾸기
         </s.BtnChangeColor>
-        <s.BtnFixText onClick={FixText}>텍스트 고정</s.BtnFixText>
-        <s.BtnFixImage onClick={FixImage}>이미지 고정</s.BtnFixImage>
+        <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
+        <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage>
         <s.BtnDrawText onClick={TextBrush}>텍스트 그리기</s.BtnDrawText>
       </s.ContainerText>
     </>
