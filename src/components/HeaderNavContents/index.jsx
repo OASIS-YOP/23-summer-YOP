@@ -4,9 +4,14 @@ import { useState, useEffect, useRef } from 'react';
 import { ButtonGroupContainer } from '../ButtonGroupContainer';
 import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
-import Stickers from '../Stickers';
-import { TextTab } from '../TextTab';
-import Frames from '../Frames';
+import { Stickers } from '../TabMenuContainer/TabMenu/Stickers';
+import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
+import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
+import { Frames } from '../TabMenuContainer/TabMenu/Frames';
+
+//crop
+// import Cropper from 'react-cropper';
+// import 'cropperjs/dist/cropper.css';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -14,32 +19,38 @@ export const HeaderNavContents = () => {
   const [isSelectPage, setIsSelectPage] = useState(true);
   const [canvasSize, setCanvasSize] = useState([0, 0]);
   const fileInputRef = useRef(null);
+  const [image, setImage] = useState(null);
 
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
     {
+      id: 1,
       label: '이미지',
-      function: [],
+      function: () => <ImageTab canvas={canvas} image={image} />,
       level: 'top',
     },
     {
+      id: 2,
       label: '그리기',
       function: [],
       level: 'top',
     },
     {
+      id: 3,
       label: '텍스트',
-      function:  () => <TextTab canvas={canvas} />,
+      function: () => <TextTab canvas={canvas} />,
       level: 'top',
     },
     {
+      id: 4,
       label: '스티커',
       function: () => <Stickers canvas={canvas} />,
       level: 'bottom',
     },
     {
+      id: 5,
       label: '프레임',
-      function: () => <Frames canvas={canvas}/>,
+      function: () => <Frames canvas={canvas} />,
       level: 'bottom',
     },
   ];
@@ -59,8 +70,78 @@ export const HeaderNavContents = () => {
     setToggleState(index);
   };
 
+  //handleChangedFile 함수 수정
+  const handleChangedFile = (e) => {
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      const resultImage = reader.result;
+
+      const loadImage = () => {
+        fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
+          setImage(imgFile);
+          imgFile.scaleToHeight(canvasSize[1]);
+          imgFile.scaleToWidth(canvasSize[0]);
+          canvas.add(imgFile);
+          canvas.renderAll();
+        });
+      };
+      loadImage();
+    };
+  };
+  const removeItem = () => {
+    canvas.remove(canvas.getActiveObject());
+  };
+
   useEffect(() => {
-    console.log(canvasSize);
+    const handleKeyDown = (event) => {
+      if (event.key === 'Delete') {
+        removeItem();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [canvas]);
+
+  // const handleChangedFile = (e) => {
+  //   const reader = new FileReader();
+  //   if (e.target.files) {
+  //     //선택한 img파일의 URL을 읽어옴
+  //     reader.readAsDataURL(e.target.files[0]);
+  //     console.log(reader);
+  //   }
+  //   reader.onloadend = () => {
+  //     //선택한 img파일의 base64
+  //     const resultImage = reader.result;
+  //     const loadImage = () => {
+  //       fabric.Image.fromURL(
+  //         resultImage.toString(),
+  //         (imgFile) => {
+  //           imgFile.set({ objectCaching: false });
+  //           imgFile.scaleToHeight(canvasSize[1]);
+  //           imgFile.scaleToWidth(canvasSize[0]);
+  //           // canvas.add(imgFile);
+  //           canvas.backgroundImage = imgFile;
+  //           canvas.renderAll();
+  //         },
+  //         { crossOrigin: 'anonymous' }
+  //       );
+  //     };
+  //     loadImage();
+  //   };
+  // };
+
+  useEffect(() => {
     const initCanvas = () =>
       new fabric.Canvas('canvas', {
         preserveObjectStacking: true,
@@ -79,43 +160,47 @@ export const HeaderNavContents = () => {
     }
   }, [canvas]);
 
-  const handleChangedFile = (e) => {
-    const reader = new FileReader();
-    if (e.target.files) {
-      //선택한 img파일의 URL을 읽어옴
-      reader.readAsDataURL(e.target.files[0]);
-      console.log(reader);
-    }
-    reader.onloadend = () => {
-      //선택한 img파일의 base64
-      const resultImage = reader.result;
-      const loadImage = () => {
-        fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
-          imgFile.set ({ objectCaching: false, });
-          imgFile.scaleToHeight(canvasSize[1]);
-          imgFile.scaleToWidth(canvasSize[0]);
-          // canvas.add(imgFile);
-          canvas.backgroundImage = imgFile;
-          canvas.renderAll();
-        }, { crossOrigin: 'anonymous' }
-        );
-      };
-      loadImage();
-    };
-  };
+  // useEffect(() => {
+  //   loadImage();
+  // }, [image]);
+
+  // const handleChangedFile = (e) => {
+  //   const reader = new FileReader();
+  //   if (e.target.files) {
+  //     //선택한 img파일의 URL을 읽어옴
+  //     reader.readAsDataURL(e.target.files[0]);
+  //     console.log(reader);
+  //   }
+  //   reader.onloadend = () => {
+  //     //선택한 img파일의 base64
+  //     const resultImage = reader.result;
+  //     const loadImage = () => {
+  //       fabric.Image.fromURL(resultImage.toString(), (imgFile) => {
+  //         imgFile.set ({ objectCaching: false, });
+  //         imgFile.scaleToHeight(canvasSize[1]);
+  //         imgFile.scaleToWidth(canvasSize[0]);
+  //         // canvas.add(imgFile);
+  //         canvas.backgroundImage = imgFile;
+  //         canvas.renderAll();
+  //       }, { crossOrigin: 'anonymous' }
+  //       );
+  //     };
+  //     loadImage();
+  //   };
+  // };
 
   // const moveBackgroundImage = (leftOffset, topOffset) => {
   //   if (canvas.backgroundImage) {
   //     // 현재 배경 이미지의 위치 가져오기
   //     const currentLeft = canvas.backgroundImage.left;
   //     const currentTop = canvas.backgroundImage.top;
-  
+
   //     // 새로운 위치로 배경 이미지 이동
   //     canvas.backgroundImage.set({
   //       left: currentLeft + leftOffset,
   //       top: currentTop + topOffset,
   //     });
-  
+
   //     canvas.renderAll();
   //   }
   // };
@@ -135,20 +220,20 @@ export const HeaderNavContents = () => {
 
 
   const bringToFront = () => {
-    const activeObject = canvas.getActiveObject(); 
-    if(activeObject) {
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
       activeObject.bringToFront();
     } else {
-      console.log("no object selected");
+      console.log('no object selected');
     }
   };
 
   const sendToBack = () => {
-    const activeObject = canvas.getActiveObject(); 
-    if(activeObject) {
-    activeObject.sendToBack();
+    const activeObject = canvas.getActiveObject();
+    if (activeObject) {
+      activeObject.sendToBack();
     } else {
-      console.log("no object selected");
+      console.log('no object selected');
     }
   };
 
@@ -196,11 +281,15 @@ export const HeaderNavContents = () => {
                     <ButtonGroupContainer
                       handleChangedFile={handleChangedFile}
                       fileInputRef={fileInputRef}
+                      canvas = {canvas}
                     />
                   </s.ButtonGroupWrapper>
                   <s.CanvasSpaceWrapper>
                     <s.CanvasSpace>
                       <canvas id='canvas' />
+                      <>
+                        <button onClick={removeItem}>delete</button>
+                      </>
                     </s.CanvasSpace>
                     <s.LayerBtnWrapper>
                       <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
