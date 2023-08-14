@@ -4,7 +4,7 @@ import * as s from './styles';
 // eslint-disable-next-line react/prop-types
 export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }) => {
 
-  const Undo = {
+  const Undo = () =>{
     if(canvas){
 
       
@@ -13,7 +13,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
 
   };
 
-  const Redo = {
+  const Redo = ()=>{
     if(canvas){
 
 
@@ -23,9 +23,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
   const RemoveAll = () => {
     if(canvas){
       canvas.remove(...canvas.getObjects());
-      
     }
-
   };
 
 
