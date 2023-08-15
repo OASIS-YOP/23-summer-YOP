@@ -77,7 +77,6 @@ export const Frames = ({ canvas }) => {
         
         img.scaleToWidth(canvasWidth);
         img.scaleToHeight(canvasHeight);
-        canvas.setOverlayImage(img, canvas.renderAll.bind(canvas))
         canvas.add(img);
         canvas.renderAll();
       });
