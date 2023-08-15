@@ -89,6 +89,7 @@ export const HeaderNavContents = () => {
           imgFile.scaleToHeight(canvasSize[1]);
           imgFile.scaleToWidth(canvasSize[0]);
           canvas.add(imgFile);
+          imgFile.sendToBack();
           canvas.renderAll();
         });
       };
