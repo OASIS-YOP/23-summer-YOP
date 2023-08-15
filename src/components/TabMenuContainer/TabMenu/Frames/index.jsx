@@ -46,19 +46,19 @@ export const Frames = ({ canvas }) => {
       if (canvas.width === 330 && canvas.height === 510 ) {
             return (
               <s.FrameList>
-                <img src='' onClick={handleImageClick} />
+                <img src= {frameData[0].src} onClick={handleImageClick} />
               </s.FrameList>
             );
           } else if (canvas.width === 420 && canvas.height === 510 ) {
             return (
               <s.FrameList>
-                <img src='' onClick={handleImageClick} />
+                <img src= {frameData[1].src} onClick={handleImageClick} />
               </s.FrameList>
             );
           } else {
             return (
               <s.FrameList>
-                <img src='FrameWB3.svg' onClick={handleImageClick} />
+                <img src= {frameData[2].src} onClick={handleImageClick} />
               </s.FrameList>
             );
           }
