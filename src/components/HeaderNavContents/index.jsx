@@ -219,6 +219,20 @@ export const HeaderNavContents = () => {
   //   }
   // };
 
+
+
+  useEffect(() => {
+    console.log(canvasSize);
+    const initCanvas = () =>
+      new fabric.Canvas('canvas', {
+        height: canvasSize[1],
+        width: canvasSize[0],
+        backgroundColor: 'white',
+      });
+    });
+
+
+
   const bringToFront = () => {
     const activeObject = canvas.getActiveObject();
     if (activeObject) {
@@ -299,6 +313,7 @@ export const HeaderNavContents = () => {
                     <ButtonGroupContainer
                       handleChangedFile={handleChangedFile}
                       fileInputRef={fileInputRef}
+                      canvas = {canvas}
                     />
                   </s.ButtonGroupWrapper>
                   <s.CanvasSpaceWrapper>

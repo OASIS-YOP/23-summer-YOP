@@ -18,3 +18,5 @@ export const BtnFixText = styled.button`
 export const BtnChangeColor = styled.button`
 
 `
+export const BtnDrawText = styled.button`
+`
