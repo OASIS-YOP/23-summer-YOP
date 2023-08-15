@@ -1,20 +1,16 @@
 import { useEffect, useState } from 'react';
 import * as s from './styles';
 import { fabric } from 'fabric';
-import { Demo } from './ColorPicker';
+import { Demo } from '../../ColorPicker';
+import Dropdown from './Dropdown';
+
 
 export const TextTab = ({ canvas }) => {
   const [textColor, setTextColor] = useState('#6979ffff');
+  const [view, setView] = useState(false);
 
-  //전역함수로 바꾸겠습니다.
-  // const removeText = () => {
-  //   if (canvas.getActiveObject()) {
-  //     console.log(canvas.getActiveObject());
-  //     canvas.remove(canvas.getActiveObject());
-  //     canvas.renderAll();
-  //   }
-  // };
-
+  let fonts = ["Black Han Sans", "Noto Sans Korean", "Orbit"];
+  
   const AddText = () => {
     if (canvas) {
       let text = new fabric.IText('text', {
@@ -132,20 +128,6 @@ export const TextTab = ({ canvas }) => {
     
   };
 
-  // Add event listener for 'delete' key press
-  // useEffect(() => {
-  //   const handleKeyDown = (event) => {
-  //     if (event.key === 'Delete') {
-  //       removeText();
-  //     }
-  //   };
-
-  //   document.addEventListener('keydown', handleKeyDown);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', handleKeyDown);
-  //   };
-  // }, [canvas]); // Reattach the event listener when the canvas changes
 
   return (
     <>
@@ -158,6 +140,11 @@ export const TextTab = ({ canvas }) => {
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
         <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage>
         <s.BtnDrawText onClick={TextBrush}>텍스트 그리기</s.BtnDrawText>
+        {/* <s.WrappingDropDown onClick={() => {setView(!view)}}>
+          폰트 선택{" "}
+          {view ? '⌃' : '⌄'}
+          {view && <Dropdown />}
+        </s.WrappingDropDown> */}
       </s.ContainerText>
     </>
   );
