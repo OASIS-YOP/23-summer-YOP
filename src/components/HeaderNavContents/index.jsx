@@ -88,7 +88,8 @@ export const HeaderNavContents = () => {
           setImage(imgFile);
           imgFile.scaleToHeight(canvasSize[1]);
           imgFile.scaleToWidth(canvasSize[0]);
-          canvas.add(imgFile);
+          //canvas.add(imgFile);
+          canvas.backgroundImage = imgFile;
           imgFile.sendToBack();
           canvas.renderAll();
         });

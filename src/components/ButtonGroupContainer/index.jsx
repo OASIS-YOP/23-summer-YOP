@@ -125,6 +125,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
   const RemoveAll = () => {
     if(canvas){
       canvas.remove(...canvas.getObjects());
+      canvas.backgroundImage = null;
     }
   };
 
