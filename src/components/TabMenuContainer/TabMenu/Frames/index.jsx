@@ -3,7 +3,6 @@ import { fabric } from 'fabric';
 import { useState, useEffect } from 'react';
 
 export const Frames = ({ canvas }) => {
-
   const frameData = [
     { id: 1, src: [''] },
     { id: 2, src: [''] },
