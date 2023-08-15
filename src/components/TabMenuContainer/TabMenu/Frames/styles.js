@@ -13,8 +13,15 @@ export const FrameList = styled.div`
   & img {
     display: inline-block;
     height: 'auto';
-    width: 50%;
+    width: 30%;
     margin: 10px;
+    background-color: #d9d9d9;
   }
+
+  & img:hover {
+    cursor: pointer;
+    border: 4px solid #7198FF;
+  }
+
 `;
 
