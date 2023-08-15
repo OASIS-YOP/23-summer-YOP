@@ -18,4 +18,9 @@ export const StickerList = styled.div`
     width: 50%;
     margin: 10px;
   }
+
+  & img:hover {
+    cursor: pointer;
+    opacity: 0.85;
+  }
 `;
