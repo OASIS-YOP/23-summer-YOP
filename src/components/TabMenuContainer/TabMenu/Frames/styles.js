@@ -13,6 +13,7 @@ export const FrameList = styled.div`
   & img {
     display: inline-block;
     height: 'auto';
+    border: 4px solid white;
     width: 30%;
     margin: 10px;
     background-color: #d9d9d9;
