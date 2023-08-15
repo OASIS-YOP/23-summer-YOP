@@ -8,6 +8,7 @@ import { Stickers } from '../TabMenuContainer/TabMenu/Stickers';
 import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
+import { ContextMenu } from '../ContextMenu';
 
 //crop
 // import Cropper from 'react-cropper';
@@ -242,6 +243,7 @@ export const HeaderNavContents = () => {
     }
   };
 
+
   return (
     <>
       <s.Header>
@@ -288,9 +290,9 @@ export const HeaderNavContents = () => {
                       fileInputRef={fileInputRef}
                     />
                   </s.ButtonGroupWrapper>
-                  <s.CanvasSpaceWrapper>
+                  <s.CanvasSpaceWrapper onContextMenu={ContextMenu}>
                     <s.CanvasSpace>
-                      <canvas id='canvas' />
+                      <canvas id='canvas'/>
                       <>
                         <button onClick={removeItem}>delete</button>
                       </>
