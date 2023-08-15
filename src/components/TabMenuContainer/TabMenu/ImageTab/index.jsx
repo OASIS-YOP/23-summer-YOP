@@ -24,9 +24,9 @@ export const ImageTab = ({ canvas, image }) => {
 
   canvas.on({
     'selection:created': () => {
-      fabric.util
-        .toArray(document.getElementsByTagName('input'))
-        .forEach((el) => (el.disabled = false));
+      // fabric.util
+      //   .toArray(document.getElementsByTagName('input'))
+      //   .forEach((el) => (el.disabled = false));
 
       let filters = ['grayscale', 'brightness', 'contrast', 'saturation'];
 
@@ -36,11 +36,11 @@ export const ImageTab = ({ canvas, image }) => {
         }
       }
     },
-    'selection:cleared': () => {
-      fabric.util
-        .toArray(document.getElementsByTagName('input'))
-        .forEach((el) => (el.disabled = true));
-    },
+    // 'selection:cleared': () => {
+    //   fabric.util
+    //     .toArray(document.getElementsByTagName('input'))
+    //     .forEach((el) => (el.disabled = true));
+    // },
   });
 
   //좌우반전 part
@@ -98,25 +98,20 @@ export const ImageTab = ({ canvas, image }) => {
         <p>
           <label>
             <span>명도:</span>
-            <input
-              type='checkbox'
-              id='brightness'
-              onClick={() =>
-                applyFilter(
-                  1,
-                  new fabric.Image.filters.Brightness({
-                    brightness: parseFloat(
-                      document.getElementById('brightness-value').value / 100
-                    ),
-                  })
-                )
-              }
-            />
           </label>
           <input
             id='brightness-value'
             type='range'
+            defaultValue={0}
             onInput={() => {
+              applyFilter(
+                1,
+                new fabric.Image.filters.Brightness({
+                  brightness: parseFloat(
+                    document.getElementById('brightness-value').value / 100
+                  ),
+                })
+              );
               applyFilterValue(
                 1,
                 'brightness',
@@ -130,9 +125,10 @@ export const ImageTab = ({ canvas, image }) => {
         <p>
           <span>채도:</span>
           <input
-            type='checkbox'
-            id='saturation'
-            onClick={() =>
+            id='saturation-value'
+            type='range'
+            defaultValue={0}
+            onInput={() => {
               applyFilter(
                 2,
                 new fabric.Image.filters.Saturation({
@@ -140,13 +136,7 @@ export const ImageTab = ({ canvas, image }) => {
                     document.getElementById('saturation-value').value / 50
                   ),
                 })
-              )
-            }
-          />
-          <input
-            id='saturation-value'
-            type='range'
-            onInput={() => {
+              );
               applyFilterValue(
                 2,
                 'saturation',
@@ -159,9 +149,10 @@ export const ImageTab = ({ canvas, image }) => {
         </p>
         <span>대비:</span>
         <input
-          type='checkbox'
-          id='contrast'
-          onClick={() =>
+          id='contrast-value'
+          type='range'
+          defaultValue={0}
+          onInput={() => {
             applyFilter(
               3,
               new fabric.Image.filters.Contrast({
@@ -169,13 +160,7 @@ export const ImageTab = ({ canvas, image }) => {
                   document.getElementById('contrast-value').value / 50
                 ),
               })
-            )
-          }
-        />
-        <input
-          id='contrast-value'
-          type='range'
-          onInput={() => {
+            );
             applyFilterValue(
               3,
               'contrast',
@@ -192,6 +177,7 @@ export const ImageTab = ({ canvas, image }) => {
           <input
             id='angle-control'
             type='range'
+            defaultValue={0}
             min={-100}
             max={100}
             onInput={angleControl}
@@ -206,7 +192,8 @@ export const ImageTab = ({ canvas, image }) => {
           <input
             id='top-control'
             type='range'
-            min={-100}
+            defaultValue={-50}
+            min={-200}
             max={100}
             onInput={topControl}
           />
@@ -216,6 +203,7 @@ export const ImageTab = ({ canvas, image }) => {
           <input
             id='left-control'
             type='range'
+            defaultValue={0}
             min={-100}
             max={100}
             onInput={leftControl}
