@@ -17,3 +17,4 @@ export const FrameList = styled.div`
     margin: 10px;
   }
 `;
+

@@ -41,6 +41,7 @@ export const Stickers = ({ canvas }) => {
         left: offsetX - img.width / 1000,
         top: offsetY - img.height / 1000,
         evented: true,
+        svgViewportTransformation: true,
       });
 
       const canvasWidth = canvas.getWidth();
