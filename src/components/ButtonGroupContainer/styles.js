@@ -46,6 +46,7 @@ export const ImageLoadButton = styled.div`
 export const ImageLoadButtonLabel = styled.label`
   height: 50px;
   width: 50px;
+  
   &:hover {
     opacity: 0.3;
     cursor: pointer;
