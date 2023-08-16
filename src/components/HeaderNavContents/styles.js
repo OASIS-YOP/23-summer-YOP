@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import {
   pointColor,
-  //   primaryColor,
-  //   secondaryColor,
+  primaryColor,
+  secondaryColor,
   whiteColor,
 } from '../../GlobalStyles';
 
 //--------------Header--------------
 export const Header = styled.div`
   width: 100%;
-  height: 130px;
+  height: 12vh;
   background: linear-gradient(to bottom, ${pointColor}, ${whiteColor});
   display: flex;
   flex-direction: column;
@@ -86,7 +86,7 @@ export const NavTabs = styled.div`
 
 //--------------Body--------------
 export const Body = styled.div`
-  height: calc(1024-250) px;
+  height: 100%;
   width: 100%;
   z-index: 99;
 `;
@@ -95,23 +95,28 @@ export const Content = styled.div`
   display: none;
 
   background-color: #ffffff;
+  height: 100%;
   padding-top: 2%;
   padding-bottom: 2%;
 
   &.active {
     display: block;
+    height: 100%;
     background-color: #ffffff;
     padding-top: 2%;
     padding-bottom: 2%;
   }
+
 `;
 
 // 플렉스 설정 위해 편집 페이지 좌우 컨테이너 한번 더 감싸줌
 export const ContentWrapper = styled.div`
   display: flex;
+  height: 90%;
   justify-content: space-around;
   width: 100%;
   padding: 0;
+
 `;
 
 export const LeftContainer = styled.section`
@@ -119,10 +124,10 @@ export const LeftContainer = styled.section`
   justify-content: flex-start;
   align-items: center;
   background-color: #ededed;
-  height: 700px;
+  height: 760px;
   width: 60%;
-  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
-  border-radius: 15px;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
+  border-radius: 1.5rem;
   margin: 5px 20px 25px 20px;
 `;
 
@@ -130,12 +135,26 @@ export const LayerBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 70%;
+
 `
 
 export const BringTo = styled.button`
   width: 20%;
-  margin: 0 5px;
+  margin: 0.3rem 0.3rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  width: 100px;
+  height: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
 
+  &:hover {
+    background-color: ${pointColor};
+  }
+
+  &:active {
+    background-color: ${whiteColor};
+  }
 `
 
 export const ButtonGroupWrapper = styled.div`
@@ -146,7 +165,7 @@ export const ButtonGroupWrapper = styled.div`
 export const CanvasSpaceWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 90%;
   height: 100%;
@@ -156,6 +175,7 @@ export const CanvasSpace = styled.div`
   width: fit-content;
   height: fit-content;
   justify-content: center;
+  margin: 25px auto;
   align-items: center;
   border: 5px dashed #979797;
   // export const CanvasSpace = styled.div
@@ -175,23 +195,24 @@ export const RightContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #ededed;
-  height: 700px;
-  max-width: 450px;
+  height: 760px;
+  max-width: 550px;
   min-width: 450px;
-  border-radius: 15px;
-  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+  border-radius: 1.5rem;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
   margin: 5px 20px 25px 0px;
 `;
 
 // 소개페이지 콘텐츠 컨테이너 따로 만들어줌
 export const InfoContainer = styled.section`
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   background-color: #ededed;
-  height: 700px;
-  width: 1010px;
-  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
-  border-radius: 15px;
-  margin: 5px 20px 25px 20px;
+  height: 800px;
+  width: 90%;
+  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
+  border-radius: 1.5rem;
+  margin: 0 auto;
 `;
