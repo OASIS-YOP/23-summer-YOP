@@ -22,26 +22,26 @@ export const ImageTab = ({ canvas, image }) => {
     }
   };
 
-  canvas.on({
-    'selection:created': () => {
-      // fabric.util
-      //   .toArray(document.getElementsByTagName('input'))
-      //   .forEach((el) => (el.disabled = false));
+  // canvas.on({
+  //   'selection:created': () => {
+  //     // fabric.util
+  //     //   .toArray(document.getElementsByTagName('input'))
+  //     //   .forEach((el) => (el.disabled = false));
 
-      let filters = ['grayscale', 'brightness', 'contrast', 'saturation'];
+  //     let filters = ['grayscale', 'brightness', 'contrast', 'saturation'];
 
-      for (let i = 0; i < filters.length; i++) {
-        if (document.getElementById(filters[i])) {
-          document.getElementById(filters[i]).checked = !image.filters[i];
-        }
-      }
-    },
-    // 'selection:cleared': () => {
-    //   fabric.util
-    //     .toArray(document.getElementsByTagName('input'))
-    //     .forEach((el) => (el.disabled = true));
-    // },
-  });
+  //     for (let i = 0; i < filters.length; i++) {
+  //       if (document.getElementById(filters[i])) {
+  //         document.getElementById(filters[i]).checked = !image.filters[i];
+  //       }
+  //     }
+  //   },
+  //   'selection:cleared': () => {
+  //     fabric.util
+  //       .toArray(document.getElementsByTagName('input'))
+  //       .forEach((el) => (el.disabled = true));
+  //   },
+  // });
 
   //좌우반전 part
   const reverseX = () => {
