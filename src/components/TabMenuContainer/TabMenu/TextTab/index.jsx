@@ -132,7 +132,7 @@ export const TextTab = ({ canvas }) => {
   return (
     <>
       <s.ContainerText>
-        <s.BtnAddText onClick={AddText}>TEXT</s.BtnAddText>
+        <s.BtnAddText onClick={AddText}>텍스트 추가</s.BtnAddText>
         <Demo textColor={textColor} setTextColor={setTextColor} />
         <s.BtnChangeColor onClick={ChangeTextColor}>
           색 바꾸기

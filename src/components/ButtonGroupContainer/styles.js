@@ -11,37 +11,44 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 60px;
-  height: 450px;
+  width: 90px;
+  height: 580px;
   border-radius: 23px;
-  border: 7px solid #d9d9d9;
+  border: 14px solid #d9d9d9;
   background-color: ${whiteColor};
-  margin: 0 180px 0 30px;
+  margin: 0 180px 0 70px;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+
+  font-size: 18px;
 `;
 
 export const Button = styled.button`
   height: 50px;
-  width: 50px;
+  width: 70px;
   background-color: ${whiteColor};
   border-style: none;
   border-radius: 23px;
   cursor: pointer;
-  font-size: 13.5px;
+  font-size: 18px;
+
+  &:hover {
+    color: ${pointColor};
+    cursor: pointer;
+  }
 `;
 
 export const ImageLoadButton = styled.div`
   height: 50px;
   width: 50px;
   background-color: ${whiteColor};
-  font-size: 13.5px;
 `;
 
 export const ImageLoadButtonLabel = styled.label`
   height: 50px;
   width: 50px;
-  font-size: 13px;
+  
   &:hover {
+    opacity: 0.3;
     cursor: pointer;
   }
 `;

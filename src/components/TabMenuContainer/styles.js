@@ -10,14 +10,14 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 85%;
-  height: 320px;
+  height: 345px;
   margin: 10px 0;
 `;
 
 export const TabNavBar = styled.div`
   display: flex;
   width: 100%;
-  height: 35px;
+  height: 50px;
 `;
 
 export const TabMenu = styled.div`
@@ -26,12 +26,12 @@ export const TabMenu = styled.div`
   align-items: center;
   margin: 0;
   padding: 0;
-  width: 70px;
+  width: 75px;
   height: 100%;
   border-radius: 12px 12px 0 0;
   background-color: #d9d9d9;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
-  font-size: 16.5px;
+  font-size: 18px;
 
   &:hover {
     cursor: pointer;
@@ -53,7 +53,7 @@ export const ContentBox = styled.div`
   background-color: white;
   border-radius: 0 0 15px 15px;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
-  font-size: 13.5px;
+  font-size: 18px;
     
   &.active{
     display: block;

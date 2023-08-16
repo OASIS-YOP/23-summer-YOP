@@ -14,8 +14,9 @@ export const StickerList = styled.div`
 
   & img {
     display: inline-block;
-    height: 'auto';
-    width: 50%;
+    margin: auto;
+    height: auto;
+    width: 130px;
     margin: 10px;
   }
 
