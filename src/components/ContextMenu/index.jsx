@@ -1,30 +1,72 @@
-import { useState } from 'react';
 import * as s from './styles';
 
+export const ContextMenu = ({ canvas, x, y, onClose, onCopy, onPaste, onCut, onDelete  }) => {
+  // 컨텍스트 메뉴
+  const handleMenuItemClick = (action) => {
 
-export const ContextMenu = () => {
-  const [contextMenuVisible, setContextMenuVisible] = useState(false);
-  const [position, setPosition] = useState({ top: 0, left: 0 });
+    // 각 메뉴 항목을 클릭했을 때 실행될 동작을 구현
+    if (action === 'copy') {
+      // 복사 동작 처리
 
-  const handleContextMenu = (e) => {
-    e.preventDefault(); // 기본 컨텍스트 메뉴 표시 방지
-    setPosition({ top: e.clientY, left: e.clientX });
-    setContextMenuVisible(true);
-  };
+      if (canvas.getActiveObject() !== null) {
+        // 선택된 객체가 있는지 확인
+        const activeObject = canvas.getActiveObject().toObject();
+        // console.log(typeof activeObject);
+        onCopy(activeObject);
+        } else {
+          console.log('no object is selected');
+        }
 
-  const hideContextMenu = () => {
-    setContextMenuVisible(false);
+    } else if (action === 'paste') {
+      // 붙여넣기 동작 처리
+
+      onPaste(x, y);
+      // 마우스 좌클릭 위치를 onPaste 함수로 전달
+
+    } else if (action === 'cut') {
+      // 잘라내기 동작 처리
+
+      if (canvas.getActiveObject() !== null) {
+        // 선택된 객체가 있는지 확인
+        const activeObject = canvas.getActiveObject().toObject();
+        // console.log(typeof activeObject);
+        onCut(activeObject);
+        } else {
+          console.log('no object is selected');
+        }
+
+    }
+    else if (action === 'delete') {
+      // 삭제 동작 처리  
+
+      if (canvas.getActiveObject() !== null) {
+      // 선택된 객체가 있는지 확인
+      const activeObject = canvas.getActiveObject().toObject();
+      onDelete(activeObject);    
+      } else {
+        console.log('no object is selected');
+      }
+
+    }
+    onClose();
+    // 컨텍스트 메뉴 닫기
   };
 
   return (
-    <s.ContextMenuContainer onContextMenu={handleContextMenu}>
-      {contextMenuVisible && (
-        <s.ContextMenu style={{ top: position.top, left: position.left }}>
-          <div onClick={hideContextMenu}>Option 1</div>
-          <div onClick={hideContextMenu}>Option 2</div>
-          <div onClick={hideContextMenu}>Option 3</div>
-        </s.ContextMenu>
-      )}
-    </s.ContextMenuContainer>
+    <s.ContextMenu
+      canvas={canvas}
+      style={{
+        left: x,
+        top: y,
+        background: 'white',
+        boxShadow: '2px 2px 5px gray',
+        zIndex: 1000,        
+      }}
+    >
+      <div onClick={() => handleMenuItemClick('copy')}>복사</div>
+      <div onClick={() => handleMenuItemClick('paste')}>붙여넣기</div>
+      <div onClick={() => handleMenuItemClick('cut')}>잘라내기</div>
+      <div onClick={() => handleMenuItemClick('delete')}>삭제</div>
+    </s.ContextMenu>
   );
 };

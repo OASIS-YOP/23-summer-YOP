@@ -6,9 +6,10 @@ import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
 import { Stickers } from '../TabMenuContainer/TabMenu/Stickers';
 import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
-import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
+// import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
+import '@fontsource/kaushan-script';
 
 //crop
 // import Cropper from 'react-cropper';
@@ -21,13 +22,15 @@ export const HeaderNavContents = () => {
   const [canvasSize, setCanvasSize] = useState([0, 0]);
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
+  const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
+  const [isContextMenuVisible, setContextMenuVisible] = useState(false);
 
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
     {
       id: 1,
       label: '이미지',
-      function: () => <ImageTab canvas={canvas} image={image} />,
+      // function: () => <ImageTab canvas={canvas} image={image} />,
       level: 'top',
     },
     {
@@ -90,7 +93,6 @@ export const HeaderNavContents = () => {
           imgFile.scaleToHeight(canvasSize[1]);
           imgFile.scaleToWidth(canvasSize[0]);
           canvas.backgroundImage = imgFile;
-          imgFile.sendToBack();
           canvas.renderAll();
         });
       };
@@ -221,54 +223,150 @@ export const HeaderNavContents = () => {
 
 
 
-  useEffect(() => {
-    console.log(canvasSize);
-    const initCanvas = () =>
-      new fabric.Canvas('canvas', {
-        height: canvasSize[1],
-        width: canvasSize[0],
-        backgroundColor: 'white',
-      });
-    });
+  // useEffect(() => {
+  //   console.log(canvasSize);
+  //   const initCanvas = () =>
+  //     new fabric.Canvas('canvas', {
+  //       height: canvasSize[1],
+  //       width: canvasSize[0],
+  //       backgroundColor: 'white',
+  //     });
+  //   });
 
 
 
   const bringToFront = () => {
+    // 선택된 객체를 맨 앞으로 가져옴
     const activeObject = canvas.getActiveObject();
     if (activeObject) {
       activeObject.bringToFront();
     } else {
-      console.log('no object selected');
+      console.log('no object is selected');
     }
   };
 
   const sendToBack = () => {
+    // 선택된 객체를 맨 뒤로 보냄
     const activeObject = canvas.getActiveObject();
     if (activeObject) {
       activeObject.sendToBack();
     } else {
-      console.log('no object selected');
+      console.log('no object is selected');
     }
   };
 
   const bringForward = () => {
+    // 선택된 객체를 한 단계 앞으로 가져옴
     const activeObject = canvas.getActiveObject();
     if (activeObject) {
       activeObject.bringForward();
     } else {
-      console.log('no object selected');
+      console.log('no object is selected');
     }
   };
 
   const sendBackwards = () => {
+    // 선택된 객체를 한 단계 뒤로 보냄
     const activeObject = canvas.getActiveObject();
     if (activeObject) {
       activeObject.sendBackwards();
     } else {
-      console.log('no object selected');
+      console.log('no object is selected');
     }
   };
 
+  ////////////////컨텍스트 메뉴 ////////////////////
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+    // 마우스 우클릭 시 마우스 위치에 컨텍스트 메뉴를 표시하기 위한 정보 설정
+    setContextMenuPos({ x: e.clientX, y: e.clientY });
+    // 컨텍스트 메뉴를 표시
+    setContextMenuVisible(true);
+  };
+
+  // 컨텍스트 메뉴를 닫는 함수
+  const closeContextMenu = () => {
+    setContextMenuVisible(false);
+  };
+
+
+  // 복사한 객체를 저장하는 state
+  const [copiedObject, setCopiedObject] = useState(null); // 부모 컴포넌트에서 관리
+  console.log(copiedObject);
+  console.log('copiedObject');
+
+  // 복사한 객체를 저장하는 함수  
+  const handleCopyObject = (object) => {
+    setCopiedObject(object);
+  };
+
+
+  // 붙여넣기 함수
+  const handlePasteObject = (x, y) => {
+    if( copiedObject !== null ) { 
+      if ( copiedObject.type === 'image' ) {
+        // 선택된 객체가 단일 객체인 경우
+        fabric.Image.fromObject(copiedObject, function (img) {
+          img.set({
+            left: x /2 ,
+            top: y /2 ,
+            evented: true,
+            svgViewportTransformation: true,
+          });
+          canvas.add(img);
+          canvas.renderAll();
+        });
+      } else if (copiedObject.type === 'activeSelection') {
+          // 선택된 객체가 다중 객체인 경우
+          for (let i = 0; i < copiedObject.objects.length; i++ ) {
+              { fabric.Image.fromObject(copiedObject.objects[i], function (img) {
+              img.set({
+                left: x /2 ,
+                top: y /2 ,
+                evented: true,
+                svgViewportTransformation: true,
+              });
+              canvas.add(img);
+              canvas.renderAll();
+            })}
+          }
+        }
+      } else { console.log('no object is coppied'); }
+    };
+
+
+  // 삭제 함수 1
+  const removeObjects = (object) => {
+    if ( object ) {
+      if ( object.type === 'image' ) {
+        // 선택된 객체가 단일 객체인 경우
+        canvas.remove(canvas.getActiveObject());
+        canvas.renderAll();
+      } else if (object.type === 'activeSelection') {
+        // 선택된 객체가 다중 객체인 경우
+        canvas.remove(canvas.getActiveObject().toGroup());
+        canvas.renderAll();
+      }
+    } 
+  };
+
+  // 삭제 함수 2
+  const handleDeleteObject = (object) => {
+    console.log(object);
+    removeObjects(object);
+    canvas.renderAll();
+  };
+
+
+  // 잘라내기 함수
+  const handleCutObject = (object) => {
+    setCopiedObject(object);
+    removeObjects(object);
+    canvas.renderAll();
+  };
+
+ ///////////////////////////////////////////////
 
   return (
     <>
@@ -299,7 +397,22 @@ export const HeaderNavContents = () => {
         </s.NavigationBar>
       </s.Header>
 
-      <s.Body>
+      <s.Body
+        onContextMenu={handleContextMenu} // 컨텍스트 메뉴 표시 이벤트
+        onClick={closeContextMenu} // 컨텍스트 메뉴 영역 외 클릭 시 컨텍스트 메뉴 닫기
+      >
+          {isContextMenuVisible && (
+            <ContextMenu
+              canvas={canvas}
+              x={contextMenuPos.x} // 컨텍스트 메뉴 표시 위치 x
+              y={contextMenuPos.y} // 컨텍스트 메뉴 표시 위치 y
+              onClose={closeContextMenu} // 컨텍스트 메뉴 닫기 이벤트
+              onCopy={handleCopyObject} // 복사 이벤트
+              onPaste={handlePasteObject} // 붙여넣기 이벤트
+              onCut={handleCutObject} // 잘라내기 이벤트
+              onDelete={handleDeleteObject} // 삭제 이벤트
+            />
+          )}
         <s.Content className={toggleState === 0 ? 'active' : ''}>
           <s.ContentWrapper>
             {isSelectPage ? (

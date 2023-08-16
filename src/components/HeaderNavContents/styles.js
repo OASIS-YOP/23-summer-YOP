@@ -40,7 +40,7 @@ export const NavigationBar = styled.div`
 export const NavTabs = styled.div`
   cursor: pointer;
   width: 12em;
-  height: 50%;
+  height: 60%;
   border-color: #ffffff;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -52,6 +52,7 @@ export const NavTabs = styled.div`
   box-shadow: 5px 3px 2px 0.1px rgb(0, 0, 0, 0.1);
   flex-flow: column;
   overflow: hidden;
+  font-size: 22px;
 
   &.active {
     height: 100%;

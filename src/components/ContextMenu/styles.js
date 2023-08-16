@@ -15,8 +15,12 @@ export const ContextMenu = styled.div`
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 5px;
+
+  left: x,
+  top: y,
   z-index: 1;
+  
+  font-size: 16px;
 
   & div {
     padding: 8px;
@@ -24,7 +28,7 @@ export const ContextMenu = styled.div`
   }
 
   & div:hover {
-    background-color: #f0f0f0;
+    background-color: #C1C1C1;
   }
 
 `;
