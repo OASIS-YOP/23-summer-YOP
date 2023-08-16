@@ -31,6 +31,7 @@ export const TabMenu = styled.div`
   border-radius: 12px 12px 0 0;
   background-color: #d9d9d9;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+  font-size: 16.5px;
 
   &:hover {
     cursor: pointer;
@@ -52,6 +53,7 @@ export const ContentBox = styled.div`
   background-color: white;
   border-radius: 0 0 15px 15px;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
+  font-size: 13.5px;
     
   &.active{
     display: block;

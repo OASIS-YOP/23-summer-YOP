@@ -27,12 +27,14 @@ export const Button = styled.button`
   border-style: none;
   border-radius: 23px;
   cursor: pointer;
+  font-size: 13.5px;
 `;
 
 export const ImageLoadButton = styled.div`
   height: 50px;
   width: 50px;
   background-color: ${whiteColor};
+  font-size: 13.5px;
 `;
 
 export const ImageLoadButtonLabel = styled.label`
