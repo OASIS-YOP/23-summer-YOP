@@ -9,7 +9,7 @@ import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
-import '@fontsource/kaushan-script';
+
 
 //crop
 // import Cropper from 'react-cropper';
@@ -301,12 +301,13 @@ export const HeaderNavContents = () => {
 
   // 복사한 객체를 저장하는 state
   const [copiedObject, setCopiedObject] = useState(null); // 부모 컴포넌트에서 관리
-  console.log(copiedObject);
-  console.log('copiedObject');
+  // console.log(copiedObject);
+  // console.log('copiedObject');
 
   // 복사한 객체를 저장하는 함수  
   const handleCopyObject = (object) => {
     setCopiedObject(object);
+    console.log('object is copied', object);
   };
 
 
@@ -335,11 +336,12 @@ export const HeaderNavContents = () => {
                 evented: true,
                 svgViewportTransformation: true,
               });
-              canvas.add(img);
+              canvas.add(img);              
               canvas.renderAll();
             })}
           }
-        }
+        } 
+        console.log('object is pasted', copiedObject);
       } else { console.log('no object is coppied'); }
     };
 
@@ -363,6 +365,7 @@ export const HeaderNavContents = () => {
   const handleDeleteObject = (object) => {
     console.log(object);
     removeObjects(object);
+    console.log('object is deleted', object)
     canvas.renderAll();
   };
 
@@ -371,6 +374,7 @@ export const HeaderNavContents = () => {
   const handleCutObject = (object) => {
     setCopiedObject(object);
     removeObjects(object);
+    console.log('object is cut', object);
     canvas.renderAll();
   };
 

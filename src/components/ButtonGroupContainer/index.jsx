@@ -14,7 +14,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
 
   canvas.on("object:added", function (e) {
       var object = e.target;
-      console.log('object:modified');
+      // console.log('object:modified');
 
       if (action === true) {
           state = [state[index2]];
@@ -26,7 +26,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
       }
       object.saveState();
 
-      console.log(object.originalState);
+      // console.log(object.originalState);
       state[index] = JSON.stringify(object.originalState);
       list[index] = object;
       index++;
@@ -39,7 +39,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
 
   canvas.on("object:modified", function (e) {
       var object = e.target;
-      console.log('object:modified');
+      // console.log('object:modified');
 
       if (action === true) {
           state = [state[index2]];
@@ -57,7 +57,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
       index++;
       index2 = index - 1;
 
-      console.log(state);
+      // console.log(state);
       refresh = true;
   });
 
