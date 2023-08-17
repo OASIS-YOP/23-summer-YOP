@@ -5,7 +5,7 @@ export const ContainerText = styled.div`
   
 
   & > button {
-    font-size: 1.1rem;
+    font-size: 1.7vh;
     margin: 0.4rem 0.5rem;
     border-radius: 0.5rem;
     border: 1px solid #ccc;

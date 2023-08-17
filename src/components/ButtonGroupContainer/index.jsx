@@ -14,19 +14,19 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
 
   canvas.on("object:added", function (e) {
       var object = e.target;
-      console.log('object:modified');
+      // console.log('object:modified');
 
       if (action === true) {
           state = [state[index2]];
           list = [list[index2]];
 
           action = false;
-          console.log(state);
+          // console.log(state);
           index = 1;
       }
       object.saveState();
 
-      console.log(object.originalState);
+      // console.log(object.originalState);
       state[index] = JSON.stringify(object.originalState);
       list[index] = object;
       index++;
@@ -39,14 +39,14 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
 
   canvas.on("object:modified", function (e) {
       var object = e.target;
-      console.log('object:modified');
+      // console.log('object:modified');
 
       if (action === true) {
           state = [state[index2]];
           list = [list[index2]];
 
           action = false;
-          console.log(state);
+          // console.log(state);
           index = 1;
       }
 
@@ -57,7 +57,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
       index++;
       index2 = index - 1;
 
-      console.log(state);
+      // console.log(state);
       refresh = true;
   });
 
@@ -132,6 +132,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
 
   return (
     <>
+    <s.ButtonGroupWrapper>
       <s.Container>
         <s.ImageLoadButton htmlFor='file'>
           <s.ImageLoadButtonLabel htmlFor='file'>
@@ -150,6 +151,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
         <s.Button onClick = {redo} canvas={canvas}>→</s.Button>
         <s.Button onClick = {RemoveAll} canvas={canvas}>모두 지우기</s.Button>
       </s.Container>
+      </s.ButtonGroupWrapper>
     </>
   );
 };

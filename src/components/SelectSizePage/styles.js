@@ -12,19 +12,17 @@ export const ContentContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: #ededed;
-  height: 100%;
+  height: 70vh;
   width: auto;
   box-shadow: 3px 5px 20px 12px rgba(0, 0, 0, 13%);
   border-radius: 30px;
-  min-width: 1200px;
+  min-width: 130vh;
   padding: 20px;
-  overflow: auto;
-  overflow-x: hidden;
 `;
 
 export const SelectSizeLabel = styled.p`
-  font-size: 2rem;
-  margin-top: 60px;
+  font-size: 3vh;
+  margin-top: 5%;
 `;
 
 export const SizeImageContainer = styled.div`
@@ -33,7 +31,7 @@ export const SizeImageContainer = styled.div`
   align-items: center;
   width: auto;
   height: fit-content;
-  margin: 30px 0 0 0;
+  margin: 2vh 0 0 0;
 `;
 
 export const SizeImageWrapper = styled.div`
@@ -49,8 +47,8 @@ export const SizeImageWrapper = styled.div`
 `;
 
 export const Size1 = styled.div`
-  width: 220px;
-  height: 340px;
+  width: 25.31645569620253vh;
+  height: 39.12543153049482vh;
   background-color: ${whiteColor};
 
   border: 2px dotted #979797;
@@ -64,8 +62,8 @@ export const Size1 = styled.div`
   }
 `;
 export const Size2 = styled.div`
-  width: 280px;
-  height: 340px;
+  width: 31.567080045095828vh;
+  height: 38.331454340473506vh;
   border: 2px dotted #979797;
   background-color: ${whiteColor};
   &:hover {
@@ -78,8 +76,8 @@ export const Size2 = styled.div`
   }
 `;
 export const Size3 = styled.div`
-  width: 420px;
-  height: 340px;
+  width: 44.164037854889585vh;
+  height: 35.75184016824395vh;
   border: 2px dotted #979797;
   background-color: ${whiteColor};
   &:hover {
@@ -97,15 +95,15 @@ export const SizeLabel = styled.p`
 `;
 
 export const OkButton = styled.button`
-  height: 35px;
-  width: 70px;
+  height: 3.2vh;
+  width: 9.5vh;
   background-color: ${whiteColor};
-  margin-top: 70px;
-  margin-bottom: 50px;
+  margin-top: 2%;
+  margin-bottom: 5%;
   border: 1px solid #ccc;
   border-radius: 1.5rem;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 2vh;
   &:hover {
     background-color: ${primaryColor};
   }

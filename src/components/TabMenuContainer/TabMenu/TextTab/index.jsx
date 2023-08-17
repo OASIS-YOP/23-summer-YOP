@@ -129,6 +129,7 @@ export const TextTab = ({ canvas }) => {
   };
 
 
+
   return (
     <>
       <s.ContainerText>

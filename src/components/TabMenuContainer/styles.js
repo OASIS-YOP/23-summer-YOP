@@ -9,15 +9,16 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 85%;
-  height: 345px;
+  width: fit-content;
+  height: 34vh;
+  
   margin: 10px 0;
 `;
 
 export const TabNavBar = styled.div`
   display: flex;
-  width: 100%;
-  height: 50px;
+  width: 25vh;
+  height: 5vh;
 `;
 
 export const TabMenu = styled.div`
@@ -26,12 +27,12 @@ export const TabMenu = styled.div`
   align-items: center;
   margin: 0;
   padding: 0;
-  width: 75px;
+  width: 10vh;
   height: 100%;
   border-radius: 12px 12px 0 0;
   background-color: #d9d9d9;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
-  font-size: 18px;
+  font-size: 2vh;
 
   &:hover {
     cursor: pointer;
@@ -51,9 +52,9 @@ export const ContentBox = styled.div`
   width: 90%;
   height: 100%;
   background-color: white;
-  border-radius: 0 0 15px 15px;
+  border-radius: 0 0 2vh 2vh;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
-  font-size: 18px;
+  font-size: 2vh;
     
   &.active{
     display: block;
@@ -63,10 +64,10 @@ export const ContentBox = styled.div`
     justify-content: center;
     margin: 0px;
     padding: 15px;
-    width: 90%;
+    width: 40vh;
     height: 100%;
     background-color: white;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 2vh 2vh;
     box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
   }
 `;

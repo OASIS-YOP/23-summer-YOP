@@ -19,8 +19,7 @@ export const ContextMenu = styled.div`
   left: x,
   top: y,
   z-index: 1.3;
-  
-  font-size: 1.25rem;
+  font-size: 1.7vh;
 
   & div {
     padding: 8px;
