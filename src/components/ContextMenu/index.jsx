@@ -8,7 +8,7 @@ export const ContextMenu = ({ canvas, x, y, onClose, onCopy, onPaste, onCut, onD
     if (action === 'copy') {
       // 복사 동작 처리
 
-      if (canvas.getActiveObject() !== null) {
+      if (canvas.getActiveObject() !== null && canvas.getActiveObject() !== undefined) {
         // 선택된 객체가 있는지 확인
         const activeObject = canvas.getActiveObject().toObject();
         // console.log(typeof activeObject);
@@ -26,7 +26,7 @@ export const ContextMenu = ({ canvas, x, y, onClose, onCopy, onPaste, onCut, onD
     } else if (action === 'cut') {
       // 잘라내기 동작 처리
 
-      if (canvas.getActiveObject() !== null) {
+      if (canvas.getActiveObject() !== null && undefined) {
         // 선택된 객체가 있는지 확인
         const activeObject = canvas.getActiveObject().toObject();
         // console.log(typeof activeObject);
@@ -39,7 +39,7 @@ export const ContextMenu = ({ canvas, x, y, onClose, onCopy, onPaste, onCut, onD
     else if (action === 'delete') {
       // 삭제 동작 처리  
 
-      if (canvas.getActiveObject() !== null) {
+      if (canvas.getActiveObject() !== null && undefined) {
       // 선택된 객체가 있는지 확인
       const activeObject = canvas.getActiveObject().toObject();
       onDelete(activeObject);    

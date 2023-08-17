@@ -106,6 +106,7 @@ export const HeaderNavContents = () => {
       };
       loadImage();
     };
+    console.log(canvas.getActiveObject());
   };
 
   // const deleteIcon =
@@ -342,7 +343,7 @@ export const HeaderNavContents = () => {
           }
         } 
         console.log('object is pasted', copiedObject);
-      } else { console.log('no object is coppied'); }
+      } else { console.log('no object is copied'); }
     };
 
 
