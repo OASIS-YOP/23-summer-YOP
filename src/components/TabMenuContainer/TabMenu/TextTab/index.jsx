@@ -23,41 +23,41 @@ export const TextTab = ({ canvas }) => {
     }
   };
 
-  const FixImage = () => {
-    if (
-      canvas.getActiveObject() &&
-      canvas.getActiveObject() instanceof fabric.Image
-    ) {
-      // console.log(canvas.getActiveObject()._element.currentSrc);
-      console.log(canvas.getActiveObject());
-      let imag = canvas.getActiveObject()._element.currentSrc;
-      // let imagAngle = canvas.getActiveObject.angle;
-      let imagACoords = canvas.getActiveObject().oCoords;
-      let imagWidth = canvas.getActiveObject().width;
-      let imagHeight = canvas.getActiveObject().height;
-      let imagScaleX = canvas.getActiveObject().scaleX;
-      let imagScaleY = canvas.getActiveObject().scaleY;
-      let imagLeft = canvas.getActiveObject().left;
-      let imagTop = canvas.getActiveObject().top;
-      fabric.Image.fromURL(imag, (imgFile) => {
-        imgFile.aCoords = imagACoords;
-        imgFile.scaleToWidth(imagWidth * imagScaleX);
-        imgFile.scaleToHeight(imagHeight * imagScaleY);
-        imgFile.left = imagLeft;
-        imgFile.top = imagTop;
-        //imgFile.angle = 0;
-        imgFile.hasControls = false;
-        imgFile.hasBorders = false;
-        imgFile.lockMovementX = true;
-        imgFile.selectable = false;
-        imgFile.evented = false;
-        imgFile.sendToBack();
+  // const FixImage = () => {
+  //   if (
+  //     canvas.getActiveObject() &&
+  //     canvas.getActiveObject() instanceof fabric.Image
+  //   ) {
+  //     // console.log(canvas.getActiveObject()._element.currentSrc);
+  //     console.log(canvas.getActiveObject());
+  //     let imag = canvas.getActiveObject()._element.currentSrc;
+  //     // let imagAngle = canvas.getActiveObject.angle;
+  //     let imagACoords = canvas.getActiveObject().oCoords;
+  //     let imagWidth = canvas.getActiveObject().width;
+  //     let imagHeight = canvas.getActiveObject().height;
+  //     let imagScaleX = canvas.getActiveObject().scaleX;
+  //     let imagScaleY = canvas.getActiveObject().scaleY;
+  //     let imagLeft = canvas.getActiveObject().left;
+  //     let imagTop = canvas.getActiveObject().top;
+  //     fabric.Image.fromURL(imag, (imgFile) => {
+  //       imgFile.aCoords = imagACoords;
+  //       imgFile.scaleToWidth(imagWidth * imagScaleX);
+  //       imgFile.scaleToHeight(imagHeight * imagScaleY);
+  //       imgFile.left = imagLeft;
+  //       imgFile.top = imagTop;
+  //       //imgFile.angle = 0;
+  //       imgFile.hasControls = false;
+  //       imgFile.hasBorders = false;
+  //       imgFile.lockMovementX = true;
+  //       imgFile.selectable = false;
+  //       imgFile.evented = false;
+  //       imgFile.sendToBack();
 
-        canvas.add(imgFile);
-        canvas.renderAll();
-      });
-    }
-  };
+  //       canvas.add(imgFile);
+  //       canvas.renderAll();
+  //     });
+  //   }
+  // };
 
   const FixText = () => {
     if (
@@ -138,13 +138,13 @@ export const TextTab = ({ canvas }) => {
           색 바꾸기
         </s.BtnChangeColor>
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
-        <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage>
+        {/* <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage> */}
         <s.BtnDrawText onClick={TextBrush}>텍스트 그리기</s.BtnDrawText>
-        {/* <s.WrappingDropDown onClick={() => {setView(!view)}}>
+        <s.WrappingDropDown onClick={() => {setView(!view)}}>
           폰트 선택{" "}
           {view ? '⌃' : '⌄'}
           {view && <Dropdown />}
-        </s.WrappingDropDown> */}
+        </s.WrappingDropDown>
       </s.ContainerText>
     </>
   );
