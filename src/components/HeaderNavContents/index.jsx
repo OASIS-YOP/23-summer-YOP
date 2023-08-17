@@ -9,7 +9,7 @@ import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
-import '@fontsource/kaushan-script';
+
 
 //crop
 // import Cropper from 'react-cropper';
@@ -106,6 +106,7 @@ export const HeaderNavContents = () => {
       };
       loadImage();
     };
+    console.log(canvas.getActiveObject());
   };
 
   // const deleteIcon =
@@ -332,7 +333,7 @@ export const HeaderNavContents = () => {
                 evented: true,
                 svgViewportTransformation: true,
               });
-              canvas.add(img);
+              canvas.add(img);              
               canvas.renderAll();
             });
           }
@@ -362,6 +363,7 @@ export const HeaderNavContents = () => {
   const handleDeleteObject = (object) => {
     // console.log(object);
     removeObjects(object);
+
     console.log('object is deleted', object);
     canvas.renderAll();
   };
