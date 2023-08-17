@@ -46,7 +46,7 @@ export const Stickers = ({ canvas }) => {
 
       const canvasWidth = canvas.getWidth();
       const canvasHeight = canvas.getHeight();
-      const scaleRatio = 0.25; // 이미지 크기를 조절할 비율
+      const scaleRatio = 0.2; // 이미지 크기를 조절할 비율
       img.scaleToWidth(canvasWidth * scaleRatio);
       img.scaleToHeight(canvasHeight * scaleRatio);
       canvas.add(img);
@@ -59,6 +59,21 @@ export const Stickers = ({ canvas }) => {
     <s.StickerList>
       <img src='GoodVibesST.svg' onClick={(e) => handleImageClick(e)} />
       <img src='HelloST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='BFF_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='Love_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='SprinkleYellow_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='FlowerYellow_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='Love_ST2.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='LYS_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='New_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='MonitorCRT_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='MonitorCRTPac-Man_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='MonitorCRTFigma_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='MonitorFlatscreen_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='MonitorFlatscreenFigma_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='MonitorFlatscreenPac-Man_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='PropertyBeige_ST.svg' onClick={(e) => handleImageClick(e)} />
+      <img src='PropertyGray_ST.svg' onClick={(e) => handleImageClick(e)} />
     </s.StickerList>
   );
 };

@@ -7,6 +7,7 @@ import { SelectSizePage } from '../SelectSizePage';
 import { Stickers } from '../TabMenuContainer/TabMenu/Stickers';
 import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
+import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
 import '@fontsource/kaushan-script';
@@ -30,6 +31,7 @@ export const HeaderNavContents = () => {
     {
       id: 1,
       label: '이미지',
+      function: () => <ImageTab canvas={canvas} image={image} />,
       function: () => <ImageTab canvas={canvas} image={image} />,
       level: 'top',
     },
@@ -58,6 +60,14 @@ export const HeaderNavContents = () => {
       level: 'bottom',
     },
   ];
+
+  fabric.Object.prototype.set({
+    transparentCorners: 'false',
+    borderColor: 'lightgrey', //컨트롤 박스 색깔
+    cornerColor: 'grey',
+    cornerStyle: 'circle',
+    cornerSize: 9.3,
+  });
 
   const topData = tabMenuDataList.filter((data) => data.level === 'top'); //위의 tabMenucontainer
   const bottomData = tabMenuDataList.filter((data) => data.level === 'bottom'); //아래 tabMenucontainer
@@ -303,8 +313,8 @@ export const HeaderNavContents = () => {
         // 선택된 객체가 단일 객체인 경우
         fabric.Image.fromObject(copiedObject, function (img) {
           img.set({
-            left: x / 2,
-            top: y / 2,
+            left: x / 3,
+            top: y / 3,
             evented: true,
             svgViewportTransformation: true,
           });
@@ -317,8 +327,8 @@ export const HeaderNavContents = () => {
           {
             fabric.Image.fromObject(copiedObject.objects[i], function (img) {
               img.set({
-                left: x / 2,
-                top: y / 2,
+                left: x / 3,
+                top: y / 3,
                 evented: true,
                 svgViewportTransformation: true,
               });
@@ -429,9 +439,7 @@ export const HeaderNavContents = () => {
                   <s.CanvasSpaceWrapper onContextMenu={ContextMenu}>
                     <s.CanvasSpace>
                       <canvas id='canvas' />
-                      <>
-                        <button onClick={removeItem}>delete</button>
-                      </>
+                      <>{/* <button onClick={removeItem}>delete</button> */}</>
                     </s.CanvasSpace>
                     <s.LayerBtnWrapper>
                       <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
@@ -450,8 +458,12 @@ export const HeaderNavContents = () => {
             )}
           </s.ContentWrapper>
         </s.Content>
-        <s.Content className={toggleState === 1 ? 'active' : ''}>
-          <s.LeftContainer>설명</s.LeftContainer>
+        <s.Content className={toggleState === 1 ? 'active' : ''} id='info'>
+          <s.InfoContainer>
+            <div>온폴 프로젝트란?</div>
+            <div>설명</div>
+            <div>설명</div>
+          </s.InfoContainer>
         </s.Content>
       </s.Body>
     </>
