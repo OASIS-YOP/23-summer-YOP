@@ -6,7 +6,7 @@ import { TabMenuContainer } from '../TabMenuContainer';
 import { SelectSizePage } from '../SelectSizePage';
 import { Stickers } from '../TabMenuContainer/TabMenu/Stickers';
 import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
-// import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
+import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
 import '@fontsource/kaushan-script';
@@ -30,7 +30,7 @@ export const HeaderNavContents = () => {
     {
       id: 1,
       label: '이미지',
-      // function: () => <ImageTab canvas={canvas} image={image} />,
+      function: () => <ImageTab canvas={canvas} image={image} />,
       level: 'top',
     },
     {
