@@ -9,7 +9,7 @@ import {
 //--------------Header--------------
 export const Header = styled.div`
   width: 100%;
-  height: 12vh;
+  height: 13vh;
   background: linear-gradient(to bottom, ${pointColor}, ${whiteColor});
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@ export const Header = styled.div`
 //--------------NavBar--------------
 export const NavigationBar = styled.div`
   width: 100%;
-  height: 70%;
+  height: 10.2vh;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -39,8 +39,8 @@ export const NavigationBar = styled.div`
 
 export const NavTabs = styled.div`
   cursor: pointer;
-  width: 12em;
-  height: 60%;
+  width: 25vh;
+  height: 7vh;
   border-color: #ffffff;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -52,10 +52,10 @@ export const NavTabs = styled.div`
   box-shadow: 5px 3px 2px 0.1px rgb(0, 0, 0, 0.1);
   flex-flow: column;
   overflow: hidden;
-  font-size: 22px;
+  font-size: 2.5vh;
 
   &.active {
-    height: 100%;
+    height: 10vh;
     background-color: #ffffff;
     display: flex;
     text-align: center;
@@ -86,8 +86,10 @@ export const NavTabs = styled.div`
 
 //--------------Body--------------
 export const Body = styled.div`
+  display: flex;
+  justify-content: center;
   height: 100%;
-  width: 100%;
+  width: fit-content;
   z-index: 99;
 `;
 
@@ -96,12 +98,14 @@ export const Content = styled.div`
 
   background-color: #ffffff;
   height: 100%;
+  width: 160vh;
   padding-top: 2%;
   padding-bottom: 2%;
 
   &.active {
     display: block;
     height: 100%;
+    width: 160vh;
     background-color: #ffffff;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -113,53 +117,22 @@ export const Content = styled.div`
 export const ContentWrapper = styled.div`
   display: flex;
   height: 90%;
-  justify-content: space-around;
+  justify-content:center;
   width: 100%;
-  padding: 0;
 
 `;
 
 export const LeftContainer = styled.section`
   display: flex;
-  justify-content: flex-start;
+  object-fit: contain;
+  justify-content: center;
   align-items: center;
   background-color: #ededed;
-  height: 760px;
-  width: 60%;
+  height: 75vh;
+  width: 125vh;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
-  border-radius: 1.5rem;
-  margin: 5px 20px 25px 20px;
-`;
-
-export const LayerBtnWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 70%;
-
-`
-
-export const BringTo = styled.button`
-  width: 20%;
-  margin: 0.3rem 0.3rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-  width: 100px;
-  height: 30px;
-  font-size: 1.1rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${pointColor};
-  }
-
-  &:active {
-    background-color: ${whiteColor};
-  }
-`
-
-export const ButtonGroupWrapper = styled.div`
-  text-align: center;
-  width: 10%;
+  border-radius: 2vh;
+  margin: 0 2.5vh;
 `;
 
 export const CanvasSpaceWrapper = styled.div`
@@ -167,8 +140,9 @@ export const CanvasSpaceWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  height: 100%;
+   
+  width: 100%;
+  height: fit-content;
 `;
 
 export const CanvasSpace = styled.div`
@@ -189,18 +163,51 @@ export const CanvasSpace = styled.div`
 // `
 // -> 이전 버전 설정
 
+export const LayerBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70%;
+
+`
+
+export const BringTo = styled.button`
+  width: 20%;
+  margin: 0.3rem 0.3rem;
+  border-radius: 1.3vh;
+  border: 1px solid #ccc;
+  width: 10vh;
+  height: 3.5vh;
+  font-size: 1.5vh;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${pointColor};
+  }
+
+  &:active {
+    background-color: ${whiteColor};
+  }
+`
+
+// export const ButtonGroupWrapper = styled.div`
+//   text-align: center;
+//   width:30%;
+// `;
+
+
+
 export const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #ededed;
-  height: 760px;
-  max-width: 550px;
-  min-width: 450px;
-  border-radius: 1.5rem;
+  height: 75vh;
+  width: fit-content;
+  border-radius: 2vh;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
-  margin: 5px 20px 25px 0px;
+  margin: 0 2.5vh;
+  padding: 0 2vh;
 `;
 
 // 소개페이지 콘텐츠 컨테이너 따로 만들어줌
@@ -210,9 +217,10 @@ export const InfoContainer = styled.section`
   justify-content: space-around;
   align-items: center;
   background-color: #ededed;
-  height: 800px;
-  width: 90%;
+  height: 70vh;
+  width: 130vh;
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
   border-radius: 1.5rem;
   margin: 0 auto;
+  
 `;

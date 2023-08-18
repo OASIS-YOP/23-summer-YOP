@@ -14,10 +14,10 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
     setOnButtonClicked(index);
   };
 
-  useEffect(() => {
-    console.log(tabLabel);
-    console.log(tabContent);
-  });
+  // useEffect(() => {
+  //   console.log(tabLabel);
+  //   console.log(tabContent);
+  // });
 
   return (
     <>

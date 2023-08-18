@@ -9,7 +9,7 @@ import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
-import '@fontsource/kaushan-script';
+
 
 //crop
 // import Cropper from 'react-cropper';
@@ -106,6 +106,7 @@ export const HeaderNavContents = () => {
       };
       loadImage();
     };
+    console.log(canvas.getActiveObject());
   };
 
   // const deleteIcon =
@@ -229,8 +230,6 @@ export const HeaderNavContents = () => {
   //   }
   // };
 
-
-
   // useEffect(() => {
   //   console.log(canvasSize);
   //   const initCanvas = () =>
@@ -240,8 +239,6 @@ export const HeaderNavContents = () => {
   //       backgroundColor: 'white',
   //     });
   //   });
-
-
 
   const bringToFront = () => {
     // 선택된 객체를 맨 앞으로 가져옴
@@ -298,27 +295,27 @@ export const HeaderNavContents = () => {
     setContextMenuVisible(false);
   };
 
-
   // 복사한 객체를 저장하는 state
   const [copiedObject, setCopiedObject] = useState(null); // 부모 컴포넌트에서 관리
-  console.log(copiedObject);
-  console.log('copiedObject');
+  // console.log(copiedObject);
+  // console.log('copiedObject');
 
-  // 복사한 객체를 저장하는 함수  
+  // 복사한 객체를 저장하는 함수
   const handleCopyObject = (object) => {
     setCopiedObject(object);
+    console.log('object is copied', object);
   };
-
 
   // 붙여넣기 함수
   const handlePasteObject = (x, y) => {
-    if( copiedObject !== null ) { 
-      if ( copiedObject.type === 'image' ) {
+    if (copiedObject !== null) {
+      if (copiedObject.type === 'image') {
         // 선택된 객체가 단일 객체인 경우
         fabric.Image.fromObject(copiedObject, function (img) {
           img.set({
-            left: x / 3 ,
-            top: y / 3 ,
+            left: x / 3,
+            top: y / 3,
+
             evented: true,
             svgViewportTransformation: true,
           });
@@ -326,28 +323,31 @@ export const HeaderNavContents = () => {
           canvas.renderAll();
         });
       } else if (copiedObject.type === 'activeSelection') {
-          // 선택된 객체가 다중 객체인 경우
-          for (let i = 0; i < copiedObject.objects.length; i++ ) {
-              { fabric.Image.fromObject(copiedObject.objects[i], function (img) {
+        // 선택된 객체가 다중 객체인 경우
+        for (let i = 0; i < copiedObject.objects.length; i++) {
+          {
+            fabric.Image.fromObject(copiedObject.objects[i], function (img) {
               img.set({
-                left: x / 3 ,
-                top: y / 3 ,
+                left: x / 3,
+                top: y / 3,
                 evented: true,
                 svgViewportTransformation: true,
               });
-              canvas.add(img);
+              canvas.add(img);              
               canvas.renderAll();
-            })}
+            });
           }
         }
-      } else { console.log('no object is coppied'); }
-    };
-
+      } console.log('object is pasted', copiedObject);
+    } else {
+      console.log('no object is copied');
+    }
+  };
 
   // 삭제 함수 1
   const removeObjects = (object) => {
-    if ( object ) {
-      if ( object.type === 'image' ) {
+    if (object) {
+      if (object.type === 'image') {
         // 선택된 객체가 단일 객체인 경우
         canvas.remove(canvas.getActiveObject());
         canvas.renderAll();
@@ -356,25 +356,27 @@ export const HeaderNavContents = () => {
         canvas.remove(canvas.getActiveObject().toGroup());
         canvas.renderAll();
       }
-    } 
+    }
   };
 
   // 삭제 함수 2
   const handleDeleteObject = (object) => {
-    console.log(object);
+    // console.log(object);
     removeObjects(object);
+
+    console.log('object is deleted', object);
     canvas.renderAll();
   };
-
 
   // 잘라내기 함수
   const handleCutObject = (object) => {
     setCopiedObject(object);
     removeObjects(object);
+    console.log('object is cut', object);
     canvas.renderAll();
   };
 
- ///////////////////////////////////////////////
+  ///////////////////////////////////////////////
 
   return (
     <>
@@ -386,7 +388,7 @@ export const HeaderNavContents = () => {
           >
             {toggleState === 0 && (
               <>
-                <img src='폴라로이드.jpg' height='53em' width='53em' />
+                <img src='폴라로이드.jpg' height='60%' width='auto' />
               </>
             )}
             Make Your Polaroid
@@ -397,7 +399,7 @@ export const HeaderNavContents = () => {
           >
             {toggleState === 1 && (
               <>
-                <img src='하트 보석.png' height='50em' width='50em' />
+                <img src='하트 보석.png' height='50%' width='auto' />
               </>
             )}
             What is YOP?
@@ -409,18 +411,18 @@ export const HeaderNavContents = () => {
         onContextMenu={handleContextMenu} // 컨텍스트 메뉴 표시 이벤트
         onClick={closeContextMenu} // 컨텍스트 메뉴 영역 외 클릭 시 컨텍스트 메뉴 닫기
       >
-          {isContextMenuVisible && (
-            <ContextMenu
-              canvas={canvas}
-              x={contextMenuPos.x} // 컨텍스트 메뉴 표시 위치 x
-              y={contextMenuPos.y} // 컨텍스트 메뉴 표시 위치 y
-              onClose={closeContextMenu} // 컨텍스트 메뉴 닫기 이벤트
-              onCopy={handleCopyObject} // 복사 이벤트
-              onPaste={handlePasteObject} // 붙여넣기 이벤트
-              onCut={handleCutObject} // 잘라내기 이벤트
-              onDelete={handleDeleteObject} // 삭제 이벤트
-            />
-          )}
+        {isContextMenuVisible && (
+          <ContextMenu
+            canvas={canvas}
+            x={contextMenuPos.x} // 컨텍스트 메뉴 표시 위치 x
+            y={contextMenuPos.y} // 컨텍스트 메뉴 표시 위치 y
+            onClose={closeContextMenu} // 컨텍스트 메뉴 닫기 이벤트
+            onCopy={handleCopyObject} // 복사 이벤트
+            onPaste={handlePasteObject} // 붙여넣기 이벤트
+            onCut={handleCutObject} // 잘라내기 이벤트
+            onDelete={handleDeleteObject} // 삭제 이벤트
+          />
+        )}
         <s.Content className={toggleState === 0 ? 'active' : ''}>
           <s.ContentWrapper>
             {isSelectPage ? (
@@ -431,19 +433,17 @@ export const HeaderNavContents = () => {
             ) : (
               <>
                 <s.LeftContainer>
-                  <s.ButtonGroupWrapper>
+                  {/* <s.ButtonGroupWrapper> */}
                     <ButtonGroupContainer
                       handleChangedFile={handleChangedFile}
                       fileInputRef={fileInputRef}
-                      canvas = {canvas}
+                      canvas={canvas}
                     />
-                  </s.ButtonGroupWrapper>
+                  {/* </s.ButtonGroupWrapper> */}
                   <s.CanvasSpaceWrapper onContextMenu={ContextMenu}>
                     <s.CanvasSpace>
-                      <canvas id='canvas'/>
-                      <>
-                        {/* <button onClick={removeItem}>delete</button> */}
-                      </>
+                      <canvas id='canvas' />
+                      <>{/* <button onClick={removeItem}>delete</button> */}</>
                     </s.CanvasSpace>
                     <s.LayerBtnWrapper>
                       <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
@@ -462,7 +462,7 @@ export const HeaderNavContents = () => {
             )}
           </s.ContentWrapper>
         </s.Content>
-        <s.Content className={toggleState === 1 ? 'active' : ''} id= 'info' >
+        <s.Content className={toggleState === 1 ? 'active' : ''} id='info'>
           <s.InfoContainer>
             <div>온폴 프로젝트란?</div>
             <div>설명</div>

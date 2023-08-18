@@ -44,11 +44,8 @@ export const Stickers = ({ canvas }) => {
         svgViewportTransformation: true,
       });
 
-      const canvasWidth = canvas.getWidth();
-      const canvasHeight = canvas.getHeight();
-      const scaleRatio = 0.2; // 이미지 크기를 조절할 비율
-      img.scaleToWidth(canvasWidth * scaleRatio);
-      img.scaleToHeight(canvasHeight * scaleRatio);
+      img.scaleToWidth(100);
+      // img.scaleToHeight();
       canvas.add(img);
       //ghost문제때문에 주석처리했습니다.
       // canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));

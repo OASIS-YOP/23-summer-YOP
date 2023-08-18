@@ -5,11 +5,33 @@ import * as s from './styles';
 export const ImageTab = ({ canvas, image }) => {
   const [reverseXToggle, setReverseXToggle] = useState(true);
   const [reverseYToggle, setReverseYToggle] = useState(true);
+  const [applyGray, setApplyGray] = useState(false);
 
   //filter part
+
+  canvas.on({
+    'after:render': () => {
+      fabric.util
+        .toArray(document.getElementsByClassName('image-input'))
+        .forEach((el) => (el.disabled = false));
+    },
+  });
+
   const applyFilter = (index, filter) => {
-    console.log(index);
     image.filters[index] = filter;
+    image.applyFilters();
+    canvas.renderAll();
+  };
+
+  const applyGrayFilter = (filter) => {
+    console.log('gray!');
+    image.filters.push(filter);
+    image.applyFilters();
+    canvas.renderAll();
+  };
+
+  const removeGrayFilter = () => {
+    image.filters.pop();
     image.applyFilters();
     canvas.renderAll();
   };
@@ -22,39 +44,16 @@ export const ImageTab = ({ canvas, image }) => {
     }
   };
 
-  // canvas.on({
-  //   'selection:created': () => {
-  //     // fabric.util
-  //     //   .toArray(document.getElementsByTagName('input'))
-  //     //   .forEach((el) => (el.disabled = false));
-
-  //     let filters = ['grayscale', 'brightness', 'contrast', 'saturation'];
-
-  //     for (let i = 0; i < filters.length; i++) {
-  //       if (document.getElementById(filters[i])) {
-  //         document.getElementById(filters[i]).checked = !image.filters[i];
-  //       }
-  //     }
-  //   },
-  //   'selection:cleared': () => {
-  //     fabric.util
-  //       .toArray(document.getElementsByTagName('input'))
-  //       .forEach((el) => (el.disabled = true));
-  //   },
-  // });
-
   //좌우반전 part
   const reverseX = () => {
     image.set('flipX', reverseXToggle);
     setReverseXToggle((prev) => !prev);
     canvas.renderAll();
-    console.log('반전 성공');
   };
   const reverseY = () => {
     image.set('flipY', reverseYToggle);
     setReverseYToggle((prev) => !prev);
     canvas.renderAll();
-    console.log('반전 성공');
   };
 
   //자르기 대체 part
@@ -88,18 +87,24 @@ export const ImageTab = ({ canvas, image }) => {
         <button onClick={reverseX}>reverseX</button>
         <button onClick={reverseY}>reverseY</button>
         <p>
-          <label>Gray</label>
-          <input
-            type='checkbox'
+          <button
+            className='image-input'
             id='grayscale'
-            onClick={() => applyFilter(0, new fabric.Image.filters.Grayscale())}
-          />
+            onClick={() =>
+              applyGrayFilter(new fabric.Image.filters.Grayscale())
+            }
+            // disabled={applyGray === false ? true : ''}
+          >
+            Gray
+          </button>
+          <button onClick={() => removeGrayFilter()}>x</button>
         </p>
         <p>
           <label>
             <span>명도:</span>
           </label>
           <input
+            className='image-input'
             id='brightness-value'
             type='range'
             defaultValue={0}
@@ -120,11 +125,13 @@ export const ImageTab = ({ canvas, image }) => {
                 )
               );
             }}
+            disabled={true}
           />
         </p>
         <p>
           <span>채도:</span>
           <input
+            className='image-input'
             id='saturation-value'
             type='range'
             defaultValue={0}
@@ -145,10 +152,12 @@ export const ImageTab = ({ canvas, image }) => {
                 )
               );
             }}
+            disabled={true}
           />
         </p>
         <span>대비:</span>
         <input
+          className='image-input'
           id='contrast-value'
           type='range'
           defaultValue={0}
@@ -167,6 +176,7 @@ export const ImageTab = ({ canvas, image }) => {
               parseFloat(document.getElementById('contrast-value').value / 50)
             );
           }}
+          disabled={true}
         />
       </s.LeftContainer>
 
@@ -175,38 +185,50 @@ export const ImageTab = ({ canvas, image }) => {
         <p>
           ang:
           <input
+            className='image-input'
             id='angle-control'
             type='range'
             defaultValue={0}
             min={-100}
             max={100}
             onInput={angleControl}
+            disabled={true}
           />
         </p>
         <p>
           size:
-          <input id='scale-control' type='range' onInput={scaleControl} />
+          <input
+            className='image-input'
+            id='scale-control'
+            type='range'
+            onInput={scaleControl}
+            disabled={true}
+          />
         </p>
         <p>
           Y:
           <input
+            className='image-input'
             id='top-control'
             type='range'
             defaultValue={-50}
             min={-200}
             max={100}
             onInput={topControl}
+            disabled={true}
           />
         </p>
         <p>
           X:
           <input
+            className='image-input'
             id='left-control'
             type='range'
             defaultValue={0}
             min={-100}
             max={100}
             onInput={leftControl}
+            disabled={true}
           />
         </p>
       </s.RightContainer>
