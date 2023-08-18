@@ -10,7 +10,7 @@ import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
-import '@fontsource/kaushan-script';
+
 
 //crop
 // import Cropper from 'react-cropper';
@@ -108,6 +108,7 @@ export const HeaderNavContents = () => {
       };
       loadImage();
     };
+    console.log(canvas.getActiveObject());
   };
 
   // const deleteIcon =
@@ -298,12 +299,13 @@ export const HeaderNavContents = () => {
 
   // 복사한 객체를 저장하는 state
   const [copiedObject, setCopiedObject] = useState(null); // 부모 컴포넌트에서 관리
-  console.log(copiedObject);
-  console.log('copiedObject');
+  // console.log(copiedObject);
+  // console.log('copiedObject');
 
   // 복사한 객체를 저장하는 함수
   const handleCopyObject = (object) => {
     setCopiedObject(object);
+    console.log('object is copied', object);
   };
 
   // 붙여넣기 함수
@@ -315,6 +317,10 @@ export const HeaderNavContents = () => {
           img.set({
             left: x / 3,
             top: y / 3,
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6093a317c10b1cbf56abcfdd5cd34a706fe696eb
             evented: true,
             svgViewportTransformation: true,
           });
@@ -332,14 +338,14 @@ export const HeaderNavContents = () => {
                 evented: true,
                 svgViewportTransformation: true,
               });
-              canvas.add(img);
+              canvas.add(img);              
               canvas.renderAll();
             });
           }
         }
-      }
+      } console.log('object is pasted', copiedObject);
     } else {
-      console.log('no object is coppied');
+      console.log('no object is copied');
     }
   };
 
@@ -360,8 +366,10 @@ export const HeaderNavContents = () => {
 
   // 삭제 함수 2
   const handleDeleteObject = (object) => {
-    console.log(object);
+    // console.log(object);
     removeObjects(object);
+
+    console.log('object is deleted', object);
     canvas.renderAll();
   };
 
@@ -369,6 +377,7 @@ export const HeaderNavContents = () => {
   const handleCutObject = (object) => {
     setCopiedObject(object);
     removeObjects(object);
+    console.log('object is cut', object);
     canvas.renderAll();
   };
 
@@ -384,7 +393,7 @@ export const HeaderNavContents = () => {
           >
             {toggleState === 0 && (
               <>
-                <img src='폴라로이드.jpg' height='53em' width='53em' />
+                <img src='폴라로이드.jpg' height='60%' width='auto' />
               </>
             )}
             Make Your Polaroid
@@ -395,7 +404,7 @@ export const HeaderNavContents = () => {
           >
             {toggleState === 1 && (
               <>
-                <img src='하트 보석.png' height='50em' width='50em' />
+                <img src='하트 보석.png' height='50%' width='auto' />
               </>
             )}
             What is YOP?
@@ -429,13 +438,13 @@ export const HeaderNavContents = () => {
             ) : (
               <>
                 <s.LeftContainer>
-                  <s.ButtonGroupWrapper>
+                  {/* <s.ButtonGroupWrapper> */}
                     <ButtonGroupContainer
                       handleChangedFile={handleChangedFile}
                       fileInputRef={fileInputRef}
                       canvas={canvas}
                     />
-                  </s.ButtonGroupWrapper>
+                  {/* </s.ButtonGroupWrapper> */}
                   <s.CanvasSpaceWrapper onContextMenu={ContextMenu}>
                     <s.CanvasSpace>
                       <canvas id='canvas' />

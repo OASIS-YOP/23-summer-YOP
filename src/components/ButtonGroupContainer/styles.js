@@ -11,25 +11,30 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 90px;
-  height: 580px;
-  border-radius: 23px;
-  border: 14px solid #d9d9d9;
+  width: 13vh;
+  height: 55vh;
+  border-radius: 3vh;
+  border: 1.5vh solid #d9d9d9;
   background-color: ${whiteColor};
-  margin: 0 180px 0 70px;
+  margin-left: 25%;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
 
-  font-size: 18px;
+`;
+
+export const ButtonGroupWrapper = styled.div`
+  display: flex;
+  text-align: center;
+  width:fit-content;
 `;
 
 export const Button = styled.button`
-  height: 50px;
-  width: 70px;
+  height: 7vh;
+  width: 4vh;
   background-color: ${whiteColor};
   border-style: none;
   border-radius: 23px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.4vh;
 
   &:hover {
     color: ${pointColor};
@@ -38,17 +43,19 @@ export const Button = styled.button`
 `;
 
 export const ImageLoadButton = styled.div`
-  height: 50px;
-  width: 50px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1vh;
+  height: 4vh;
+  width: 4vh;
+  font-size: 1.4vh;
   background-color: ${whiteColor};
 `;
 
 export const ImageLoadButtonLabel = styled.label`
-  height: 50px;
-  width: 50px;
   
   &:hover {
-    opacity: 0.3;
+    color: ${pointColor};
     cursor: pointer;
   }
 `;
