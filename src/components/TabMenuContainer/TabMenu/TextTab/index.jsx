@@ -7,14 +7,14 @@ import FontFaceObserver from 'fontfaceobserver';
 
 export const TextTab = ({ canvas }) => {
   const [textColor, setTextColor] = useState('#6979ffff');
-  const [view, setView] = useState(false);
-
+  
   // 폰트 변경
-  const fonts = ["Black Han Sans", "Noto Sans Korean", "Orbit"];
-  fonts.unshift("(default)Times New Roman");
+  const [selectedFont, setSelectedFont] = useState('(default)Times New Roman');
+  const fonts = ['Black Han Sans', 'Noto Sans Korean','Noto Sans Korean(bold)', 'Orbit'];
+  fonts.unshift('(default)Times New Roman');
 
     useEffect(() => {
-        const select = document.getElementById("font-family");
+        const select = document.getElementById('font-family');
         select.innerHTML = '';
 
         fonts.forEach(font => {
@@ -28,7 +28,7 @@ export const TextTab = ({ canvas }) => {
   
   const AddText = () => {
     if (canvas) {
-      let text = new fabric.IText('text', {
+      let text = new fabric.IText('double click!', {
         fill: textColor,
         editable: true,
         hasControls: true,
@@ -144,24 +144,36 @@ export const TextTab = ({ canvas }) => {
   };
 
   const TextFonts = () => {
+    if (
+      canvas.getActiveObject() instanceof fabric.Text ||
+      canvas.getActiveObject() instanceof fabric.IText
+    ) {
+      let fontFamily = '';
+      let fontWeight = 400; // Default font-weight value
+  
+      if (selectedFont === 'Black Han Sans') {
+        fontFamily = "'Black Han Sans', sans-serif";
+      } else if (selectedFont === 'Noto Sans Korean') {
+        fontFamily = "'Noto Sans KR', sans-serif";
+      } else if(selectedFont ==='Noto Sans Korean(bold)'){
+        fontFamily = "'Noto Sans KR', sans-serif";
+        fontWeight = 700;
+      }
+      else if(selectedFont ==='Orbit') {
+        fontFamily = "'Orbit', sans-serif";
+      }else if(selectedFont ==='(default)Times New Roman'){
+        fontFamily = "'Times New Roman', sans-serif";
+      }
 
-    if (canvas.getActiveObject() instanceof fabric.Text ||
-        canvas.getActiveObject() instanceof fabric.IText) {
-      const font = selectedFont;
-
-      // Load and apply the selected font
-      const fontObserver = new FontFaceObserver(font);
-      fontObserver.load()
-        .then(() => {
-          canvas.getActiveObject().set("fontFamily", font);
-          canvas.requestRenderAll();
-        })
-        .catch((error) => {
-          console.log(error);
-          alert('Font loading failed: ' + font);
-        });
+      canvas.getActiveObject().set({
+        fontFamily,
+        fontWeight
+      });
+  
+      canvas.renderAll();
+      console.log(canvas.getActiveObject());
+      console.log(fontFamily, fontWeight);
     }
-    
   };
 
   return (
@@ -175,7 +187,7 @@ export const TextTab = ({ canvas }) => {
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
         {/* <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage> */}
         <s.BtnDrawText onClick={TextBrush}>텍스트 그리기</s.BtnDrawText>
-        <select id="font-family">
+        <select id="font-family" onChange={(e) => setSelectedFont(e.target.value)} value={selectedFont}>
             {/* Options will be added dynamically through the useEffect */}
         </select>
         <s.BtnFontChange onClick={TextFonts}>apply</s.BtnFontChange>
