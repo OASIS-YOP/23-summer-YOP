@@ -9,7 +9,7 @@ import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
-
+import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
 
 //crop
 // import Cropper from 'react-cropper';
@@ -36,7 +36,7 @@ export const HeaderNavContents = () => {
     {
       id: 2,
       label: '그리기',
-      function: [],
+      function: () => <PaintTab canvas={canvas} />,
       level: 'top',
     },
     {

@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react';
 import * as s from './styles';
 import { fabric } from 'fabric';
 import { Demo } from '../../ColorPicker';
-import FontFaceObserver from 'fontfaceobserver';
 
 
 export const TextTab = ({ canvas }) => {
-  const [textColor, setTextColor] = useState('#6979ffff');
+  const [color, setColor] = useState('#6979ffff');
   
   // 폰트 변경
   const [selectedFont, setSelectedFont] = useState('(default)Times New Roman');
@@ -29,7 +28,7 @@ export const TextTab = ({ canvas }) => {
   const AddText = () => {
     if (canvas) {
       let text = new fabric.IText('double click!', {
-        fill: textColor,
+        fill: color,
         editable: true,
         hasControls: true,
       });
@@ -101,7 +100,7 @@ export const TextTab = ({ canvas }) => {
     ) {
       console.log(canvas.getActiveObject());
       let text = canvas.getActiveObject();
-      text.set('fill', textColor); // Update the fill property directly
+      text.set('fill', color); // Update the fill property directly
       text.setCoords(); // Update the object's coordinates
       canvas.renderAll(); // Render the canvas
       console.log(text);
@@ -181,9 +180,9 @@ export const TextTab = ({ canvas }) => {
     <>
       <s.ContainerText>
         <s.BtnAddText onClick={AddText}>텍스트 추가</s.BtnAddText>
-        <Demo textColor={textColor} setTextColor={setTextColor} />
+        <Demo color={color} setColor={setColor} />
         <s.BtnChangeColor onClick={ChangeTextColor}>
-          색 바꾸기
+          색깔 적용하기
         </s.BtnChangeColor>
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
         {/* <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage> */}
