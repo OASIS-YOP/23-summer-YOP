@@ -2,14 +2,29 @@ import { useEffect, useState } from 'react';
 import * as s from './styles';
 import { fabric } from 'fabric';
 import { Demo } from '../../ColorPicker';
-import Dropdown from './Dropdown';
+import FontFaceObserver from 'fontfaceobserver';
 
 
 export const TextTab = ({ canvas }) => {
   const [textColor, setTextColor] = useState('#6979ffff');
   const [view, setView] = useState(false);
 
-  let fonts = ["Black Han Sans", "Noto Sans Korean", "Orbit"];
+  // 폰트 변경
+  const fonts = ["Black Han Sans", "Noto Sans Korean", "Orbit"];
+  fonts.unshift("(default)Times New Roman");
+
+    useEffect(() => {
+        const select = document.getElementById("font-family");
+        select.innerHTML = '';
+
+        fonts.forEach(font => {
+            const option = document.createElement('option');
+            option.innerHTML = font;
+            option.value = font;
+            select.appendChild(option);
+        });
+
+    }, []);
   
   const AddText = () => {
     if (canvas) {
@@ -128,6 +143,26 @@ export const TextTab = ({ canvas }) => {
     
   };
 
+  const TextFonts = () => {
+
+    if (canvas.getActiveObject() instanceof fabric.Text ||
+        canvas.getActiveObject() instanceof fabric.IText) {
+      const font = selectedFont;
+
+      // Load and apply the selected font
+      const fontObserver = new FontFaceObserver(font);
+      fontObserver.load()
+        .then(() => {
+          canvas.getActiveObject().set("fontFamily", font);
+          canvas.requestRenderAll();
+        })
+        .catch((error) => {
+          console.log(error);
+          alert('Font loading failed: ' + font);
+        });
+    }
+    
+  };
 
   return (
     <>
@@ -140,11 +175,10 @@ export const TextTab = ({ canvas }) => {
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
         {/* <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage> */}
         <s.BtnDrawText onClick={TextBrush}>텍스트 그리기</s.BtnDrawText>
-        <s.WrappingDropDown onClick={() => {setView(!view)}}>
-          폰트 선택{" "}
-          {view ? '⌃' : '⌄'}
-          {view && <Dropdown />}
-        </s.WrappingDropDown>
+        <select id="font-family">
+            {/* Options will be added dynamically through the useEffect */}
+        </select>
+        <s.BtnFontChange onClick={TextFonts}>apply</s.BtnFontChange>
       </s.ContainerText>
     </>
   );
