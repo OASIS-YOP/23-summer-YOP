@@ -7,10 +7,8 @@ import { SelectSizePage } from '../SelectSizePage';
 import { Stickers } from '../TabMenuContainer/TabMenu/Stickers';
 import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
-import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
-
 
 //crop
 // import Cropper from 'react-cropper';
@@ -31,7 +29,6 @@ export const HeaderNavContents = () => {
     {
       id: 1,
       label: '이미지',
-      function: () => <ImageTab canvas={canvas} image={image} />,
       function: () => <ImageTab canvas={canvas} image={image} />,
       level: 'top',
     },
@@ -317,10 +314,7 @@ export const HeaderNavContents = () => {
           img.set({
             left: x / 3,
             top: y / 3,
-<<<<<<< HEAD
-=======
 
->>>>>>> 6093a317c10b1cbf56abcfdd5cd34a706fe696eb
             evented: true,
             svgViewportTransformation: true,
           });
@@ -338,12 +332,13 @@ export const HeaderNavContents = () => {
                 evented: true,
                 svgViewportTransformation: true,
               });
-              canvas.add(img);              
+              canvas.add(img);
               canvas.renderAll();
             });
           }
         }
-      } console.log('object is pasted', copiedObject);
+      }
+      console.log('object is pasted', copiedObject);
     } else {
       console.log('no object is copied');
     }
@@ -439,11 +434,11 @@ export const HeaderNavContents = () => {
               <>
                 <s.LeftContainer>
                   {/* <s.ButtonGroupWrapper> */}
-                    <ButtonGroupContainer
-                      handleChangedFile={handleChangedFile}
-                      fileInputRef={fileInputRef}
-                      canvas={canvas}
-                    />
+                  <ButtonGroupContainer
+                    handleChangedFile={handleChangedFile}
+                    fileInputRef={fileInputRef}
+                    canvas={canvas}
+                  />
                   {/* </s.ButtonGroupWrapper> */}
                   <s.CanvasSpaceWrapper onContextMenu={ContextMenu}>
                     <s.CanvasSpace>
