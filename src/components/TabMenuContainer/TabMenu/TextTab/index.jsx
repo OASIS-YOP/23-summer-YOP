@@ -2,18 +2,33 @@ import { useEffect, useState } from 'react';
 import * as s from './styles';
 import { fabric } from 'fabric';
 import { Demo } from '../../ColorPicker';
-import Dropdown from './Dropdown';
+import FontFaceObserver from 'fontfaceobserver';
 
 
 export const TextTab = ({ canvas }) => {
   const [textColor, setTextColor] = useState('#6979ffff');
-  const [view, setView] = useState(false);
+  
+  // 폰트 변경
+  const [selectedFont, setSelectedFont] = useState('(default)Times New Roman');
+  const fonts = ['Black Han Sans', 'Noto Sans Korean','Noto Sans Korean(bold)', 'Orbit'];
+  fonts.unshift('(default)Times New Roman');
 
-  let fonts = ["Black Han Sans", "Noto Sans Korean", "Orbit"];
+    useEffect(() => {
+        const select = document.getElementById('font-family');
+        select.innerHTML = '';
+
+        fonts.forEach(font => {
+            const option = document.createElement('option');
+            option.innerHTML = font;
+            option.value = font;
+            select.appendChild(option);
+        });
+
+    }, []);
   
   const AddText = () => {
     if (canvas) {
-      let text = new fabric.IText('text', {
+      let text = new fabric.IText('double click!', {
         fill: textColor,
         editable: true,
         hasControls: true,
@@ -23,41 +38,41 @@ export const TextTab = ({ canvas }) => {
     }
   };
 
-  const FixImage = () => {
-    if (
-      canvas.getActiveObject() &&
-      canvas.getActiveObject() instanceof fabric.Image
-    ) {
-      // console.log(canvas.getActiveObject()._element.currentSrc);
-      console.log(canvas.getActiveObject());
-      let imag = canvas.getActiveObject()._element.currentSrc;
-      // let imagAngle = canvas.getActiveObject.angle;
-      let imagACoords = canvas.getActiveObject().oCoords;
-      let imagWidth = canvas.getActiveObject().width;
-      let imagHeight = canvas.getActiveObject().height;
-      let imagScaleX = canvas.getActiveObject().scaleX;
-      let imagScaleY = canvas.getActiveObject().scaleY;
-      let imagLeft = canvas.getActiveObject().left;
-      let imagTop = canvas.getActiveObject().top;
-      fabric.Image.fromURL(imag, (imgFile) => {
-        imgFile.aCoords = imagACoords;
-        imgFile.scaleToWidth(imagWidth * imagScaleX);
-        imgFile.scaleToHeight(imagHeight * imagScaleY);
-        imgFile.left = imagLeft;
-        imgFile.top = imagTop;
-        //imgFile.angle = 0;
-        imgFile.hasControls = false;
-        imgFile.hasBorders = false;
-        imgFile.lockMovementX = true;
-        imgFile.selectable = false;
-        imgFile.evented = false;
-        imgFile.sendToBack();
+  // const FixImage = () => {
+  //   if (
+  //     canvas.getActiveObject() &&
+  //     canvas.getActiveObject() instanceof fabric.Image
+  //   ) {
+  //     // console.log(canvas.getActiveObject()._element.currentSrc);
+  //     console.log(canvas.getActiveObject());
+  //     let imag = canvas.getActiveObject()._element.currentSrc;
+  //     // let imagAngle = canvas.getActiveObject.angle;
+  //     let imagACoords = canvas.getActiveObject().oCoords;
+  //     let imagWidth = canvas.getActiveObject().width;
+  //     let imagHeight = canvas.getActiveObject().height;
+  //     let imagScaleX = canvas.getActiveObject().scaleX;
+  //     let imagScaleY = canvas.getActiveObject().scaleY;
+  //     let imagLeft = canvas.getActiveObject().left;
+  //     let imagTop = canvas.getActiveObject().top;
+  //     fabric.Image.fromURL(imag, (imgFile) => {
+  //       imgFile.aCoords = imagACoords;
+  //       imgFile.scaleToWidth(imagWidth * imagScaleX);
+  //       imgFile.scaleToHeight(imagHeight * imagScaleY);
+  //       imgFile.left = imagLeft;
+  //       imgFile.top = imagTop;
+  //       //imgFile.angle = 0;
+  //       imgFile.hasControls = false;
+  //       imgFile.hasBorders = false;
+  //       imgFile.lockMovementX = true;
+  //       imgFile.selectable = false;
+  //       imgFile.evented = false;
+  //       imgFile.sendToBack();
 
-        canvas.add(imgFile);
-        canvas.renderAll();
-      });
-    }
-  };
+  //       canvas.add(imgFile);
+  //       canvas.renderAll();
+  //     });
+  //   }
+  // };
 
   const FixText = () => {
     if (
@@ -128,6 +143,38 @@ export const TextTab = ({ canvas }) => {
     
   };
 
+  const TextFonts = () => {
+    if (
+      canvas.getActiveObject() instanceof fabric.Text ||
+      canvas.getActiveObject() instanceof fabric.IText
+    ) {
+      let fontFamily = '';
+      let fontWeight = 400; // Default font-weight value
+  
+      if (selectedFont === 'Black Han Sans') {
+        fontFamily = "'Black Han Sans', sans-serif";
+      } else if (selectedFont === 'Noto Sans Korean') {
+        fontFamily = "'Noto Sans KR', sans-serif";
+      } else if(selectedFont ==='Noto Sans Korean(bold)'){
+        fontFamily = "'Noto Sans KR', sans-serif";
+        fontWeight = 700;
+      }
+      else if(selectedFont ==='Orbit') {
+        fontFamily = "'Orbit', sans-serif";
+      }else if(selectedFont ==='(default)Times New Roman'){
+        fontFamily = "'Times New Roman', sans-serif";
+      }
+
+      canvas.getActiveObject().set({
+        fontFamily,
+        fontWeight
+      });
+  
+      canvas.renderAll();
+      console.log(canvas.getActiveObject());
+      console.log(fontFamily, fontWeight);
+    }
+  };
 
 
   return (
@@ -139,13 +186,12 @@ export const TextTab = ({ canvas }) => {
           색 바꾸기
         </s.BtnChangeColor>
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
-        <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage>
+        {/* <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage> */}
         <s.BtnDrawText onClick={TextBrush}>텍스트 그리기</s.BtnDrawText>
-        {/* <s.WrappingDropDown onClick={() => {setView(!view)}}>
-          폰트 선택{" "}
-          {view ? '⌃' : '⌄'}
-          {view && <Dropdown />}
-        </s.WrappingDropDown> */}
+        <select id="font-family" onChange={(e) => setSelectedFont(e.target.value)} value={selectedFont}>
+            {/* Options will be added dynamically through the useEffect */}
+        </select>
+        <s.BtnFontChange onClick={TextFonts}>apply</s.BtnFontChange>
       </s.ContainerText>
     </>
   );
