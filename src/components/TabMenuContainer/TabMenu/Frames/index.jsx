@@ -2,6 +2,8 @@ import * as s from './styles';
 import { fabric } from 'fabric';
 
 export const Frames = ({ canvas }) => {
+
+  /////// 프레임 이미지 리스트 데이타셋 ///////
   const frameData = [
     { id: 1,
       src: [
@@ -29,6 +31,8 @@ export const Frames = ({ canvas }) => {
     },
   ];
 
+
+ /////// 프레임 리스트에 프레임 이미지 불러오는 함수 ///////
   const frameList1 = () => {
     return frameData[0].src.map((src, index) => (
       <img
@@ -59,17 +63,20 @@ export const Frames = ({ canvas }) => {
     ));
   };
 
+
+  /////// 프레임 이미지 클릭했을 때 발생 이벤트 ///////
   const handleImageClick = (e) => {
+    // 프레임 이미지 클릭 시 캔버스에 추가되는 함수
     const { offsetX, offsetY } = e.nativeEvent;
     const url = e.target.src;
    
       fabric.Image.fromURL(url, function (img) {
-        //const scale = 50 / Math.max(img.width, img.height); // 원하는 크기에 맞도록 비율 계산
         const canvasWidth = canvas.getWidth();
         const canvasHeight = canvas.getHeight();
         img.set({
           left: offsetX / img.width,
           top: offsetY / img.height,
+          class: 'frame', // 이미지에 프레임 클래스 부여
         });
   
         img.hasControls = false;
@@ -80,32 +87,71 @@ export const Frames = ({ canvas }) => {
         
         img.scaleToWidth(canvasWidth);
         img.scaleToHeight(canvasHeight);
+
+        removeFrames(); // 프레임 이미지 추가 전에 기존 프레임 이미지 삭제(프레임이 중복으로 쌓이는 버그 방지)
+
         canvas.add(img);
-        canvas.renderAll();
+        img.sendToBack(); // 항상 다른 오브젝트 뒤로 추가되게
       });
+      canvas.renderAll();
     }
 
-    const renderFrameList = () => {
-      if (canvas.width === 330 && canvas.height === 510 ) {
-            return (
-              <s.FrameList>
-                { frameList1() }
-              </s.FrameList>
-            );
-          } else if (canvas.width === 420 && canvas.height === 510 ) {
-            return (
-              <s.FrameList>
-                { frameList2() }
-              </s.FrameList>
-            );
-          } else {
-            return (
-              <s.FrameList>
-                { frameList3() }
-              </s.FrameList>
-            );
-          }
-    };
+
+    /////// 프레임 이미지 삭제하는 함수 ///////
+    const removeFrames = () => {
+      const objects = canvas.getObjects();
+      const objectsToRemove = []; // 삭제할 오브젝트들을 담을 배열
+
+      objects.forEach((object) => {
+        if (object.type === 'image' && object.class === 'frame') {
+          objectsToRemove.push(object);
+        }
+      }); // 프레임 클래스를 가진 오브젝트들을 찾아서 배열에 담음
+    
+      objectsToRemove.forEach((object) => {
+        canvas.remove(object);
+      }); // 배열에 담긴 오브젝트들을 삭제
+      canvas.renderAll();
+    }
+
+
+  /////// 캔버스 크기에 따라 프레임 리스트 렌더링하는 함수 ///////
+  const renderFrameList = () => {
+    if (canvas.width === 330 && canvas.height === 510 ) {
+          return (
+            <s.FrameList>
+              <img
+                className='noneFrame'
+                src='NoneFrame1.svg'
+                onClick={() => removeFrames() } 
+              />
+              { frameList1() }
+            </s.FrameList>
+          );
+        } else if (canvas.width === 420 && canvas.height === 510 ) {
+          return (
+            <s.FrameList>
+              <img
+                className='noneFrame'
+                src='NoneFrame2.svg'
+                onClick={() => removeFrames() } 
+              />
+              { frameList2() }
+            </s.FrameList>
+          );
+        } else {
+          return (
+            <s.FrameList>
+              <img
+                className='noneFrame'
+                src='NoneFrame3.svg'
+                onClick={() => removeFrames() } 
+              />
+              { frameList3() }
+            </s.FrameList>
+          );
+        }
+  };
 
   return (
     <div>
