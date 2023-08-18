@@ -107,6 +107,8 @@ export const ImageTab = ({ canvas, image }) => {
             className='image-input'
             id='brightness-value'
             type='range'
+            min={-100}
+            max={100}
             defaultValue={0}
             onInput={() => {
               applyFilter(
@@ -134,6 +136,8 @@ export const ImageTab = ({ canvas, image }) => {
             className='image-input'
             id='saturation-value'
             type='range'
+            min={-100}
+            max={100}
             defaultValue={0}
             onInput={() => {
               applyFilter(
@@ -160,6 +164,8 @@ export const ImageTab = ({ canvas, image }) => {
           className='image-input'
           id='contrast-value'
           type='range'
+          min={-100}
+          max={100}
           defaultValue={0}
           onInput={() => {
             applyFilter(
@@ -180,7 +186,6 @@ export const ImageTab = ({ canvas, image }) => {
         />
       </s.LeftContainer>
 
-      {/* crop */}
       <s.RightContainer>
         <p>
           ang:
