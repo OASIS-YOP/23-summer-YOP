@@ -110,6 +110,24 @@ export const TextTab = ({ canvas }) => {
     }
   };
 
+  const TextBackgroundColor = () => {
+    if (
+      canvas.getActiveObject() &&
+      (canvas.getActiveObject() instanceof fabric.Text ||
+        canvas.getActiveObject() instanceof fabric.IText)
+    ) {
+      console.log(canvas.getActiveObject());
+      let text = canvas.getActiveObject();
+      text.set('textBackgroundColor', color); // Update the fill property directly
+      text.setCoords(); // Update the object's coordinates
+      canvas.renderAll(); // Render the canvas
+      console.log(text);
+
+      canvas.requestRenderAll();
+      console.log('rendered');
+    }
+  };
+
   const TextBrush = () => {
     if(canvas){
     
@@ -184,6 +202,7 @@ export const TextTab = ({ canvas }) => {
         <s.BtnChangeColor onClick={ChangeTextColor}>
           색깔 적용하기
         </s.BtnChangeColor>
+        <s.BtnBackgroundColor onClick={TextBackgroundColor}>배경색 넣기</s.BtnBackgroundColor>
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
         {/* <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage> */}
         <s.BtnDrawText onClick={TextBrush}>텍스트 그리기</s.BtnDrawText>
