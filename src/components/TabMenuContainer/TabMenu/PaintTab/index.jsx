@@ -58,6 +58,25 @@ export const PaintTab = ({ canvas }) => {
     }
   };
 
+  const FixObj = () => {
+    if (
+      canvas.getActiveObject() &&
+      (canvas.getActiveObject() instanceof fabric.Circle ||
+        canvas.getActiveObject() instanceof fabric.Rect||
+        canvas.getActiveObject() instanceof fabric.Triangle)
+    ) {
+      let ObjSelected = canvas.getActiveObject();
+      // const ObjSelectedObj = ObjSelected.Obj;
+      console.log(canvas.getActiveObject());
+      ObjSelected.hasControls = false;
+      ObjSelected.hasBorders = false;
+      ObjSelected.lockMovementX = true;
+      ObjSelected.lockMovementY = true;
+      ObjSelected.selectable = false;
+      ObjSelected.editable = false;
+      ObjSelected.evented = false;
+    }
+  };
 
   return (
     <>
@@ -66,9 +85,10 @@ export const PaintTab = ({ canvas }) => {
     <s.BtnAddObj onClick={AddObjRect}>네모 추가</s.BtnAddObj>
     <s.BtnAddObj onClick={AddObjTri}>세모 추가</s.BtnAddObj>
       <Demo color={color} setColor={setColor} />
-        <s.BtnChangeColor onClick={ChangeObjColor}>
+      <s.BtnChangeColor onClick={ChangeObjColor}>
           색깔 적용하기
-        </s.BtnChangeColor>
+      </s.BtnChangeColor>
+      <s.BtnFixObj onClick={FixObj}>선택한 도형 고정</s.BtnFixObj>
     </s.PaintContainer>
     </>
   )

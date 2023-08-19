@@ -26,3 +26,5 @@ export const BtnChangeColor = styled.button`
 
 export const BtnAddObj = styled.button`
 `
+export const BtnFixObj = styled.button`
+`
