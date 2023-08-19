@@ -1,115 +1,116 @@
 import * as s from './styles';
-
+import 'fabric-history';
+import { SelectSizePage } from '../SelectSizePage';
 
 // eslint-disable-next-line react/prop-types
 export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }) => {
 
-  var current;
-  var list = [];
-  var state = [];
-  var index = 0;
-  var index2 = 0;
-  var action = false;
-  var refresh = true;
+  // var current;
+  // var list = [];
+  // var state = [];
+  // var index = 0;
+  // var index2 = 0;
+  // var action = false;
+  // var refresh = true;
 
-  canvas.on("object:added", function (e) {
-      var object = e.target;
-      // console.log('object:modified');
+  // canvas.on("object:added", function (e) {
+  //     var object = e.target;
+  //     // console.log('object:modified');
 
-      if (action === true) {
-          state = [state[index2]];
-          list = [list[index2]];
+  //     if (action === true) {
+  //         state = [state[index2]];
+  //         list = [list[index2]];
 
-          action = false;
-          // console.log(state);
-          index = 1;
-      }
-      object.saveState();
+  //         action = false;
+  //         // console.log(state);
+  //         index = 1;
+  //     }
+  //     object.saveState();
 
-      // console.log(object.originalState);
-      state[index] = JSON.stringify(object.originalState);
-      list[index] = object;
-      index++;
-      index2 = index - 1;
+  //     // console.log(object.originalState);
+  //     state[index] = JSON.stringify(object.originalState);
+  //     list[index] = object;
+  //     index++;
+  //     index2 = index - 1;
 
 
 
-      refresh = true;
-  });
+  //     refresh = true;
+  // });
 
-  canvas.on("object:modified", function (e) {
-      var object = e.target;
-      // console.log('object:modified');
+  // canvas.on("object:modified", function (e) {
+  //     var object = e.target;
+  //     // console.log('object:modified');
 
-      if (action === true) {
-          state = [state[index2]];
-          list = [list[index2]];
+  //     if (action === true) {
+  //         state = [state[index2]];
+  //         list = [list[index2]];
 
-          action = false;
-          // console.log(state);
-          index = 1;
-      }
+  //         action = false;
+  //         // console.log(state);
+  //         index = 1;
+  //     }
 
-      object.saveState();
+  //     object.saveState();
 
-      state[index] = JSON.stringify(object.originalState);
-      list[index] = object;
-      index++;
-      index2 = index - 1;
+  //     state[index] = JSON.stringify(object.originalState);
+  //     list[index] = object;
+  //     index++;
+  //     index2 = index - 1;
 
-      // console.log(state);
-      refresh = true;
-  });
+  //     // console.log(state);
+  //     refresh = true;
+  // });
 
-  function undo() {
+  // function undo() {
 
-      if (index <= 0) {
-          index = 0;
-          return;
-      }
+  //     if (index <= 0) {
+  //         index = 0;
+  //         return;
+  //     }
 
-      if (refresh === true) {
-          index--;
-          refresh = false;
-      }
+  //     if (refresh === true) {
+  //         index--;
+  //         refresh = false;
+  //     }
 
-      console.log('undo');
+  //     console.log('undo');
 
-      index2 = index - 1;
-      current = list[index2];
-      console.log("index2",index2);
-      console.log("state", state)
-      current.setOptions(JSON.parse(state[index2]));
+  //     index2 = index - 1;
+  //     current = list[index2];
+  //     console.log("index2",index2);
+  //     console.log("state", state)
+  //     current.setOptions(JSON.parse(state[index2]));
       
 
-      index--;
-      current.setCoords();
-      canvas.renderAll();
-      action = true;
-  }
+  //     index--;
+  //     current.setCoords();
+  //     canvas.renderAll();
+  //     action = true;
+  // }
 
-  function redo() {
+  // function redo() {
 
-      action = true;
-      if (index >= state.length - 1) {
-          return;
-      }
+  //     action = true;
+  //     if (index >= state.length - 1) {
+  //         return;
+  //     }
 
-      console.log('redo');
+  //     console.log('redo');
 
-      index2 = index + 1;
-      current = list[index2];
-      current.setOptions(JSON.parse(state[index2]));
+  //     index2 = index + 1;
+  //     current = list[index2];
+  //     current.setOptions(JSON.parse(state[index2]));
 
-      index++;
-      current.setCoords();
-      canvas.renderAll();
-  }
+  //     index++;
+  //     current.setCoords();
+  //     canvas.renderAll();
+  // }
 
   const Undo = () =>{
     if(canvas){
-      undo();
-      
+      canvas.undo();
+      canvas.renderAll();
 
     }
 
@@ -117,8 +118,8 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
 
   const Redo = ()=>{
     if(canvas){
-      redo();
-
+      canvas.redo();
+      canvas.renderAll();
     }
   };
 
@@ -127,6 +128,18 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
       canvas.remove(...canvas.getObjects());
       canvas.backgroundImage = null;
     }
+  };
+
+  const ReturnToSelect = () => {
+    return(
+      <>
+        <SelectSizePage
+          isClickedOk={isClickedOk}
+          selectCanvasSize={selectCanvasSize}
+        />
+      </>
+      
+    )
   };
 
 
@@ -147,9 +160,10 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
         </s.ImageLoadButton>
         <s.Button>저장하기</s.Button>
         <s.Button>내 이미지 보기</s.Button>
-        <s.Button onClick = {undo} canvas={canvas}>←</s.Button>
-        <s.Button onClick = {redo} canvas={canvas}>→</s.Button>
+        <s.Button onClick = {Undo} canvas={canvas}>←</s.Button>
+        <s.Button onClick = {Redo} canvas={canvas}>→</s.Button>
         <s.Button onClick = {RemoveAll} canvas={canvas}>모두 지우기</s.Button>
+        <s.Button onClick = {ReturnToSelect}>폴라로이드 크기 다시 선택하기</s.Button>
       </s.Container>
       </s.ButtonGroupWrapper>
     </>
