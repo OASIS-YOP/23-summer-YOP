@@ -9,7 +9,8 @@ import { TextTab } from '../TabMenuContainer/TabMenu/TextTab';
 import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
-
+import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
+//import 'fabric-history';
 
 //crop
 // import Cropper from 'react-cropper';
@@ -19,7 +20,7 @@ export const HeaderNavContents = ( ) => {
   const [canvas, setCanvas] = useState(null);
   const [toggleState, setToggleState] = useState(0);
   const [isSelectPage, setIsSelectPage] = useState(true);
-  const [canvasSize, setCanvasSize] = useState([0, 0]);
+  const [canvasSize,    setCanvasSize] = useState([0, 0]);
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
@@ -37,7 +38,7 @@ export const HeaderNavContents = ( ) => {
     {
       id: 2,
       label: '그리기',
-      function: [],
+      function: () => <PaintTab canvas={canvas} />,
       level: 'top',
     },
     {
@@ -208,8 +209,9 @@ export const HeaderNavContents = ( ) => {
         height: canvasSize[1],
         width: canvasSize[0],
         backgroundColor: 'white',
-      });
-
+      }
+      );
+      
     setCanvas(initCanvas());
   }, [isSelectPage]);
 
@@ -217,6 +219,7 @@ export const HeaderNavContents = ( ) => {
     if (canvas) {
       // 생성한 Canvas 인스턴스를 DOM에 추가
       canvas.initialize('canvas');
+      //canvas.historyInit();
     }
   }, [canvas]);
 

@@ -1,22 +1,22 @@
 import Chrome from '@uiw/react-color-chrome';
 import { GithubPlacement } from '@uiw/react-color-github';
 
-export const Demo = ({ textColor, setTextColor }) => {
+export const Demo = ({ color, setColor }) => {
   return (
     <>
       <Chrome
-        color={textColor}
+        color={color}
         style={{ float: 'left' }}
         placement={GithubPlacement.Right}
         onChange={(color) => {
           // Update the color value using the setTextColor setter function.
-          setTextColor(color.hexa);
+          setColor(color.hexa);
         }}
       />
 
-      <div style={{ background: textColor, marginTop: 30, padding: 10 }}>
-        {textColor}
-      </div>
+      {/* <div style={{ background: color, marginTop: 30, padding: 10 }}>
+        {color}
+      </div> */}
     </>
   );
 };
