@@ -7,22 +7,28 @@ import // pointColor,
 
 export const FrameList = styled.div`
   display: block;
-  text-align: center;
   width: 100%;
+  text-align: center;
 
   & img {
     display: inline-block;
-    height: 'auto';
-    border: 4px solid white;
+
     width: 30%;
-    margin: 10px;
+    height: 'auto';
+
+    border: 4px solid white;
     background-color: #d9d9d9;
+
+    margin: 10px;
+
+      &:hover {
+        border: 4px solid #7198FF;
+        cursor: pointer;
+      }
+
   }
 
-  & img:hover {
-    cursor: pointer;
-    border: 4px solid #7198FF;
-  }
+
 
 `;
 

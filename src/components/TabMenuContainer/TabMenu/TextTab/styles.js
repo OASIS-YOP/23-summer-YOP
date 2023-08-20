@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { pointColor, whiteColor } from '../../../../GlobalStyles';
 
 export const ContainerText = styled.div`
-  
+
 
   & > button {
     font-size: 1.7vh;
@@ -28,7 +28,7 @@ export const BtnAddText = styled.button`
 `
 
 export const BtnFixImage = styled.button`
-  
+
 
 `
 
@@ -39,4 +39,10 @@ export const BtnChangeColor = styled.button`
 
 `
 export const BtnDrawText = styled.button`
+`
+
+export const BtnFontChange = styled.button`
+`
+
+export const BtnBackgroundColor = styled.button`
 `

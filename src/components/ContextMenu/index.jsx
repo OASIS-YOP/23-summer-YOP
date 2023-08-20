@@ -36,6 +36,7 @@ export const ContextMenu = ({
       // 잘라내기 동작 처리
 
       if (canvas.getActiveObject() !== null || undefined) {
+      if (canvas.getActiveObject() !== null || undefined) {
         // 선택된 객체가 있는지 확인
         const activeObject = canvas.getActiveObject().toObject();
         // console.log(typeof activeObject);

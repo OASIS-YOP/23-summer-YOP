@@ -11,18 +11,20 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ededed;
+  width: auto; min-width: 130vh;
   height: 70vh;
-  width: auto;
+
+  background-color: #ededed;
   box-shadow: 3px 5px 20px 12px rgba(0, 0, 0, 13%);
   border-radius: 30px;
-  min-width: 130vh;
+  
   padding: 20px;
 `;
 
 export const SelectSizeLabel = styled.p`
-  font-size: 3vh;
   margin-top: 5%;
+  
+  font-size: 3vh;
 `;
 
 export const SizeImageContainer = styled.div`
@@ -49,62 +51,76 @@ export const SizeImageWrapper = styled.div`
 export const Size1 = styled.div`
   width: 25.31645569620253vh;
   height: 39.12543153049482vh;
-  background-color: ${whiteColor};
 
   border: 2px dotted #979797;
-  &:hover {
-    background-color: ${primaryColor};
-    border: 2px dotted black;
-  }
-  &.active {
-    background-color: ${primaryColor};
-    border: 2px dotted black;
-  }
+  background-color: ${whiteColor};
+
+    &:hover {
+      background-color: ${primaryColor};
+      border: 2px dotted black;
+    }
+
+    &.active {
+      background-color: ${primaryColor};
+      border: 2px dotted black;
+    }
 `;
 export const Size2 = styled.div`
   width: 31.567080045095828vh;
   height: 38.331454340473506vh;
+
   border: 2px dotted #979797;
   background-color: ${whiteColor};
-  &:hover {
-    background-color: ${primaryColor};
-    border: 2px dotted black;
-  }
-  &.active {
-    background-color: ${primaryColor};
-    border: 2px dotted black;
-  }
+
+    &:hover {
+      background-color: ${primaryColor};
+      border: 2px dotted black;
+    }
+
+    &.active {
+      background-color: ${primaryColor};
+      border: 2px dotted black;
+    }
 `;
 export const Size3 = styled.div`
   width: 44.164037854889585vh;
   height: 35.75184016824395vh;
+
   border: 2px dotted #979797;
   background-color: ${whiteColor};
-  &:hover {
-    background-color: ${primaryColor};
-    border: 2px dotted black;
-  }
-  &.active {
-    background-color: ${primaryColor};
-    border: 2px dotted black;
-  }
+
+    &:hover {
+      background-color: ${primaryColor};
+      border: 2px dotted black;
+    }
+    
+    &.active {
+      background-color: ${primaryColor};
+      border: 2px dotted black;
+    }
 `;
 
 export const SizeLabel = styled.p`
-  font-size: 1.2rem;
+  font-size: 2vh;
 `;
 
 export const OkButton = styled.button`
-  height: 3.2vh;
   width: 9.5vh;
+  height: 3.2vh;
+
   background-color: ${whiteColor};
-  margin-top: 2%;
-  margin-bottom: 5%;
+
   border: 1px solid #ccc;
   border-radius: 1.5rem;
+
+  margin-top: 2%;
+  margin-bottom: 5%;
+  
   cursor: pointer;
+
   font-size: 2vh;
-  &:hover {
-    background-color: ${primaryColor};
-  }
+
+    &:hover {
+      background-color: ${primaryColor};
+    }
 `;
