@@ -22,20 +22,22 @@ export const TabMenuContainer = ({ tabMenuDataList }) => {
   return (
     <>
       <s.Wrapper>
-        <s.TabNavBar>
+        <s.TabNavBar id={'tab-nav-bar'}>
           {tabMenuDataList.map((item, index) => (
             <s.TabMenu
+              id={'tab-menu' + item.id }
               key={`tabMenuLabellist_${item.id}`}
               onClick={() => onClickButton(index)}
               className={onButtonClicked === index ? 'active' : ''}
             >
               {item.label}
-            </s.TabMenu>
+            </s.TabMenu> 
           ))}
         </s.TabNavBar>
 
         {tabMenuDataList.map((item, index) => (
           <s.ContentBox
+            id={'content-box' + item.id}
             key={`tabMenuContentlist_${item.id}`}
             className={onButtonClicked === index ? 'active' : ''}
           >

@@ -24,7 +24,32 @@ export const TextTab = ({ canvas }) => {
             select.appendChild(option);
         });
 
-    }, []);
+
+  let fonts = ["Black Han Sans", "Noto Sans Korean", "Orbit"];
+
+  const AddDate = () => {
+    // 캔버스에 텍스트 추가될 때 디폴트로 표시될 날짜 포맷팅 함수
+    const formatDate = (date) => {
+      const options = { year: '2-digit', month: '2-digit', day: '2-digit' };
+      return new Intl.DateTimeFormat('ko-KO', options).format(date);
+    };
+    // 날짜 년월일로 표시해주는 포맷팅 함수
+    const currentDate = new Date();
+    //오늘 날짜
+
+    if (canvas) {
+      let text = new fabric.IText(formatDate(currentDate), {
+        fill: textColor,
+        editable: true,
+        hasControls: true,
+        class: 'date',
+      });
+      text.set('selectable', true);
+      canvas.add(text);
+    }
+  };
+  
+
   
   const AddText = () => {
     if (canvas) {
@@ -32,6 +57,7 @@ export const TextTab = ({ canvas }) => {
         fill: textColor,
         editable: true,
         hasControls: true,
+        class: 'text',
       });
       text.set('selectable', true);
       canvas.add(text);
@@ -181,6 +207,7 @@ export const TextTab = ({ canvas }) => {
     <>
       <s.ContainerText>
         <s.BtnAddText onClick={AddText}>텍스트 추가</s.BtnAddText>
+        <s.BtnAddText onClick={AddDate}>날짜 추가</s.BtnAddText>
         <Demo textColor={textColor} setTextColor={setTextColor} />
         <s.BtnChangeColor onClick={ChangeTextColor}>
           색 바꾸기
