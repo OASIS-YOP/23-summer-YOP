@@ -40,3 +40,6 @@ export const BtnChangeColor = styled.button`
 `
 export const BtnDrawText = styled.button`
 `
+
+export const BtnFontChange = styled.button`
+`
