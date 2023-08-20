@@ -9,14 +9,6 @@ export const ButtonGroupContainer = ({
   fileInputRef,
   canvas,
 }) => {
-  var current;
-  var list = [];
-  var state = [];
-  var index = 0;
-  var index2 = 0;
-  var action = false;
-  var refresh = true;
-
   // canvas.on("object:added", function (e) {
   //     var object = e.target;
   //     // console.log('object:modified');
@@ -36,8 +28,6 @@ export const ButtonGroupContainer = ({
   //     list[index] = object;
   //     index++;
   //     index2 = index - 1;
-
-
 
   //     refresh = true;
   // });
@@ -85,7 +75,6 @@ export const ButtonGroupContainer = ({
   //     console.log("index2",index2);
   //     console.log("state", state)
   //     current.setOptions(JSON.parse(state[index2]));
-      
 
   //     index--;
   //     current.setCoords();
@@ -111,16 +100,15 @@ export const ButtonGroupContainer = ({
   //     canvas.renderAll();
   // }
 
-  const Undo = () =>{
-    if(canvas){
+  const Undo = () => {
+    if (canvas) {
       canvas.undo();
       canvas.renderAll();
-
     }
   };
 
-  const Redo = ()=>{
-    if(canvas){
+  const Redo = () => {
+    if (canvas) {
       canvas.redo();
       canvas.renderAll();
     }
@@ -133,26 +121,54 @@ export const ButtonGroupContainer = ({
     }
   };
 
-  const ReturnToSelect = () => {
-    return(
-      <>
-        <SelectSizePage
-          isClickedOk={isClickedOk}
-          selectCanvasSize={selectCanvasSize}
-        />
-      </>
-      
-    )
-  };
+  // const ReturnToSelect = () => {
+  //   return(
+  //     <>
+  //       <SelectSizePage
+  //         isClickedOk={isClickedOk}
+  //         selectCanvasSize={selectCanvasSize}
+  //       />
+  //     </>
+
+  //   )
+  // };
 
   const onClickHome = () => {
     setIsSelectPage(true);
   };
 
   return (
-    <>
+    // <s.ButtonGroupWrapper>
+    //   <s.Container>
+    //     <s.ImageLoadButton htmlFor='file'>
+    //       <s.ImageLoadButtonLabel htmlFor='file'>
+    //         이미지 불러오기
+    //       </s.ImageLoadButtonLabel>
+    //       <s.Input
+    //         type='file'
+    //         id='file'
+    //         onChange={handleChangedFile}
+    //         ref={fileInputRef}
+    //       />
+    //     </s.ImageLoadButton>
+    //     <s.Button>저장하기</s.Button>
+    //     <s.Button>내 이미지 보기</s.Button>
+    //     <s.Button onClick={Undo} canvas={canvas}>
+    //       ←
+    //     </s.Button>
+    //     <s.Button onClick={Redo} canvas={canvas}>
+    //       →
+    //     </s.Button>
+    //     <s.Button onClick={RemoveAll} canvas={canvas}>
+    //       모두 지우기
+    //     </s.Button>
+    //   {/* <s.Button onClick={ReturnToSelect}>
+    //     폴라로이드 크기 다시 선택하기
+    //   </s.Button> */}
+    // {/* </s.Container> */}
     <s.ButtonGroupWrapper>
       <s.Container>
+        <s.Button onClick={onClickHome}>홈</s.Button>
         <s.ImageLoadButton htmlFor='file'>
           <s.ImageLoadButtonLabel htmlFor='file'>
             이미지 불러오기
@@ -166,38 +182,16 @@ export const ButtonGroupContainer = ({
         </s.ImageLoadButton>
         <s.Button>저장하기</s.Button>
         <s.Button>내 이미지 보기</s.Button>
-        <s.Button onClick = {Undo} canvas={canvas}>←</s.Button>
-        <s.Button onClick = {Redo} canvas={canvas}>→</s.Button>
-        <s.Button onClick = {RemoveAll} canvas={canvas}>모두 지우기</s.Button>
-        <s.Button onClick = {ReturnToSelect}>폴라로이드 크기 다시 선택하기</s.Button>
+        <s.Button onClick={Undo} canvas={canvas}>
+          ←
+        </s.Button>
+        <s.Button onClick={Redo} canvas={canvas}>
+          →
+        </s.Button>
+        <s.Button onClick={RemoveAll} canvas={canvas}>
+          모두 지우기
+        </s.Button>
       </s.Container>
-      <s.ButtonGroupWrapper>
-        <s.Container>
-          <s.Button onClick={onClickHome}>홈</s.Button>
-          <s.ImageLoadButton htmlFor='file'>
-            <s.ImageLoadButtonLabel htmlFor='file'>
-              이미지 불러오기
-            </s.ImageLoadButtonLabel>
-            <s.Input
-              type='file'
-              id='file'
-              onChange={handleChangedFile}
-              ref={fileInputRef}
-            />
-          </s.ImageLoadButton>
-          <s.Button>저장하기</s.Button>
-          <s.Button>내 이미지 보기</s.Button>
-          <s.Button onClick={undo} canvas={canvas}>
-            ←
-          </s.Button>
-          <s.Button onClick={redo} canvas={canvas}>
-            →
-          </s.Button>
-          <s.Button onClick={RemoveAll} canvas={canvas}>
-            모두 지우기
-          </s.Button>
-        </s.Container>
-      </s.ButtonGroupWrapper>
-    </>
+    </s.ButtonGroupWrapper>
   );
 };
