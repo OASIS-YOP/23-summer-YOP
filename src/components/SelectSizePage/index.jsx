@@ -3,7 +3,7 @@ import * as s from './styles';
 
 // eslint-disable-next-line react/prop-types
 export const SelectSizePage = ({ isClickedOk, selectCanvasSize }) => {
-  const [selectSize, setSelectSize] = useState(999);
+  const [selectSize, setSelectSize] = useState(-1);
 
   const onClickSize = (index) => {
     setSelectSize(index);
@@ -29,11 +29,7 @@ export const SelectSizePage = ({ isClickedOk, selectCanvasSize }) => {
               </>
             );
           })} */}
-          <s.SizeImageWrapper
-            onClick={() => {
-              onClickSize(1);
-            }}
-          >
+          <s.SizeImageWrapper>
             <s.Size1
               onClick={() => {
                 onClickSize(1);
@@ -65,7 +61,12 @@ export const SelectSizePage = ({ isClickedOk, selectCanvasSize }) => {
           </s.SizeImageWrapper>
         </s.SizeImageContainer>
       </s.SizeImageContainer>
-      <s.OkButton onClick={isClickedOk}>확인</s.OkButton>
+      <s.OkButton
+        onClick={isClickedOk}
+        disabled={selectSize === -1 ? true : false}
+      >
+        확인
+      </s.OkButton>
     </s.ContentContainer>
   );
 };

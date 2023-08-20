@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fabric } from 'fabric';
 import * as s from './styles';
 
@@ -23,15 +23,20 @@ export const ImageTab = ({ canvas, image }) => {
     canvas.renderAll();
   };
 
-  const applyGrayFilter = (filter) => {
+  const onClickGray = () => {
     console.log('gray!');
-    image.filters.push(filter);
+    setApplyGray((prev) => !prev);
+  };
+
+  const applyGrayFilter = (index, filter) => {
+    image.filters[index] = filter;
+    console.log(image.filters);
     image.applyFilters();
     canvas.renderAll();
   };
 
   const removeGrayFilter = () => {
-    image.filters.pop();
+    image.filters.splice(0);
     image.applyFilters();
     canvas.renderAll();
   };
@@ -81,23 +86,27 @@ export const ImageTab = ({ canvas, image }) => {
     canvas.requestRenderAll();
   };
 
+  //gray toggle
+  useEffect(() => {
+    if (!image) return;
+    applyGray
+      ? applyGrayFilter(0, new fabric.Image.filters.Grayscale())
+      : removeGrayFilter();
+  }, [applyGray]);
+
   return (
     <s.Wrapper>
       <s.LeftContainer>
-        <button onClick={reverseX}>reverseX</button>
-        <button onClick={reverseY}>reverseY</button>
+        <button className='image-input' onClick={reverseX}>
+          reverseX
+        </button>
+        <button className='image-input' onClick={reverseY}>
+          reverseY
+        </button>
         <p>
-          <button
-            className='image-input'
-            id='grayscale'
-            onClick={() =>
-              applyGrayFilter(new fabric.Image.filters.Grayscale())
-            }
-            // disabled={applyGray === false ? true : ''}
-          >
-            Gray
+          <button className='image-input' id='grayscale' onClick={onClickGray}>
+            gray
           </button>
-          <button onClick={() => removeGrayFilter()}>x</button>
         </p>
         <p>
           <label>
@@ -205,6 +214,9 @@ export const ImageTab = ({ canvas, image }) => {
           <input
             className='image-input'
             id='scale-control'
+            defaultValue={0}
+            min={-100}
+            max={100}
             type='range'
             onInput={scaleControl}
             disabled={true}
