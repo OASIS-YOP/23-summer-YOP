@@ -369,6 +369,7 @@ export const HeaderNavContents = () => {
                   {/* <s.ButtonGroupWrapper> */}
                   <ButtonGroupContainer
                     handleChangedFile={handleChangedFile}
+                    setIsSelectPage={setIsSelectPage}
                     fileInputRef={fileInputRef}
                     canvas={canvas}
                   />

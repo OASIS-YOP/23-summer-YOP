@@ -18,13 +18,12 @@ export const Container = styled.div`
   background-color: ${whiteColor};
   margin-left: 25%;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
-
 `;
 
 export const ButtonGroupWrapper = styled.div`
   display: flex;
   text-align: center;
-  width:fit-content;
+  width: fit-content;
 `;
 
 export const Button = styled.button`
@@ -32,9 +31,9 @@ export const Button = styled.button`
   width: 4vh;
   background-color: ${whiteColor};
   border-style: none;
-  border-radius: 23px;
   cursor: pointer;
   font-size: 1.4vh;
+  padding: 0;
 
   &:hover {
     color: ${pointColor};
@@ -46,14 +45,13 @@ export const ImageLoadButton = styled.div`
   align-items: center;
   justify-content: center;
   padding-top: 1vh;
-  height: 4vh;
+  /* height: 4vh; */
   width: 4vh;
   font-size: 1.4vh;
   background-color: ${whiteColor};
 `;
 
 export const ImageLoadButtonLabel = styled.label`
-  
   &:hover {
     color: ${pointColor};
     cursor: pointer;

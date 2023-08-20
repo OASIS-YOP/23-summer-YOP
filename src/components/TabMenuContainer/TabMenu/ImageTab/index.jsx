@@ -6,14 +6,16 @@ export const ImageTab = ({ canvas, image }) => {
   const [reverseXToggle, setReverseXToggle] = useState(true);
   const [reverseYToggle, setReverseYToggle] = useState(true);
   const [applyGray, setApplyGray] = useState(false);
+  const [isDisableButton, setIsDisableButton] = useState(true);
 
   //filter part
 
   canvas.on({
     'after:render': () => {
-      fabric.util
-        .toArray(document.getElementsByClassName('image-input'))
-        .forEach((el) => (el.disabled = false));
+      setIsDisableButton(false);
+      // fabric.util
+      //   .toArray(document.getElementsByClassName('image-input'))
+      //   .forEach((el) => (el.disabled = false));
     },
   });
 
@@ -97,14 +99,27 @@ export const ImageTab = ({ canvas, image }) => {
   return (
     <s.Wrapper>
       <s.LeftContainer>
-        <button className='image-input' onClick={reverseX}>
+        <button
+          className='image-input'
+          onClick={reverseX}
+          disabled={isDisableButton}
+        >
           reverseX
         </button>
-        <button className='image-input' onClick={reverseY}>
+        <button
+          className='image-input'
+          onClick={reverseY}
+          disabled={isDisableButton}
+        >
           reverseY
         </button>
         <p>
-          <button className='image-input' id='grayscale' onClick={onClickGray}>
+          <button
+            className='image-input'
+            id='grayscale'
+            onClick={onClickGray}
+            disabled={isDisableButton}
+          >
             gray
           </button>
         </p>
@@ -136,7 +151,7 @@ export const ImageTab = ({ canvas, image }) => {
                 )
               );
             }}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <p>
@@ -165,7 +180,7 @@ export const ImageTab = ({ canvas, image }) => {
                 )
               );
             }}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <span>대비:</span>
@@ -191,7 +206,7 @@ export const ImageTab = ({ canvas, image }) => {
               parseFloat(document.getElementById('contrast-value').value / 50)
             );
           }}
-          disabled={true}
+          disabled={isDisableButton}
         />
       </s.LeftContainer>
 
@@ -206,7 +221,7 @@ export const ImageTab = ({ canvas, image }) => {
             min={-100}
             max={100}
             onInput={angleControl}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <p>
@@ -214,12 +229,9 @@ export const ImageTab = ({ canvas, image }) => {
           <input
             className='image-input'
             id='scale-control'
-            defaultValue={0}
-            min={-100}
-            max={100}
             type='range'
             onInput={scaleControl}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <p>
@@ -232,7 +244,7 @@ export const ImageTab = ({ canvas, image }) => {
             min={-200}
             max={100}
             onInput={topControl}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <p>
@@ -245,7 +257,7 @@ export const ImageTab = ({ canvas, image }) => {
             min={-100}
             max={100}
             onInput={leftControl}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
       </s.RightContainer>
