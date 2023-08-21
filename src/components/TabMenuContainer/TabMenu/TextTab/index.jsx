@@ -128,37 +128,53 @@ export const TextTab = ({ canvas }) => {
     }
   };
 
-  const TextBrush = () => {
-    if(canvas){
-    
-      canvas.isDrawingMode = true;
-      canvas.freeDrawingBrush = new fabric.PencilBrush({ decimate: 8 });
+  //텍스트 그리기 기능
+  const handleBeforePathCreated = (opt) => {
+    if (opt.e.type === 'path:created') {
+    const path = opt.path;
+    const pathInfo = fabric.util.getPathSegmentsInfo(path.path);
+    path.segmentsInfo = pathInfo;
+    const pathLength = pathInfo[pathInfo.length - 1].length;
+    const text = 'This is a demo of text on a path. This text should be small enough to fit in what you drawn.';
+    const fontSize = (2.5 * pathLength) / text.length;
 
-      canvas.on('path:created', function (opt) {
-        if (canvas.isDrawingMode) {
-          let path = opt.path;
-          let pathInfo = fabric.util.getPathSegmentsInfo(path.path);
-          path.segmentsInfo = pathInfo;
-  
-          let pathLength = pathInfo[pathInfo.length - 1].length;
-          let text =
-            'this is a demo of text on a path. This text should be small enough to fit in what you have drawn';
-          let fontSize = (2.5 * pathLength) / text.length;
-          text = new fabric.Text(text, {
-            fontSize,
-            path,
-            top: path.top,
-            left: path.left,
-          });
-  
-          canvas.add(text);
-          canvas.remove(path);
-          canvas.isDrawingMode = false;
-        }
-      });
-    }
-    
+    const textObject = new fabric.Text(text, {
+      fontSize: fontSize,
+      path: path,
+      top: path.top,
+      left: path.left,
+    });
+
+    canvas.add(textObject);
   };
+  }
+
+    
+
+  const handlePathCreated = (opt) => {
+    if (opt.e.type === 'path:created') {
+      canvas.remove(opt.path);
+    }
+   
+  };
+
+  const handleTextDrawClick = () => {
+    // fabric.js canvas 생성
+    if(canvas){
+    canvas.isDrawingMode= true;
+    canvas.freeDrawingBrush = new fabric.PencilBrush({ decimate: 8 });
+   
+
+    // before:path:created 이벤트 등록
+    canvas.on('before:path:created', handleBeforePathCreated);
+
+    // path:created 이벤트 등록
+    canvas.on('path:created', handlePathCreated);
+    }
+      
+  };
+    
+  
 
   const TextFonts = () => {
     if (
@@ -205,11 +221,11 @@ export const TextTab = ({ canvas }) => {
         <s.BtnBackgroundColor onClick={TextBackgroundColor}>배경색 넣기</s.BtnBackgroundColor>
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
         {/* <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage> */}
-        <s.BtnDrawText onClick={TextBrush}>텍스트 그리기</s.BtnDrawText>
+        {/* <s.BtnDrawText onClick={handleTextDrawClick}>텍스트 그리기</s.BtnDrawText> */}
         <select id="font-family" onChange={(e) => setSelectedFont(e.target.value)} value={selectedFont}>
             {/* Options will be added dynamically through the useEffect */}
         </select>
-        <s.BtnFontChange onClick={TextFonts}>apply</s.BtnFontChange>
+        <s.BtnFontChange onClick={TextFonts}>글꼴 바꾸기</s.BtnFontChange>
       </s.ContainerText>
     </>
   );
