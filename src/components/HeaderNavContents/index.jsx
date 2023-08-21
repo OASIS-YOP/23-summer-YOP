@@ -16,7 +16,7 @@ import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
 // import Cropper from 'react-cropper';
 // import 'cropperjs/dist/cropper.css';
 
-export const HeaderNavContents = () => {
+export const HeaderNavContents = ( ) => {
   const [canvas, setCanvas] = useState(null);
   const [toggleState, setToggleState] = useState(0);
   const [isSelectPage, setIsSelectPage] = useState(true);
@@ -25,6 +25,7 @@ export const HeaderNavContents = () => {
   const [image, setImage] = useState(null);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
+
 
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
@@ -147,7 +148,16 @@ export const HeaderNavContents = () => {
   // });
 
   const removeItem = () => {
-    canvas.remove(canvas.getActiveObject());
+    if ( canvas.getActiveObject() !== null || undefined ){
+      if(canvas.getActiveObject().type === 'activeSelection') {
+        canvas.getActiveObject().forEachObject(function(o) {
+          canvas.remove(o)
+        });
+        canvas.discardActiveObject().renderAll();
+      } else {
+        canvas.remove(canvas.getActiveObject());
+      }
+    }
   };
 
   useEffect(() => {
@@ -312,23 +322,36 @@ export const HeaderNavContents = () => {
   // 붙여넣기 함수
   const handlePasteObject = (x, y) => {
     if (copiedObject !== null) {
-      if (copiedObject.type === 'image') {
+      if (copiedObject.type !== 'activeSelection' ) {
         // 선택된 객체가 단일 객체인 경우
-        fabric.Image.fromObject(copiedObject, function (img) {
-          img.set({
-            left: x / 3,
-            top: y / 3,
+        if(copiedObject.type === 'image') {
+          fabric.Image.fromObject(copiedObject, function (img) {
+            img.set({
+              left: x / 3,
+              top: y / 3,
 
-            evented: true,
-            svgViewportTransformation: true,
+              evented: true,
+              svgViewportTransformation: true,
+            });
+            canvas.add(img);
+            canvas.renderAll();
           });
-          canvas.add(img);
-          canvas.renderAll();
-        });
+          } else if (copiedObject.type === 'i-text') { 
+            fabric.IText.fromObject(copiedObject, function (text) {
+              text.set({
+                left: x / 3,
+                top: y / 3,
+                evented: true,
+                svgViewportTransformation: true,
+              });
+              canvas.add(text);
+              canvas.renderAll();
+            });
+          } console.log('object is pasted', copiedObject);
       } else if (copiedObject.type === 'activeSelection') {
         // 선택된 객체가 다중 객체인 경우
         for (let i = 0; i < copiedObject.objects.length; i++) {
-          {
+          { if( copiedObject.objects[i].type === 'image') {
             fabric.Image.fromObject(copiedObject.objects[i], function (img) {
               img.set({
                 left: x / 3,
@@ -339,9 +362,20 @@ export const HeaderNavContents = () => {
               canvas.add(img);              
               canvas.renderAll();
             });
-          }
+          } else if (copiedObject.objects[i].type === 'i-text') {
+            fabric.IText.fromObject(copiedObject.objects[i], function (text) {
+              text.set({
+                left: x / 3,
+                top: y / 3,
+                evented: true,
+                svgViewportTransformation: true,
+              });
+              canvas.add(text);
+              canvas.renderAll();
+            });
+          }}
         }
-      } console.log('object is pasted', copiedObject);
+      } console.log('objects is pasted', copiedObject);
     } else {
       console.log('no object is copied');
     }
@@ -350,7 +384,7 @@ export const HeaderNavContents = () => {
   // 삭제 함수 1
   const removeObjects = (object) => {
     if (object) {
-      if (object.type === 'image') {
+      if (object.type === 'image' || object.type === 'i-text') {
         // 선택된 객체가 단일 객체인 경우
         canvas.remove(canvas.getActiveObject());
         canvas.renderAll();
@@ -379,8 +413,64 @@ export const HeaderNavContents = () => {
     canvas.renderAll();
   };
 
-  ///////////////////////////////////////////////
+ ///////////////////////////////////////////////
 
+ ///////////////선택된 객체수/모든 객체수/////////
+
+
+  // 선택된 객체 수를 저장하는 state
+  const [selectedObjectCount, setSelectedObjectCount] = useState(0);
+  // 캔버스에 추가된 객체 수를 저장하는 state
+  const [numOfObjects, setNumOfObjectsCount] = useState(0);
+
+  useEffect(() => {
+    if (canvas) {
+      // canvas에 객체 선택 변경 시 호출되는 이벤트 핸들러 등록
+      const handleObjectSelectionChange = () => {
+        const activeObjects = canvas.getActiveObjects();
+        setSelectedObjectCount(activeObjects.length);
+      };
+
+      // canvas에 객체 추가/삭제 시 호출되는 이벤트 핸들러 등록
+      const handleNumOfObjectsChange = () => {
+        const getFrameObjects = () => {
+          // canvas에 추가된 프레임 객체들
+          if (canvas) {
+            const frameObjects = canvas.getObjects().filter((object) => {
+              return object.type === 'image' && object.class === 'frame';
+              // 타입이 이미지고 클래스가 frame인 객체들만 가져옴
+            });
+            return frameObjects;
+          }
+          return [];
+          // 프레임 객체를 배열로 반환
+        };
+        const objects = canvas.getObjects(); // canvas에 추가된 모든 객체들
+        setNumOfObjectsCount(objects.length - getFrameObjects().length);
+        // 프레임 객체를 제외한 객체 수를 state에 저장
+      };
+
+      canvas.on('selection:created', handleObjectSelectionChange);
+      canvas.on('selection:updated', handleObjectSelectionChange);
+      canvas.on('selection:cleared', () => setSelectedObjectCount(0));
+      canvas.on('object:added', handleNumOfObjectsChange);
+      canvas.on('object:removed', handleNumOfObjectsChange);
+      canvas.on('object:cleared', () => setNumOfObjectsCount(0));
+
+      return () => {
+        canvas.off('selection:created', handleObjectSelectionChange);
+        canvas.off('selection:updated', handleObjectSelectionChange);
+        canvas.off('selection:cleared', () => setSelectedObjectCount(0));
+        canvas.off('object:added', handleNumOfObjectsChange);
+        canvas.off('object:removed', handleNumOfObjectsChange);
+        canvas.off('object:cleared', () => setNumOfObjectsCount(0));
+      };
+    }
+  }, [canvas]);
+
+  ///////////////////////////////////////////////
+  
+ 
   return (
     <>
       <s.Header>
@@ -454,6 +544,7 @@ export const HeaderNavContents = () => {
                       <s.BringTo onClick={bringForward}>앞으로</s.BringTo>
                       <s.BringTo onClick={bringToFront}>맨 앞으로</s.BringTo>
                     </s.LayerBtnWrapper>
+                    <h2>선택된 오브젝트 : {selectedObjectCount}/{numOfObjects}</h2>
                   </s.CanvasSpaceWrapper>
                 </s.LeftContainer>
                 <s.RightContainer>
