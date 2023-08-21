@@ -1,6 +1,12 @@
 import * as s from './styles';
 import 'fabric-history';
-import { SelectSizePage } from '../SelectSizePage';
+import { ReactComponent as ViewGallaryIcon } from '../../assets/Button/ViewGallaryIcon.svg';
+import { ReactComponent as SaveIcon } from '../../assets/Button/SaveIcon.svg';
+import { ReactComponent as HomeIcon } from '../../assets/Button/HomeIcon.svg';
+import { ReactComponent as RedoIcon } from '../../assets/Button/RedoIcon.svg';
+import { ReactComponent as UndoIcon } from '../../assets/Button/UndoIcon.svg';
+import { ReactComponent as LoadImageIcon } from '../../assets/Button/LoadImageIcon.svg';
+import { ReactComponent as ClearIcon } from '../../assets/Button/ClearIcon.svg';
 
 // eslint-disable-next-line react/prop-types
 export const ButtonGroupContainer = ({
@@ -168,10 +174,12 @@ export const ButtonGroupContainer = ({
     // {/* </s.Container> */}
     <s.ButtonGroupWrapper>
       <s.Container>
-        <s.Button onClick={onClickHome}>홈</s.Button>
-        <s.ImageLoadButton htmlFor='file'>
+        <s.Button onClick={onClickHome}>
+          <HomeIcon className='icon' width={30} height={30} />
+        </s.Button>
+        <s.Button>
           <s.ImageLoadButtonLabel htmlFor='file'>
-            이미지 불러오기
+            <LoadImageIcon className='icon' width={30} height={30} />
           </s.ImageLoadButtonLabel>
           <s.Input
             type='file'
@@ -179,17 +187,21 @@ export const ButtonGroupContainer = ({
             onChange={handleChangedFile}
             ref={fileInputRef}
           />
-        </s.ImageLoadButton>
-        <s.Button>저장하기</s.Button>
-        <s.Button>내 이미지 보기</s.Button>
+        </s.Button>
+        <s.Button>
+          <SaveIcon className='icon' width={30} height={30} />
+        </s.Button>
+        <s.Button>
+          <ViewGallaryIcon className='icon' width={30} height={30} />
+        </s.Button>
         <s.Button onClick={Undo} canvas={canvas}>
-          ←
+          <UndoIcon className='icon' width={30} height={30} />
         </s.Button>
         <s.Button onClick={Redo} canvas={canvas}>
-          →
+          <RedoIcon className='icon' width={30} height={30} />
         </s.Button>
         <s.Button onClick={RemoveAll} canvas={canvas}>
-          모두 지우기
+          <ClearIcon className='icon' width={30} height={30} />
         </s.Button>
       </s.Container>
     </s.ButtonGroupWrapper>

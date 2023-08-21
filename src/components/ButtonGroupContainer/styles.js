@@ -11,7 +11,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 13vh;
+  width: 10vh;
   height: 55vh;
   border-radius: 3vh;
   border: 1.5vh solid #d9d9d9;
@@ -22,40 +22,38 @@ export const Container = styled.div`
 
 export const ButtonGroupWrapper = styled.div`
   display: flex;
-  text-align: center;
+  flex-direction: column;
   width: fit-content;
+  height: fit-content;
 `;
 
 export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 7vh;
   width: 4vh;
   background-color: ${whiteColor};
   border-style: none;
   cursor: pointer;
-  font-size: 1.4vh;
   padding: 0;
-
+  margin: 0;
+  .icon {
+    path {
+      fill: black;
+    }
+  }
   &:hover {
-    color: ${pointColor};
+    path {
+      fill: ${pointColor};
+    }
+    fill: ${pointColor};
     cursor: pointer;
   }
-`;
-
-export const ImageLoadButton = styled.div`
-  align-items: center;
-  justify-content: center;
-  padding-top: 1vh;
-  /* height: 4vh; */
-  width: 4vh;
-  font-size: 1.4vh;
-  background-color: ${whiteColor};
 `;
 
 export const ImageLoadButtonLabel = styled.label`
-  &:hover {
-    color: ${pointColor};
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 export const Input = styled.input`
