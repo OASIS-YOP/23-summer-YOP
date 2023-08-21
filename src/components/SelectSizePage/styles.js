@@ -11,19 +11,20 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: auto; min-width: 130vh;
+  width: auto;
+  min-width: 130vh;
   height: 70vh;
 
   background-color: #ededed;
   box-shadow: 3px 5px 20px 12px rgba(0, 0, 0, 13%);
   border-radius: 30px;
-  
+
   padding: 20px;
 `;
 
 export const SelectSizeLabel = styled.p`
   margin-top: 5%;
-  
+
   font-size: 3vh;
 `;
 
@@ -55,15 +56,15 @@ export const Size1 = styled.div`
   border: 2px dotted #979797;
   background-color: ${whiteColor};
 
-    &:hover {
-      background-color: ${primaryColor};
-      border: 2px dotted black;
-    }
+  &:hover {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
 
-    &.active {
-      background-color: ${primaryColor};
-      border: 2px dotted black;
-    }
+  &.active {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
 `;
 export const Size2 = styled.div`
   width: 31.567080045095828vh;
@@ -72,15 +73,15 @@ export const Size2 = styled.div`
   border: 2px dotted #979797;
   background-color: ${whiteColor};
 
-    &:hover {
-      background-color: ${primaryColor};
-      border: 2px dotted black;
-    }
+  &:hover {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
 
-    &.active {
-      background-color: ${primaryColor};
-      border: 2px dotted black;
-    }
+  &.active {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
 `;
 export const Size3 = styled.div`
   width: 44.164037854889585vh;
@@ -89,15 +90,15 @@ export const Size3 = styled.div`
   border: 2px dotted #979797;
   background-color: ${whiteColor};
 
-    &:hover {
-      background-color: ${primaryColor};
-      border: 2px dotted black;
-    }
-    
-    &.active {
-      background-color: ${primaryColor};
-      border: 2px dotted black;
-    }
+  &:hover {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
+
+  &.active {
+    background-color: ${primaryColor};
+    border: 2px dotted black;
+  }
 `;
 
 export const SizeLabel = styled.p`
@@ -115,12 +116,14 @@ export const OkButton = styled.button`
 
   margin-top: 2%;
   margin-bottom: 5%;
-  
-  cursor: pointer;
 
   font-size: 2vh;
+  &:disabled {
+    pointer-events: none;
+  }
 
-    &:hover {
-      background-color: ${primaryColor};
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: ${primaryColor};
+  }
 `;

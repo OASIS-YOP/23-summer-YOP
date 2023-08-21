@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fabric } from 'fabric';
 import * as s from './styles';
 
@@ -6,32 +6,21 @@ export const ImageTab = ({ canvas, image }) => {
   const [reverseXToggle, setReverseXToggle] = useState(true);
   const [reverseYToggle, setReverseYToggle] = useState(true);
   const [applyGray, setApplyGray] = useState(false);
+  const [isDisableButton, setIsDisableButton] = useState(true);
 
   //filter part
 
   canvas.on({
     'after:render': () => {
-      fabric.util
-        .toArray(document.getElementsByClassName('image-input'))
-        .forEach((el) => (el.disabled = false));
+      setIsDisableButton(false);
+      // fabric.util
+      //   .toArray(document.getElementsByClassName('image-input'))
+      //   .forEach((el) => (el.disabled = false));
     },
   });
 
   const applyFilter = (index, filter) => {
     image.filters[index] = filter;
-    image.applyFilters();
-    canvas.renderAll();
-  };
-
-  const applyGrayFilter = (filter) => {
-    console.log('gray!');
-    image.filters.push(filter);
-    image.applyFilters();
-    canvas.renderAll();
-  };
-
-  const removeGrayFilter = () => {
-    image.filters.pop();
     image.applyFilters();
     canvas.renderAll();
   };
@@ -42,6 +31,24 @@ export const ImageTab = ({ canvas, image }) => {
       image.applyFilters();
       canvas.renderAll();
     }
+  };
+
+  const onClickGray = () => {
+    console.log('gray!');
+    setApplyGray((prev) => !prev);
+  };
+
+  const applyGrayFilter = (index, filter) => {
+    image.filters[index] = filter;
+    console.log(image.filters);
+    image.applyFilters();
+    canvas.renderAll();
+  };
+
+  const removeGrayFilter = () => {
+    image.filters.splice(0);
+    image.applyFilters();
+    canvas.renderAll();
   };
 
   //좌우반전 part
@@ -59,14 +66,57 @@ export const ImageTab = ({ canvas, image }) => {
   //자르기 대체 part
   const angleControl = () => {
     const angle = document.getElementById('angle-control');
-    image.set('angle', parseInt(angle.value)).setCoords();
-    canvas.requestRenderAll();
+    const newAngle = parseInt(angle.value);
+
+    if (image) {
+      const currentCenter = image.getCenterPoint();
+      // 이미지의 회전 중심 변경
+      image.set({
+        originX: 'center',
+        originY: 'center',
+        angle: newAngle,
+      });
+      //변한 이미지의 회전중심 얻기
+      const newCenter = image.getCenterPoint();
+
+      //회전 중심 조정
+      const deltaX = currentCenter.x - newCenter.x;
+      const deltaY = currentCenter.y - newCenter.y;
+      image.set({
+        left: image.left + deltaX,
+        top: image.top + deltaY,
+      });
+      image.set('angle', newAngle).setCoords();
+
+      canvas.requestRenderAll();
+    }
   };
 
   const scaleControl = () => {
     const scale = document.getElementById('scale-control');
-    image.scale(parseFloat(scale.value) / 50).setCoords();
-    canvas.requestRenderAll();
+    // if (image) {
+    //   const currentCenter = image.getCenterPoint();
+
+    //   // 이미지의 회전 중심 변경
+    //   image.set({
+    //     originX: 'center',
+    //     originY: 'center',
+    //   });
+
+    //   //변한 이미지의 회전중심 얻기
+    //   const newCenter = image.getCenterPoint();
+    //   //회전 중심 조정
+    //   const deltaX = currentCenter.x - newCenter.x;
+    //   const deltaY = currentCenter.y - newCenter.y;
+
+    //   image.set({
+    //     left: image.left + deltaX,
+    //     top: image.top + deltaY,
+    //   });
+
+      image.scale(parseFloat(scale.value) / 50).setCoords();
+      canvas.requestRenderAll();
+    // }
   };
 
   const topControl = () => {
@@ -81,23 +131,40 @@ export const ImageTab = ({ canvas, image }) => {
     canvas.requestRenderAll();
   };
 
+  //gray toggle
+  useEffect(() => {
+    if (!image) return;
+    applyGray
+      ? applyGrayFilter(0, new fabric.Image.filters.Grayscale())
+      : removeGrayFilter();
+  }, [applyGray]);
+
   return (
     <s.Wrapper>
       <s.LeftContainer>
-        <button onClick={reverseX}>reverseX</button>
-        <button onClick={reverseY}>reverseY</button>
+        <button
+          className='image-input'
+          onClick={reverseX}
+          disabled={isDisableButton}
+        >
+          reverseX
+        </button>
+        <button
+          className='image-input'
+          onClick={reverseY}
+          disabled={isDisableButton}
+        >
+          reverseY
+        </button>
         <p>
           <button
             className='image-input'
             id='grayscale'
-            onClick={() =>
-              applyGrayFilter(new fabric.Image.filters.Grayscale())
-            }
-            // disabled={applyGray === false ? true : ''}
+            onClick={onClickGray}
+            disabled={isDisableButton}
           >
-            Gray
+            gray
           </button>
-          <button onClick={() => removeGrayFilter()}>x</button>
         </p>
         <p>
           <label>
@@ -107,6 +174,8 @@ export const ImageTab = ({ canvas, image }) => {
             className='image-input'
             id='brightness-value'
             type='range'
+            min={-100}
+            max={100}
             defaultValue={0}
             onInput={() => {
               applyFilter(
@@ -125,7 +194,7 @@ export const ImageTab = ({ canvas, image }) => {
                 )
               );
             }}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <p>
@@ -134,6 +203,8 @@ export const ImageTab = ({ canvas, image }) => {
             className='image-input'
             id='saturation-value'
             type='range'
+            min={-100}
+            max={100}
             defaultValue={0}
             onInput={() => {
               applyFilter(
@@ -152,7 +223,7 @@ export const ImageTab = ({ canvas, image }) => {
                 )
               );
             }}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <span>대비:</span>
@@ -160,6 +231,8 @@ export const ImageTab = ({ canvas, image }) => {
           className='image-input'
           id='contrast-value'
           type='range'
+          min={-100}
+          max={100}
           defaultValue={0}
           onInput={() => {
             applyFilter(
@@ -176,11 +249,10 @@ export const ImageTab = ({ canvas, image }) => {
               parseFloat(document.getElementById('contrast-value').value / 50)
             );
           }}
-          disabled={true}
+          disabled={isDisableButton}
         />
       </s.LeftContainer>
 
-      {/* crop */}
       <s.RightContainer>
         <p>
           ang:
@@ -192,7 +264,7 @@ export const ImageTab = ({ canvas, image }) => {
             min={-100}
             max={100}
             onInput={angleControl}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <p>
@@ -202,7 +274,7 @@ export const ImageTab = ({ canvas, image }) => {
             id='scale-control'
             type='range'
             onInput={scaleControl}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <p>
@@ -215,7 +287,7 @@ export const ImageTab = ({ canvas, image }) => {
             min={-200}
             max={100}
             onInput={topControl}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
         <p>
@@ -228,7 +300,7 @@ export const ImageTab = ({ canvas, image }) => {
             min={-100}
             max={100}
             onInput={leftControl}
-            disabled={true}
+            disabled={isDisableButton}
           />
         </p>
       </s.RightContainer>
