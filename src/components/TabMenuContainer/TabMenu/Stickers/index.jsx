@@ -13,7 +13,7 @@ export const Stickers = ({ canvas }) => {
     { src:'HelloST.svg', spec:'', class: 'ST1' },
     { src:'BFF_ST.svg', spec:'', class: 'ST1' },
     { src: 'Love_ST.svg' , spec: '', class: 'ST1' },
-    { src: 'SprinkleYellow_ST.svg', spec: 'particles', class: 'ST1' },
+    { src: 'SprinkleYellow_ST.svg', spec: 'particlesS', class: 'ST1' },
     { src: 'FlowerYellow_ST.svg', spec: '', class: 'ST1' },
     { src: 'Love_ST2.svg',spec: '', class: 'ST1' },
     { src: 'LYS_ST.svg',spec: '', class: 'ST1' },
@@ -36,6 +36,11 @@ export const Stickers = ({ canvas }) => {
   ]);
 
 
+  const [stickerData3, setStickerData3 ] = useState([
+    { src: 'BrokenHeartFixel.svg', spec:'particlesM' },
+    { src:'OKHeartFixel.svg', spec:'particlesM', },
+  ]);
+
   //////////////////////// 스티커 이미지 클릭시 캔버스에 추가하는 함수 ////////////////////////
 
   const handleImageClick = (e) => {
@@ -43,7 +48,8 @@ export const Stickers = ({ canvas }) => {
     const imageUrl = e.target.src;
     const spec = e.target.dataset.spec;
 
-    const isParticles = spec === "particles";
+    const isParticlesS = spec === "particlesS";
+    const isPrticlesM = spec === "particlesM";
     const isP = spec === "p";
     const frame = canvas.getObjects().find((object) => object.class === 'frame');
     // frame이라는 class를 가진 객체를 찾아서 frame에 할당
@@ -57,9 +63,11 @@ export const Stickers = ({ canvas }) => {
           svgViewportTransformation: true,
         });
 
-        if (isParticles) {
+        if (isParticlesS) {
           img.scaleToWidth(30);
         } else if(isP) {
+          img.scaleToWidth(50);
+        } else if(isPrticlesM) {
           img.scaleToWidth(50);
         } else {
           img.scaleToWidth(100);
@@ -78,7 +86,7 @@ export const Stickers = ({ canvas }) => {
   return (
     <s.StickerList>
       {stickerData1.map( (stickerData1, index) => (
-        ( stickerData1.spec === 'particles' ? (          
+        ( stickerData1.spec === 'particlesS' ? (          
           <img
             key={index}
             src={stickerData1.src} onClick={(e) => handleImageClick(e)}
@@ -109,6 +117,24 @@ export const Stickers = ({ canvas }) => {
                 key={index}
                 src={stickerData2.src} onClick={(e) => handleImageClick(e)}
                 data-spec={stickerData2.spec}
+                width='50px'
+              />
+          ))
+        )
+      )}
+      {stickerData3.map( (stickerData3, index) => (
+        ( stickerData2.spec === '' ? (
+          <img
+            key={index}
+            src={stickerData3.src} onClick={(e) => handleImageClick(e)}
+            data-spec={stickerData3.spec}
+            width='100px'
+            height='auto'
+          />
+          ):( <img
+                key={index}
+                src={stickerData3.src} onClick={(e) => handleImageClick(e)}
+                data-spec={stickerData3.spec}
                 width='50px'
               />
           ))

@@ -1,7 +1,10 @@
 import * as s from './styles';
+import { useEffect } from 'react';
 
 export const ContextMenu = ({ canvas, x, y, onClose, onCopy, onPaste, onCut, onDelete  }) => {
   // 컨텍스트 메뉴
+
+
   const handleMenuItemClick = (action) => {
 
     // 각 메뉴 항목을 클릭했을 때 실행될 동작을 구현
@@ -51,6 +54,14 @@ export const ContextMenu = ({ canvas, x, y, onClose, onCopy, onPaste, onCut, onD
     onClose();
     // 컨텍스트 메뉴 닫기
   };
+
+  
+  useEffect(() => {
+    window.addEventListener('keydown', handleCtrlKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleCtrlKeyDown);
+    };
+  }, []);
 
   return (
     <s.ContextMenu

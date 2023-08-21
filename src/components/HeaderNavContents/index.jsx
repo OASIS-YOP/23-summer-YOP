@@ -10,6 +10,7 @@ import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
 import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
+// import { CtrlKeyDown } from '../ContextMenu/CtrlKeyDown';
 //import 'fabric-history';
 
 //crop
@@ -295,6 +296,8 @@ export const HeaderNavContents = ( ) => {
 
   ////////////////컨텍스트 메뉴 ////////////////////
 
+
+
   const handleContextMenu = (e) => {
     e.preventDefault();
     // 마우스 우클릭 시 마우스 위치에 컨텍스트 메뉴를 표시하기 위한 정보 설정
@@ -320,15 +323,15 @@ export const HeaderNavContents = ( ) => {
   };
 
   // 붙여넣기 함수
-  const handlePasteObject = (x, y) => {
+  const handlePasteObject = (x, y, Cx, Cy) => {
     if (copiedObject !== null) {
       if (copiedObject.type !== 'activeSelection' ) {
         // 선택된 객체가 단일 객체인 경우
         if(copiedObject.type === 'image') {
           fabric.Image.fromObject(copiedObject, function (img) {
             img.set({
-              left: x / 3,
-              top: y / 3,
+              left: x / 3 || Cx,
+              top: y / 3 || Cy,
 
               evented: true,
               svgViewportTransformation: true,
@@ -339,8 +342,8 @@ export const HeaderNavContents = ( ) => {
           } else if (copiedObject.type === 'i-text') { 
             fabric.IText.fromObject(copiedObject, function (text) {
               text.set({
-                left: x / 3,
-                top: y / 3,
+                left: x / 3 || Cx,
+                top: y / 3 || Cy,
                 evented: true,
                 svgViewportTransformation: true,
               });
@@ -354,8 +357,8 @@ export const HeaderNavContents = ( ) => {
           { if( copiedObject.objects[i].type === 'image') {
             fabric.Image.fromObject(copiedObject.objects[i], function (img) {
               img.set({
-                left: x / 3,
-                top: y / 3,
+                left: x / 3 || Cx,
+                top: y / 3 || Cy,
                 evented: true,
                 svgViewportTransformation: true,
               });
@@ -365,8 +368,8 @@ export const HeaderNavContents = ( ) => {
           } else if (copiedObject.objects[i].type === 'i-text') {
             fabric.IText.fromObject(copiedObject.objects[i], function (text) {
               text.set({
-                left: x / 3,
-                top: y / 3,
+                left: x / 3 || Cx,
+                top: y / 3 || Cy,
                 evented: true,
                 svgViewportTransformation: true,
               });

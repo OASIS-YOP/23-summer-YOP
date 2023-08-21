@@ -22,9 +22,8 @@ export const TextTab = ({ canvas }) => {
             option.value = font;
             select.appendChild(option);
         });
+      });
 
-
-  let fonts = ["Black Han Sans", "Noto Sans Korean", "Orbit"];
 
   const AddDate = () => {
     // 캔버스에 텍스트 추가될 때 디폴트로 표시될 날짜 포맷팅 함수
@@ -38,7 +37,7 @@ export const TextTab = ({ canvas }) => {
 
     if (canvas) {
       let text = new fabric.IText(formatDate(currentDate), {
-        fill: textColor,
+        fill: color,
         editable: true,
         hasControls: true,
         class: 'date',

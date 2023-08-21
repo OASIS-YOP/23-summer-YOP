@@ -130,18 +130,6 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
     }
   };
 
-  const ReturnToSelect = () => {
-    return(
-      <>
-        <SelectSizePage
-          isClickedOk={isClickedOk}
-          selectCanvasSize={selectCanvasSize}
-        />
-      </>
-      
-    )
-  };
-
 
   return (
     <>
@@ -163,7 +151,7 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
         <s.Button onClick = {Undo} canvas={canvas}>←</s.Button>
         <s.Button onClick = {Redo} canvas={canvas}>→</s.Button>
         <s.Button onClick = {RemoveAll} canvas={canvas}>모두 지우기</s.Button>
-        <s.Button onClick = {ReturnToSelect}>폴라로이드 크기 다시 선택하기</s.Button>
+        <s.Button>폴라로이드 크기 다시 선택하기</s.Button>
       </s.Container>
       </s.ButtonGroupWrapper>
     </>
