@@ -1,18 +1,20 @@
 import * as s from './styles';
 import 'fabric-history';
-import { SelectSizePage } from '../SelectSizePage';
+import { ReactComponent as ViewGallaryIcon } from '../../assets/Button/ViewGallaryIcon.svg';
+import { ReactComponent as SaveIcon } from '../../assets/Button/SaveIcon.svg';
+import { ReactComponent as HomeIcon } from '../../assets/Button/HomeIcon.svg';
+import { ReactComponent as RedoIcon } from '../../assets/Button/RedoIcon.svg';
+import { ReactComponent as UndoIcon } from '../../assets/Button/UndoIcon.svg';
+import { ReactComponent as LoadImageIcon } from '../../assets/Button/LoadImageIcon.svg';
+import { ReactComponent as ClearIcon } from '../../assets/Button/ClearIcon.svg';
 
 // eslint-disable-next-line react/prop-types
-export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }) => {
-
-  // var current;
-  // var list = [];
-  // var state = [];
-  // var index = 0;
-  // var index2 = 0;
-  // var action = false;
-  // var refresh = true;
-
+export const ButtonGroupContainer = ({
+  handleChangedFile,
+  setIsSelectPage,
+  fileInputRef,
+  canvas,
+}) => {
   // canvas.on("object:added", function (e) {
   //     var object = e.target;
   //     // console.log('object:modified');
@@ -32,8 +34,6 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
   //     list[index] = object;
   //     index++;
   //     index2 = index - 1;
-
-
 
   //     refresh = true;
   // });
@@ -81,7 +81,6 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
   //     console.log("index2",index2);
   //     console.log("state", state)
   //     current.setOptions(JSON.parse(state[index2]));
-      
 
   //     index--;
   //     current.setCoords();
@@ -107,49 +106,80 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
   //     canvas.renderAll();
   // }
 
-  const Undo = () =>{
-    if(canvas){
+  const Undo = () => {
+    if (canvas) {
       canvas.undo();
       canvas.renderAll();
-
     }
-
   };
 
-  const Redo = ()=>{
-    if(canvas){
+  const Redo = () => {
+    if (canvas) {
       canvas.redo();
       canvas.renderAll();
     }
   };
 
   const RemoveAll = () => {
-    if(canvas){
+    if (canvas) {
       canvas.remove(...canvas.getObjects());
       canvas.backgroundImage = null;
     }
   };
 
-  const ReturnToSelect = () => {
-    return(
-      <>
-        <SelectSizePage
-          isClickedOk={isClickedOk}
-          selectCanvasSize={selectCanvasSize}
-        />
-      </>
-      
-    )
+  // const ReturnToSelect = () => {
+  //   return(
+  //     <>
+  //       <SelectSizePage
+  //         isClickedOk={isClickedOk}
+  //         selectCanvasSize={selectCanvasSize}
+  //       />
+  //     </>
+
+  //   )
+  // };
+
+  const onClickHome = () => {
+    setIsSelectPage(true);
   };
 
-
   return (
-    <>
+    // <s.ButtonGroupWrapper>
+    //   <s.Container>
+    //     <s.ImageLoadButton htmlFor='file'>
+    //       <s.ImageLoadButtonLabel htmlFor='file'>
+    //         이미지 불러오기
+    //       </s.ImageLoadButtonLabel>
+    //       <s.Input
+    //         type='file'
+    //         id='file'
+    //         onChange={handleChangedFile}
+    //         ref={fileInputRef}
+    //       />
+    //     </s.ImageLoadButton>
+    //     <s.Button>저장하기</s.Button>
+    //     <s.Button>내 이미지 보기</s.Button>
+    //     <s.Button onClick={Undo} canvas={canvas}>
+    //       ←
+    //     </s.Button>
+    //     <s.Button onClick={Redo} canvas={canvas}>
+    //       →
+    //     </s.Button>
+    //     <s.Button onClick={RemoveAll} canvas={canvas}>
+    //       모두 지우기
+    //     </s.Button>
+    //   {/* <s.Button onClick={ReturnToSelect}>
+    //     폴라로이드 크기 다시 선택하기
+    //   </s.Button> */}
+    // {/* </s.Container> */}
     <s.ButtonGroupWrapper>
       <s.Container>
-        <s.ImageLoadButton htmlFor='file'>
+        <s.Button onClick={onClickHome}>
+          <HomeIcon className='icon' width={30} height={30} />
+        </s.Button>
+        <s.Button>
           <s.ImageLoadButtonLabel htmlFor='file'>
-            이미지 불러오기
+            <LoadImageIcon className='icon' width={30} height={30} />
           </s.ImageLoadButtonLabel>
           <s.Input
             type='file'
@@ -157,15 +187,23 @@ export const ButtonGroupContainer = ({ handleChangedFile, fileInputRef, canvas }
             onChange={handleChangedFile}
             ref={fileInputRef}
           />
-        </s.ImageLoadButton>
-        <s.Button>저장하기</s.Button>
-        <s.Button>내 이미지 보기</s.Button>
-        <s.Button onClick = {Undo} canvas={canvas}>←</s.Button>
-        <s.Button onClick = {Redo} canvas={canvas}>→</s.Button>
-        <s.Button onClick = {RemoveAll} canvas={canvas}>모두 지우기</s.Button>
-        <s.Button onClick = {ReturnToSelect}>폴라로이드 크기 다시 선택하기</s.Button>
+        </s.Button>
+        <s.Button>
+          <SaveIcon className='icon' width={30} height={30} />
+        </s.Button>
+        <s.Button>
+          <ViewGallaryIcon className='icon' width={30} height={30} />
+        </s.Button>
+        <s.Button onClick={Undo} canvas={canvas}>
+          <UndoIcon className='icon' width={30} height={30} />
+        </s.Button>
+        <s.Button onClick={Redo} canvas={canvas}>
+          <RedoIcon className='icon' width={30} height={30} />
+        </s.Button>
+        <s.Button onClick={RemoveAll} canvas={canvas}>
+          <ClearIcon className='icon' width={30} height={30} />
+        </s.Button>
       </s.Container>
-      </s.ButtonGroupWrapper>
-    </>
+    </s.ButtonGroupWrapper>
   );
 };

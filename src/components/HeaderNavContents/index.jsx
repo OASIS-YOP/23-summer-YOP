@@ -10,22 +10,22 @@ import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
 import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
+import { jsPDF } from 'jspdf';
 //import 'fabric-history';
 
 //crop
 // import Cropper from 'react-cropper';
 // import 'cropperjs/dist/cropper.css';
 
-export const HeaderNavContents = ( ) => {
+export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
   const [toggleState, setToggleState] = useState(0);
   const [isSelectPage, setIsSelectPage] = useState(true);
-  const [canvasSize,    setCanvasSize] = useState([0, 0]);
+  const [canvasSize, setCanvasSize] = useState([0, 0]);
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
-
 
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
@@ -111,47 +111,11 @@ export const HeaderNavContents = ( ) => {
     console.log(canvas.getActiveObject());
   };
 
-  // const deleteIcon =
-  //   "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' id='Ebene_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='595.275px' height='595.275px' viewBox='200 215 230 470' xml:space='preserve'%3E%3Ccircle style='fill:%23F44336;' cx='299.76' cy='439.067' r='218.516'/%3E%3Cg%3E%3Crect x='267.162' y='307.978' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -222.6202 340.6915)' style='fill:white;' width='65.545' height='262.18'/%3E%3Crect x='266.988' y='308.153' transform='matrix(0.7071 0.7071 -0.7071 0.7071 398.3889 -83.3116)' style='fill:white;' width='65.544' height='262.179'/%3E%3C/g%3E%3C/svg%3E";
-
-  // const deleteImg = document.createElement('img');
-  // deleteImg.src = deleteIcon;
-
-  // fabric.Object.prototype.transparentCorners = false;
-  // fabric.Object.prototype.cornerColor = 'blue';
-  // fabric.Object.prototype.cornerStyle = 'circle';
-
-  // const deleteObject = (eventData, transform) => {
-  //   const target = transform.target;
-  //   const canvas = target.canvas;
-  //   canvas.remove(target);
-  //   canvas.requestRenderAll();
-  // };
-  // const renderIcon = (icon) => {
-  //   return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
-  //     const size = renderIcon.cornerSize;
-  //     ctx.save();
-  //     ctx.translate(left, top);
-  //     ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
-  //     ctx.drawImage(img, -size / 2, -size / 2, size, size);
-  //     ctx.restore();
-  //   };
-  // };
-  // fabric.Object.prototype.controls.deleteControl = new fabric.Control({
-  //   x: 0.5,
-  //   y: -0.5,
-  //   offsetY: 16,
-  //   cursorStyle: 'pointer',
-  //   mouseUpHandler: deleteObject,
-  //   render: renderIcon(deleteImg),
-  //   cornerSize: 24,
-  // });
-
   const removeItem = () => {
-    if ( canvas.getActiveObject() !== null || undefined ){
-      if(canvas.getActiveObject().type === 'activeSelection') {
-        canvas.getActiveObject().forEachObject(function(o) {
-          canvas.remove(o)
+    if (canvas.getActiveObject() !== null || undefined) {
+      if (canvas.getActiveObject().type === 'activeSelection') {
+        canvas.getActiveObject().forEachObject(function (o) {
+          canvas.remove(o);
         });
         canvas.discardActiveObject().renderAll();
       } else {
@@ -174,34 +138,6 @@ export const HeaderNavContents = ( ) => {
     };
   }, [canvas]);
 
-  // const handleChangedFile = (e) => {
-  //   const reader = new FileReader();
-  //   if (e.target.files) {
-  //     //선택한 img파일의 URL을 읽어옴
-  //     reader.readAsDataURL(e.target.files[0]);
-  //     console.log(reader);
-  //   }
-  //   reader.onloadend = () => {
-  //     //선택한 img파일의 base64
-  //     const resultImage = reader.result;
-  //     const loadImage = () => {
-  //       fabric.Image.fromURL(
-  //         resultImage.toString(),
-  //         (imgFile) => {
-  //           imgFile.set({ objectCaching: false });
-  //           imgFile.scaleToHeight(canvasSize[1]);
-  //           imgFile.scaleToWidth(canvasSize[0]);
-  //           // canvas.add(imgFile);
-  //           canvas.backgroundImage = imgFile;
-  //           canvas.renderAll();
-  //         },
-  //         { crossOrigin: 'anonymous' }
-  //       );
-  //     };
-  //     loadImage();
-  //   };
-  // };
-
   useEffect(() => {
     const initCanvas = () =>
       new fabric.Canvas('canvas', {
@@ -209,9 +145,8 @@ export const HeaderNavContents = ( ) => {
         height: canvasSize[1],
         width: canvasSize[0],
         backgroundColor: 'white',
-      }
-      );
-      
+      });
+
     setCanvas(initCanvas());
   }, [isSelectPage]);
 
@@ -227,6 +162,7 @@ export const HeaderNavContents = ( ) => {
   useEffect(() => {
     handleChangedFile;
   }, [image]);
+
   // const moveBackgroundImage = (leftOffset, topOffset) => {
   //   if (canvas.backgroundImage) {
   //     // 현재 배경 이미지의 위치 가져오기
@@ -322,9 +258,9 @@ export const HeaderNavContents = ( ) => {
   // 붙여넣기 함수
   const handlePasteObject = (x, y) => {
     if (copiedObject !== null) {
-      if (copiedObject.type !== 'activeSelection' ) {
+      if (copiedObject.type !== 'activeSelection') {
         // 선택된 객체가 단일 객체인 경우
-        if(copiedObject.type === 'image') {
+        if (copiedObject.type === 'image') {
           fabric.Image.fromObject(copiedObject, function (img) {
             img.set({
               left: x / 3,
@@ -336,46 +272,50 @@ export const HeaderNavContents = ( ) => {
             canvas.add(img);
             canvas.renderAll();
           });
-          } else if (copiedObject.type === 'i-text') { 
-            fabric.IText.fromObject(copiedObject, function (text) {
-              text.set({
-                left: x / 3,
-                top: y / 3,
-                evented: true,
-                svgViewportTransformation: true,
-              });
-              canvas.add(text);
-              canvas.renderAll();
+        } else if (copiedObject.type === 'i-text') {
+          fabric.IText.fromObject(copiedObject, function (text) {
+            text.set({
+              left: x / 3,
+              top: y / 3,
+              evented: true,
+              svgViewportTransformation: true,
             });
-          } console.log('object is pasted', copiedObject);
+            canvas.add(text);
+            canvas.renderAll();
+          });
+        }
+        console.log('object is pasted', copiedObject);
       } else if (copiedObject.type === 'activeSelection') {
         // 선택된 객체가 다중 객체인 경우
         for (let i = 0; i < copiedObject.objects.length; i++) {
-          { if( copiedObject.objects[i].type === 'image') {
-            fabric.Image.fromObject(copiedObject.objects[i], function (img) {
-              img.set({
-                left: x / 3,
-                top: y / 3,
-                evented: true,
-                svgViewportTransformation: true,
+          {
+            if (copiedObject.objects[i].type === 'image') {
+              fabric.Image.fromObject(copiedObject.objects[i], function (img) {
+                img.set({
+                  left: x / 3,
+                  top: y / 3,
+                  evented: true,
+                  svgViewportTransformation: true,
+                });
+                canvas.add(img);
+                canvas.renderAll();
               });
-              canvas.add(img);              
-              canvas.renderAll();
-            });
-          } else if (copiedObject.objects[i].type === 'i-text') {
-            fabric.IText.fromObject(copiedObject.objects[i], function (text) {
-              text.set({
-                left: x / 3,
-                top: y / 3,
-                evented: true,
-                svgViewportTransformation: true,
+            } else if (copiedObject.objects[i].type === 'i-text') {
+              fabric.IText.fromObject(copiedObject.objects[i], function (text) {
+                text.set({
+                  left: x / 3,
+                  top: y / 3,
+                  evented: true,
+                  svgViewportTransformation: true,
+                });
+                canvas.add(text);
+                canvas.renderAll();
               });
-              canvas.add(text);
-              canvas.renderAll();
-            });
-          }}
+            }
+          }
         }
-      } console.log('objects is pasted', copiedObject);
+      }
+      console.log('objects is pasted', copiedObject);
     } else {
       console.log('no object is copied');
     }
@@ -413,10 +353,9 @@ export const HeaderNavContents = ( ) => {
     canvas.renderAll();
   };
 
- ///////////////////////////////////////////////
+  ///////////////////////////////////////////////
 
- ///////////////선택된 객체수/모든 객체수/////////
-
+  ///////////////선택된 객체수/모든 객체수/////////
 
   // 선택된 객체 수를 저장하는 state
   const [selectedObjectCount, setSelectedObjectCount] = useState(0);
@@ -450,6 +389,20 @@ export const HeaderNavContents = ( ) => {
         // 프레임 객체를 제외한 객체 수를 state에 저장
       };
 
+      // const onClickSave = () => {
+      //   let imageData = canvas.toDataURL({
+      //     format: 'png',
+      //     quality: 1,
+      //   });
+
+      //   let img = new Image();
+      //   img.src = imageData;
+
+      //   document.body.appendChild(img);
+
+      //   let doc = new jsPDF();
+      // };
+
       canvas.on('selection:created', handleObjectSelectionChange);
       canvas.on('selection:updated', handleObjectSelectionChange);
       canvas.on('selection:cleared', () => setSelectedObjectCount(0));
@@ -469,8 +422,7 @@ export const HeaderNavContents = ( ) => {
   }, [canvas]);
 
   ///////////////////////////////////////////////
-  
- 
+
   return (
     <>
       <s.Header>
@@ -527,11 +479,12 @@ export const HeaderNavContents = ( ) => {
               <>
                 <s.LeftContainer>
                   {/* <s.ButtonGroupWrapper> */}
-                    <ButtonGroupContainer
-                      handleChangedFile={handleChangedFile}
-                      fileInputRef={fileInputRef}
-                      canvas={canvas}
-                    />
+                  <ButtonGroupContainer
+                    handleChangedFile={handleChangedFile}
+                    setIsSelectPage={setIsSelectPage}
+                    fileInputRef={fileInputRef}
+                    canvas={canvas}
+                  />
                   {/* </s.ButtonGroupWrapper> */}
                   <s.CanvasSpaceWrapper onContextMenu={ContextMenu}>
                     <s.CanvasSpace>
@@ -539,12 +492,15 @@ export const HeaderNavContents = ( ) => {
                       <>{/* <button onClick={removeItem}>delete</button> */}</>
                     </s.CanvasSpace>
                     <s.LayerBtnWrapper>
+                      <>{/* <button onClick={onClickSave}>save</button> */}</>
                       <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
                       <s.BringTo onClick={sendBackwards}>뒤로</s.BringTo>
                       <s.BringTo onClick={bringForward}>앞으로</s.BringTo>
                       <s.BringTo onClick={bringToFront}>맨 앞으로</s.BringTo>
                     </s.LayerBtnWrapper>
-                    <h2>선택된 오브젝트 : {selectedObjectCount}/{numOfObjects}</h2>
+                    <h2>
+                      선택된 오브젝트 : {selectedObjectCount}/{numOfObjects}
+                    </h2>
                   </s.CanvasSpaceWrapper>
                 </s.LeftContainer>
                 <s.RightContainer>
