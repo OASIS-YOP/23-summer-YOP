@@ -10,6 +10,7 @@ import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
 import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
+import { jsPDF } from 'jspdf';
 //import 'fabric-history';
 
 //crop
@@ -388,6 +389,20 @@ export const HeaderNavContents = () => {
         // 프레임 객체를 제외한 객체 수를 state에 저장
       };
 
+      // const onClickSave = () => {
+      //   let imageData = canvas.toDataURL({
+      //     format: 'png',
+      //     quality: 1,
+      //   });
+
+      //   let img = new Image();
+      //   img.src = imageData;
+
+      //   document.body.appendChild(img);
+
+      //   let doc = new jsPDF();
+      // };
+
       canvas.on('selection:created', handleObjectSelectionChange);
       canvas.on('selection:updated', handleObjectSelectionChange);
       canvas.on('selection:cleared', () => setSelectedObjectCount(0));
@@ -477,6 +492,7 @@ export const HeaderNavContents = () => {
                       <>{/* <button onClick={removeItem}>delete</button> */}</>
                     </s.CanvasSpace>
                     <s.LayerBtnWrapper>
+                      <>{/* <button onClick={onClickSave}>save</button> */}</>
                       <s.BringTo onClick={sendToBack}>맨 뒤로</s.BringTo>
                       <s.BringTo onClick={sendBackwards}>뒤로</s.BringTo>
                       <s.BringTo onClick={bringForward}>앞으로</s.BringTo>

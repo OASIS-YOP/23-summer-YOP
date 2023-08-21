@@ -31,6 +31,8 @@ export const RightContainer = styled.div`
   width: 50%;
 `;
 
+// range바 커스텀
+
 // export const RangeInput = styled.input`
 //   appearance: none;
 //   accent-color: ${pointColor};
