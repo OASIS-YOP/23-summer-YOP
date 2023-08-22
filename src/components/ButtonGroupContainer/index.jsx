@@ -7,7 +7,15 @@ import { ReactComponent as RedoIcon } from '../../assets/Button/RedoIcon.svg';
 import { ReactComponent as UndoIcon } from '../../assets/Button/UndoIcon.svg';
 import { ReactComponent as LoadImageIcon } from '../../assets/Button/LoadImageIcon.svg';
 import { ReactComponent as ClearIcon } from '../../assets/Button/ClearIcon.svg';
+import { Tooltip } from 'react-tooltip';
 
+// const Tooltip = ({ message }) => {
+//   return (
+//     <s.TooltipContainer>
+//       <s.TooltipContent className='tooltip'>{message}</s.TooltipContent>
+//     </s.TooltipContainer>
+//   );
+// };
 // eslint-disable-next-line react/prop-types
 export const ButtonGroupContainer = ({
   handleChangedFile,
@@ -175,11 +183,27 @@ export const ButtonGroupContainer = ({
     <s.ButtonGroupWrapper>
       <s.Container>
         <s.Button onClick={onClickHome}>
-          <HomeIcon className='icon' width={30} height={30} />
+          <HomeIcon id='home_icon' className='icon' width={30} height={30} />
         </s.Button>
+        <Tooltip
+          key={`tooltip`}
+          anchorSelect='#home_icon'
+          content={'사이즈 다시 선택'}
+          place='right-start'
+          style={{
+            backgroundColor: 'white',
+            color: 'gray',
+          }}
+        />
+
         <s.Button>
           <s.ImageLoadButtonLabel htmlFor='file'>
-            <LoadImageIcon className='icon' width={30} height={30} />
+            <LoadImageIcon
+              id='loadImage_icon'
+              className='icon'
+              width={30}
+              height={30}
+            />
           </s.ImageLoadButtonLabel>
           <s.Input
             type='file'
@@ -188,21 +212,69 @@ export const ButtonGroupContainer = ({
             ref={fileInputRef}
           />
         </s.Button>
+        <Tooltip
+          anchorSelect='#loadImage_icon'
+          content={'이미지 불러오기'}
+          place='right-start'
+          style={{ backgroundColor: 'white', color: 'gray' }}
+        />
         <s.Button>
-          <SaveIcon className='icon' width={30} height={30} />
+          <SaveIcon id='save_icon' className='icon' width={30} height={30} />
         </s.Button>
+        <Tooltip
+          content={'이미지 저장하기'}
+          place='right-start'
+          style={{ backgroundColor: 'white', color: 'gray' }}
+        />
         <s.Button>
-          <ViewGallaryIcon className='icon' width={30} height={30} />
+          <ViewGallaryIcon
+            id='viewGallary_icon'
+            className='icon'
+            width={30}
+            height={30}
+          />
         </s.Button>
+        <Tooltip
+          anchorSelect='#viewGallary_icon'
+          content={'내 이미지 보기'}
+          place='right-start'
+          style={{ backgroundColor: 'white', color: 'gray' }}
+        />
         <s.Button onClick={Undo} canvas={canvas}>
-          <UndoIcon className='icon' width={30} height={30} />
+          <UndoIcon id='undo_icon' className='icon' width={30} height={30} />
         </s.Button>
+        <Tooltip
+          key={`tooltip`}
+          anchorSelect='#undo_icon'
+          content={'실행취소'}
+          place='right-start'
+          style={{ backgroundColor: 'white', color: 'gray' }}
+        />
         <s.Button onClick={Redo} canvas={canvas}>
-          <RedoIcon className='icon' width={30} height={30} />
+          <RedoIcon id='redo_icon' className='icon' width={30} height={30} />
         </s.Button>
+        <Tooltip
+          key={`tooltip`}
+          anchorSelect='#redo_icon'
+          content={'되돌리기'}
+          place='right-start'
+          style={{ backgroundColor: 'white', color: 'gray' }}
+        />
         <s.Button onClick={RemoveAll} canvas={canvas}>
-          <ClearIcon className='icon' width={30} height={30} />
+          <ClearIcon
+            id='removeAll_icon'
+            className='icon'
+            width={30}
+            height={30}
+          />
         </s.Button>
+        <Tooltip
+          key={`tooltip`}
+          anchorSelect='#removeAll_icon'
+          content={'모두 지우기'}
+          place='right-start'
+          style={{ backgroundColor: 'white', color: 'gray' }}
+        />
       </s.Container>
     </s.ButtonGroupWrapper>
   );
