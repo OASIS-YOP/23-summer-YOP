@@ -281,7 +281,7 @@ export const Title = styled.div`
 `
 export const Info = styled.div`
   white-space: pre-line;
-  line-height: 2.1vh;
+  line-height: 2.8vh;
   text-align: center;
   font-size: 17px;
 `
