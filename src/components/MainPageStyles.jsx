@@ -50,7 +50,7 @@ export const Footer = styled.div`
 export const GitHub = styled.div`
     font-size: 2.2vh;
     font-align: center;
-    color: white;
+    color: #d1d1d1;
 `
 
 
