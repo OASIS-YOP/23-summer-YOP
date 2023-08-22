@@ -157,6 +157,12 @@ export const ButtonGroupContainer = ({
     }
   };
 
+  const tooltipStyle = {
+    backgroundColor: 'white',
+    color: 'gray',
+    zIndex: '999',
+  };
+
   return (
     <s.ButtonGroupWrapper>
       <s.Container>
@@ -181,7 +187,8 @@ export const ButtonGroupContainer = ({
           key={`tooltip_loadImage_icon`}
           content={'이미지 불러오기'}
           place='right-start'
-          style={{ backgroundColor: 'white', color: 'gray' }}
+          border='1px solid gray'
+          style={tooltipStyle}
         />
         <s.Button>
           <SaveIcon id='save_icon' className='icon' width='4vh' height='100%' />
@@ -191,7 +198,8 @@ export const ButtonGroupContainer = ({
           key={`tooltip_save_icon`}
           content={'이미지 저장하기'}
           place='right-start'
-          style={{ backgroundColor: 'white', color: 'gray' }}
+          border='1px solid gray'
+          style={tooltipStyle}
         />
         {/* <s.Button>
           <ViewGallaryIcon
@@ -199,15 +207,15 @@ export const ButtonGroupContainer = ({
             className='icon'
             width='4vh'
             height='100%'
-          />
-        </s.Button>
-        <Tooltip
-          anchorSelect='#viewGallary_icon'
-          key={`tooltip_viewGallary_icon`}
-          content={'내 이미지 보기'}
-          place='right-start'
-          style={{ backgroundColor: 'white', color: 'gray' }}
-        /> */}
+            />
+            </s.Button>
+            <Tooltip
+            anchorSelect='#viewGallary_icon'
+            key={`tooltip_viewGallary_icon`}
+            content={'내 이미지 보기'}
+            place='right-start'
+            style={{ backgroundColor: 'white', color: 'gray' }}
+          /> */}
         <s.Button onClick={Undo} canvas={canvas}>
           <UndoIcon id='undo_icon' className='icon' width='4vh' height='100%' />
         </s.Button>
@@ -216,7 +224,8 @@ export const ButtonGroupContainer = ({
           key={`tooltip_undo_icon`}
           content={'실행취소'}
           place='right-start'
-          style={{ backgroundColor: 'white', color: 'gray' }}
+          border='1px solid gray'
+          style={tooltipStyle}
         />
         <s.Button onClick={Redo} canvas={canvas}>
           <RedoIcon id='redo_icon' className='icon' width='4vh' height='100%' />
@@ -226,7 +235,8 @@ export const ButtonGroupContainer = ({
           key={`tooltip_redo_icon`}
           content={'되돌리기'}
           place='right-start'
-          style={{ backgroundColor: 'white', color: 'gray' }}
+          border='1px solid gray'
+          style={tooltipStyle}
         />
         <s.Button onClick={RemoveAll} canvas={canvas}>
           <ClearIcon
@@ -241,7 +251,8 @@ export const ButtonGroupContainer = ({
           key={`tooltip_removeAll_icon`}
           content={'모두 지우기'}
           place='right-start'
-          style={{ backgroundColor: 'white', color: 'gray' }}
+          border='1px solid gray'
+          style={tooltipStyle}
         />
         <s.Button onClick={onClickHome}>
           <HomeIcon id='home_icon' className='icon' width='4vh' height='100%' />
@@ -251,10 +262,8 @@ export const ButtonGroupContainer = ({
           key={`tooltip_home_icon`}
           content={'사이즈 다시 선택'}
           place='right-start'
-          style={{
-            backgroundColor: 'white',
-            color: 'gray',
-          }}
+          border='1px solid gray'
+          style={tooltipStyle}
         />
       </s.Container>
     </s.ButtonGroupWrapper>
