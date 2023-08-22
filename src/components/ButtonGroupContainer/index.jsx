@@ -133,8 +133,9 @@ export const ButtonGroupContainer = ({
         )
       ) {
         canvas.backgroundImage = null;
-        canvas.remove(...canvas.getObjects());
-        canvas.renderAll();
+        // canvas.remove(...canvas.getObjects());
+        // canvas.renderAll();
+        canvas.clear();
       }
     }
   };

@@ -58,6 +58,7 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
     const angle = document.getElementById('angle-control');
     const newAngle = parseInt(angle.value);
 
+    ////////////중간점을 중심으로 하는 코드////////////////////
     // if (image) {
     //   const currentCenter = image.getCenterPoint();
     //   // 이미지의 회전 중심 변경
@@ -84,16 +85,11 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
 
   const scaleControl = () => {
     const scale = document.getElementById('scale-control');
-    // if (image) {
-    //   const currentCenter = image.getCenterPoint();
+
+    ////////////중간점을 중심으로 하는 코드////////////////////
     // if (image) {
     //   const currentCenter = image.getCenterPoint();
 
-    //   // 이미지의 회전 중심 변경
-    //   image.set({
-    //     originX: 'center',
-    //     originY: 'center',
-    //   });
     //   // 이미지의 회전 중심 변경
     //   image.set({
     //     originX: 'center',
@@ -106,10 +102,6 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
     //   const deltaX = currentCenter.x - newCenter.x;
     //   const deltaY = currentCenter.y - newCenter.y;
 
-    //   image.set({
-    //     left: image.left + deltaX,
-    //     top: image.top + deltaY,
-    //   });
     //   image.set({
     //     left: image.left + deltaX,
     //     top: image.top + deltaY,
@@ -132,6 +124,27 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
     canvas.requestRenderAll();
   };
 
+  const initRangeInputValues = () => {
+    const rangeInputValues = document.getElementsByClassName('image-input');
+
+    //forEach, for, map 다 안됨.
+    rangeInputValues[0].value = rangeInputValues[0].defaultValue;
+    rangeInputValues[1].value = rangeInputValues[1].defaultValue;
+    rangeInputValues[2].value = rangeInputValues[2].defaultValue;
+    rangeInputValues[3].value = rangeInputValues[3].defaultValue;
+    rangeInputValues[4].value = rangeInputValues[4].defaultValue;
+    rangeInputValues[5].value = rangeInputValues[5].defaultValue;
+    rangeInputValues[6].value = rangeInputValues[6].defaultValue;
+  };
+
+  //canvas clear될때마다 inputValue 초기화
+  canvas.on({ 'canvas:cleared': initRangeInputValues });
+
+  //image 바뀔때마다 inputValue 초기화
+  useEffect(() => {
+    initRangeInputValues();
+  }, [image]);
+
   //gray toggle
   useEffect(() => {
     if (!image) return;
@@ -143,27 +156,14 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
   return (
     <s.Wrapper>
       <s.LeftContainer>
-        <button
-          className='image-input'
-          onClick={reverseX}
-          disabled={isDisableButton}
-        >
+        <button onClick={reverseX} disabled={isDisableButton}>
           좌우대칭
         </button>
-        <button
-          className='image-input'
-          onClick={reverseY}
-          disabled={isDisableButton}
-        >
+        <button onClick={reverseY} disabled={isDisableButton}>
           상하대칭
         </button>
 
-        <button
-          className='image-input'
-          id='grayscale'
-          onClick={onClickGray}
-          disabled={isDisableButton}
-        >
+        <button id='grayscale' onClick={onClickGray} disabled={isDisableButton}>
           흑백
         </button>
 
@@ -285,8 +285,8 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
             id='left-control'
             type='range'
             defaultValue={0}
-            min={-100}
-            max={100}
+            min={-200}
+            max={200}
             onInput={leftControl}
             disabled={isDisableButton}
           />
@@ -297,13 +297,14 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
             className='image-input'
             id='top-control'
             type='range'
-            defaultValue={-50}
-            min={-200}
-            max={100}
+            defaultValue={-100}
+            min={-400}
+            max={200}
             onInput={topControl}
             disabled={isDisableButton}
           />
         </p>
+        {/* <button onClick={}>초깃값으로</button> */}
       </s.RightContainer>
     </s.Wrapper>
   );
