@@ -152,26 +152,14 @@ export const ButtonGroupContainer = ({
   // };
 
   const onClickHome = () => {
-    setIsSelectPage(true);
+    if (confirm('캔버스가 초기화됩니다. 선택페이지로 이동하시겠습니까?')) {
+      setIsSelectPage(true);
+    }
   };
 
   return (
     <s.ButtonGroupWrapper>
       <s.Container>
-        <s.Button onClick={onClickHome}>
-          <HomeIcon id='home_icon' className='icon' width='4vh' height='100%' />
-        </s.Button>
-        <Tooltip
-          anchorSelect='#home_icon'
-          key={`tooltip_home_icon`}
-          content={'사이즈 다시 선택'}
-          place='right-start'
-          style={{
-            backgroundColor: 'white',
-            color: 'gray',
-          }}
-        />
-
         <s.Button>
           <s.ImageLoadButtonLabel htmlFor='file'>
             <LoadImageIcon
@@ -254,6 +242,19 @@ export const ButtonGroupContainer = ({
           content={'모두 지우기'}
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
+        />
+        <s.Button onClick={onClickHome}>
+          <HomeIcon id='home_icon' className='icon' width='4vh' height='100%' />
+        </s.Button>
+        <Tooltip
+          anchorSelect='#home_icon'
+          key={`tooltip_home_icon`}
+          content={'사이즈 다시 선택'}
+          place='right-start'
+          style={{
+            backgroundColor: 'white',
+            color: 'gray',
+          }}
         />
       </s.Container>
     </s.ButtonGroupWrapper>
