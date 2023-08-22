@@ -259,7 +259,7 @@ export const ContentWrapper = styled.div`
 export const InfoContainer = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 
   width: 130vh;
