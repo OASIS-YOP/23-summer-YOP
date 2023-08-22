@@ -43,12 +43,12 @@ export const Button = styled.button`
 
   background-color: ${whiteColor};
   border-style: none;
-
+  border: none;
   cursor: pointer;
 
   padding: 0;
   margin: 0;
-
+  border: none;
   .icon {
     path {
       fill: black;
@@ -76,7 +76,7 @@ export const ImageLoadButtonLabel = styled.label`
     }
     width: 4vh
   }
-
+  border: none;
 `;
 
 export const Input = styled.input`
