@@ -109,6 +109,8 @@ export const ButtonGroupContainer = ({
   const Undo = () => {
     if (canvas) {
       canvas.undo();
+      console.log("undo");
+      
       canvas.renderAll();
     }
   };
@@ -116,6 +118,8 @@ export const ButtonGroupContainer = ({
   const Redo = () => {
     if (canvas) {
       canvas.redo();
+      console.log("redo");
+      
       canvas.renderAll();
     }
   };
