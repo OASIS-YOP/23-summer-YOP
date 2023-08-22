@@ -17,7 +17,7 @@ export const StickerList = styled.div`
 
     & img {
       vertical-align: middle;
-      margin: 1vh; /* 각 요소 사이에 10px 간격 */
+      margin: 1.8vh; /* 각 요소 사이에 간격 */
 
       &:hover {
         cursor: pointer;

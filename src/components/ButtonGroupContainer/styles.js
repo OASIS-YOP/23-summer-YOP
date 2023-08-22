@@ -16,7 +16,7 @@ export const Container = styled.div`
   border-radius: 3vh;
   border: 1.5vh solid #d9d9d9;
   background-color: ${whiteColor};
-  margin-left: 25%;
+  margin-left: 40%;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
 `;
 
@@ -31,22 +31,30 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 7vh;
+
   width: 4vh;
+  height: 7vh;
+
   background-color: ${whiteColor};
   border-style: none;
+
   cursor: pointer;
+
   padding: 0;
   margin: 0;
+
   .icon {
     path {
       fill: black;
     }
+
   }
+
   &:hover {
     path {
       fill: ${pointColor};
     }
+
     fill: ${pointColor};
     cursor: pointer;
   }
@@ -54,6 +62,15 @@ export const Button = styled.button`
 
 export const ImageLoadButtonLabel = styled.label`
   cursor: pointer;
+  height: fit-content;
+
+  .icon{
+    path{
+      fill: black;
+    }
+    width: 4vh
+  }
+
 `;
 
 export const Input = styled.input`

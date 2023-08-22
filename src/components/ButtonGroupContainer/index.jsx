@@ -77,13 +77,13 @@ export const ButtonGroupContainer = ({
   //     console.log('undo');
 
   //     index2 = index - 1;
-  //     current = list[index2];
+  //     100% = list[index2];
   //     console.log("index2",index2);
   //     console.log("state", state)
-  //     current.setOptions(JSON.parse(state[index2]));
+  //     100%.setOptions(JSON.parse(state[index2]));
 
   //     index--;
-  //     current.setCoords();
+  //     100%.setCoords();
   //     canvas.renderAll();
   //     action = true;
   // }
@@ -98,11 +98,11 @@ export const ButtonGroupContainer = ({
   //     console.log('redo');
 
   //     index2 = index + 1;
-  //     current = list[index2];
-  //     current.setOptions(JSON.parse(state[index2]));
+  //     100% = list[index2];
+  //     100%.setOptions(JSON.parse(state[index2]));
 
   //     index++;
-  //     current.setCoords();
+  //     100%.setCoords();
   //     canvas.renderAll();
   // }
 
@@ -175,11 +175,11 @@ export const ButtonGroupContainer = ({
     <s.ButtonGroupWrapper>
       <s.Container>
         <s.Button onClick={onClickHome}>
-          <HomeIcon className='icon' width={30} height={30} />
+          <HomeIcon className='icon' width='4vh' height='100%' />
         </s.Button>
         <s.Button>
           <s.ImageLoadButtonLabel htmlFor='file'>
-            <LoadImageIcon className='icon' width={30} height={30} />
+            <LoadImageIcon className='icon' width='4vh' height='100%'/>
           </s.ImageLoadButtonLabel>
           <s.Input
             type='file'
@@ -189,19 +189,19 @@ export const ButtonGroupContainer = ({
           />
         </s.Button>
         <s.Button>
-          <SaveIcon className='icon' width={30} height={30} />
+          <SaveIcon className='icon' width='4vh' height='100%'/>
         </s.Button>
         <s.Button>
-          <ViewGallaryIcon className='icon' width={30} height={30} />
+          <ViewGallaryIcon className='icon' width='4vh' height='100%'/>
         </s.Button>
         <s.Button onClick={Undo} canvas={canvas}>
-          <UndoIcon className='icon' width={30} height={30} />
+          <UndoIcon className='icon' width='4vh' height='100%'/>
         </s.Button>
         <s.Button onClick={Redo} canvas={canvas}>
-          <RedoIcon className='icon' width={30} height={30} />
+          <RedoIcon className='icon' width='4vh' height='100%'/>
         </s.Button>
         <s.Button onClick={RemoveAll} canvas={canvas}>
-          <ClearIcon className='icon' width={30} height={30} />
+          <ClearIcon className='icon' width='4vh' height='100%'/>
         </s.Button>
       </s.Container>
     </s.ButtonGroupWrapper>
