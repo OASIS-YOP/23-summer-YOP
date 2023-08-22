@@ -2,22 +2,12 @@ import { useState, useEffect } from 'react';
 import { fabric } from 'fabric';
 import * as s from './styles';
 
-export const ImageTab = ({ canvas, image }) => {
+export const ImageTab = ({ canvas, image, isDisableButton }) => {
   const [reverseXToggle, setReverseXToggle] = useState(true);
   const [reverseYToggle, setReverseYToggle] = useState(true);
   const [applyGray, setApplyGray] = useState(false);
-  const [isDisableButton, setIsDisableButton] = useState(true);
 
   //filter part
-
-  canvas.on({
-    'after:render': () => {
-      setIsDisableButton(false);
-      // fabric.util
-      //   .toArray(document.getElementsByClassName('image-input'))
-      //   .forEach((el) => (el.disabled = false));
-    },
-  });
 
   const applyFilter = (index, filter) => {
     image.filters[index] = filter;
@@ -68,35 +58,42 @@ export const ImageTab = ({ canvas, image }) => {
     const angle = document.getElementById('angle-control');
     const newAngle = parseInt(angle.value);
 
-    if (image) {
-      const currentCenter = image.getCenterPoint();
-      // 이미지의 회전 중심 변경
-      image.set({
-        originX: 'center',
-        originY: 'center',
-        angle: newAngle,
-      });
-      //변한 이미지의 회전중심 얻기
-      const newCenter = image.getCenterPoint();
+    // if (image) {
+    //   const currentCenter = image.getCenterPoint();
+    //   // 이미지의 회전 중심 변경
+    //   image.set({
+    //     originX: 'center',
+    //     originY: 'center',
+    //     angle: newAngle,
+    //   });
+    //   //변한 이미지의 회전중심 얻기
+    //   const newCenter = image.getCenterPoint();
 
-      //회전 중심 조정
-      const deltaX = currentCenter.x - newCenter.x;
-      const deltaY = currentCenter.y - newCenter.y;
-      image.set({
-        left: image.left + deltaX,
-        top: image.top + deltaY,
-      });
-      image.set('angle', newAngle).setCoords();
+    //   //회전 중심 조정
+    //   const deltaX = currentCenter.x - newCenter.x;
+    //   const deltaY = currentCenter.y - newCenter.y;
+    //   image.set({
+    //     left: image.left + deltaX,
+    //     top: image.top + deltaY,
+    //   });
+    image.set('angle', newAngle).setCoords();
 
-      canvas.requestRenderAll();
-    }
+    canvas.requestRenderAll();
+    // }
   };
 
   const scaleControl = () => {
     const scale = document.getElementById('scale-control');
     // if (image) {
     //   const currentCenter = image.getCenterPoint();
+    // if (image) {
+    //   const currentCenter = image.getCenterPoint();
 
+    //   // 이미지의 회전 중심 변경
+    //   image.set({
+    //     originX: 'center',
+    //     originY: 'center',
+    //   });
     //   // 이미지의 회전 중심 변경
     //   image.set({
     //     originX: 'center',
@@ -113,9 +110,13 @@ export const ImageTab = ({ canvas, image }) => {
     //     left: image.left + deltaX,
     //     top: image.top + deltaY,
     //   });
+    //   image.set({
+    //     left: image.left + deltaX,
+    //     top: image.top + deltaY,
+    //   });
 
-      image.scale(parseFloat(scale.value) / 50).setCoords();
-      canvas.requestRenderAll();
+    image.scale(parseFloat(scale.value) / 50).setCoords();
+    canvas.requestRenderAll();
     // }
   };
 

@@ -27,10 +27,6 @@ export const ContextMenu = styled.div`
   }
 
   & div:hover {
-    background-color: #C1C1C1;
+    background-color: #c1c1c1;
   }
-
 `;
-
-
-

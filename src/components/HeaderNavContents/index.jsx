@@ -12,13 +12,10 @@ import { ContextMenu } from '../ContextMenu';
 import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
 import { ReactComponent as Logo1 } from '../../assets/Logo/Logo1.svg';
 import { ReactComponent as Logo2 } from '../../assets/Logo/Logo2.svg';
+import Typewriter from 'typewriter-effect';
 // import { jsPDF } from 'jspdf';
 // import { CtrlKeyDown } from '../ContextMenu/CtrlKeyDown';
 //import 'fabric-history';
-
-//crop
-// import Cropper from 'react-cropper';
-// import 'cropperjs/dist/cropper.css';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -30,12 +27,20 @@ export const HeaderNavContents = () => {
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
 
+  const [isDisableButton, setIsDisableButton] = useState(true);
+
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
     {
       id: 1,
       label: '이미지',
-      function: () => <ImageTab canvas={canvas} image={image} />,
+      function: () => (
+        <ImageTab
+          canvas={canvas}
+          image={image}
+          isDisableButton={isDisableButton}
+        />
+      ),
       level: 'top',
     },
     {
@@ -107,6 +112,7 @@ export const HeaderNavContents = () => {
           imgFile.scaleToWidth(canvasSize[0]);
           canvas.backgroundImage = imgFile;
           canvas.renderAll();
+          setIsDisableButton(false);
         });
       };
       loadImage();
@@ -151,6 +157,7 @@ export const HeaderNavContents = () => {
       });
 
     setCanvas(initCanvas());
+    setIsDisableButton(true);
   }, [isSelectPage]);
 
   useEffect(() => {
@@ -234,14 +241,12 @@ export const HeaderNavContents = () => {
 
   ////////////////컨텍스트 메뉴 ////////////////////
 
-
-
   const handleContextMenu = (e) => {
     e.preventDefault();
     // 마우스 우클릭 시 마우스 위치에 컨텍스트 메뉴를 표시하기 위한 정보 설정
     setContextMenuPos({ x: e.clientX, y: e.clientY });
     // 컨텍스트 메뉴를 표시
-    setContextMenuVisible(true);    
+    setContextMenuVisible(true);
   };
 
   // 컨텍스트 메뉴를 닫는 함수
@@ -433,7 +438,7 @@ export const HeaderNavContents = () => {
       <s.Header>
         <s.NavigationBar>
           <s.LogoContainer>
-            <Logo2 className='logo'/>
+            <Logo2 className='logo' />
           </s.LogoContainer>
           <s.NavTabs
             className={toggleState === 0 ? 'active' : ''}
@@ -521,10 +526,22 @@ export const HeaderNavContents = () => {
           </s.ContentWrapper>
         </s.Content>
         <s.Content className={toggleState === 1 ? 'active' : ''} id='info'>
-          <s.InfoContainer>
-            <div>온폴 프로젝트란?</div>
-            <div>설명</div>
-            <div>설명</div>
+        <s.InfoContainer>
+            <s.Title>온폴(Y.O.P) 프로젝트란?</s.Title>
+            <s.Info>
+            <Typewriter
+              // options={{ autoStart: true, loop: false }}
+              onInit={(typewriter) => {
+                typewriter
+
+                  .typeString("<br/>온폴(Your Own Polaroid)은 팀 오아시스의 온라인 폴라로이드 꾸미기 솔루션입니다. <br/> 온폴을 통해서, 인터넷과 브라우저만 있으면 온라인 상에서 폴라로이드 꾸미기가 가능합니다.<br/><br/> 회원가입도 비용 지불도 없이 온폴에서 제공하는 무궁무진한 오픈소스를 사용해보세요.<br/> 이미지를 규격에 맞춰 자르고 자유롭게 편집하여 당신만의 폴라로이드 사진을 직접 제작해보세요!")
+
+                  .pauseFor(100)
+
+                  .start();
+              }}
+            />
+            </s.Info>
           </s.InfoContainer>
         </s.Content>
       </s.Body>

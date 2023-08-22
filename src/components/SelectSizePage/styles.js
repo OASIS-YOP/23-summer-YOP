@@ -14,7 +14,7 @@ export const ContentContainer = styled.div`
   width: auto;
   min-width: 130vh;
   height: 70vh;
-
+  margin: 0 auto;
   background-color: #ededed;
   box-shadow: 3px 5px 20px 12px rgba(0, 0, 0, 13%);
   border-radius: 30px;
