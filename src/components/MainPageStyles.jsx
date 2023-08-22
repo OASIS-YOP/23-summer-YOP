@@ -34,11 +34,23 @@ export const Container = styled.div`
 // export const EditorToolDetails = styled.div`
 // `
 
+
+
 // 푸터
 export const Footer = styled.div`
     height: 14vh;
     width: 100%;
     background-color: ${secondaryColor};
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+ `   
+export const GitHub = styled.div`
+    font-size: 2.2vh;
+    font-align: center;
+    color: white;
 `
 
 

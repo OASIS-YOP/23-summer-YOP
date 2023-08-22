@@ -269,10 +269,19 @@ export const InfoContainer = styled.section`
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
   border-radius: 1.5rem;
 
-  margin: 0 auto;
-
-    // 임시로 넣어둔 설명 문구 div
-    & > div {
-      font-size: 2.2vh;
-    }  
+  margin: 0 auto; 
 `;
+
+export const Title = styled.div`
+  white-space: pre-line;
+  line-height: 1.5;
+  font-size: 3.0vh;
+  text-align: center;
+  font-weight: bold;
+`
+export const Info = styled.div`
+  white-space: pre-line;
+  line-height: 2.1vh;
+  text-align: center;
+  font-size: 17px;
+`

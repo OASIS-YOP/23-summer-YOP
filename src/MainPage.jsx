@@ -1,4 +1,4 @@
-import { Container, Footer } from './components/MainPageStyles';
+import { Container, Footer, GitHub } from './components/MainPageStyles';
 import { HeaderNavContents } from './components/HeaderNavContents';
 
 function MainPage() {
@@ -6,7 +6,9 @@ function MainPage() {
     <>
       <Container>
         <HeaderNavContents/>
-        <Footer></Footer>
+        <Footer>
+          <GitHub>https://github.com/CSID-DGU/2023-S-VSA-OASIS-9/tree/code-review</GitHub>
+        </Footer>
       </Container>
     </>
   );
