@@ -12,7 +12,7 @@ import {
   export const Header = styled.div`
     width: 100%;
     height: 13vh;
-    background: linear-gradient(to bottom, ${pointColor}, ${whiteColor});
+    background: linear-gradient(to bottom, ${pointColor}, white );
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -37,7 +37,34 @@ import {
     justify-content: flex-end;
     margin-right: 2%;
     align-items: end;
+
+      
   `;
+
+  export const LogoContainer = styled.div`
+    margin-right: 58%;
+    margin-bottom: 1.2vh;
+    padding: 0 1vh;
+    background: linear-gradient(to top, ${pointColor}, white 50% );
+    box-shadow: 0px 10px 10px 3px rgb(0, 0, 0, 0.1);
+    border-radius: 2vh;
+
+    .logo {
+      path {
+        fill: navy;
+      }
+      width: 6vh;
+      height: auto;
+      
+      &:hover {
+        path {
+          fill: ${pointColor};
+        }
+      }
+    }
+
+  
+  `
 
   export const NavTabs = styled.div`
     cursor: pointer;
@@ -104,8 +131,6 @@ export const Content = styled.div`
       height: 100%;
       width: 160vh;
       background-color: #ffffff;
-      padding-top: 2%;
-      padding-bottom: 2%;
     }
 
 `;
@@ -113,7 +138,7 @@ export const Content = styled.div`
 // 플렉스 설정 위해 편집 페이지 좌우 컨테이너 한번 더 감싸줌 (인포 페이지는 해당 없음)
 export const ContentWrapper = styled.div`
   display: flex;
-  justify-content:center;
+  justify-content: flex-start;
   
   width: 100%;
   height: 90%;
@@ -128,7 +153,7 @@ export const ContentWrapper = styled.div`
     object-fit: contain;
     // 이미지가 컨테이너 안에 꽉 차게
 
-    width: 125vh;
+    width: 104vh;
     height: 85vh;
 
     background-color: #ededed;
@@ -226,8 +251,8 @@ export const ContentWrapper = styled.div`
     box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
     border-radius: 2vh;
 
-    margin: 0 2.5vh;
-    padding: 0 2vh;
+    margine: 0 2.5vh;
+    padding: 0 2.5vh;
   `;
 
 // 소개페이지 콘텐츠 컨테이너

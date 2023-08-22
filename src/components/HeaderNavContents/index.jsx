@@ -10,6 +10,10 @@ import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
 import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
+import { ReactComponent as Logo1 } from '../../assets/Logo/Logo1.svg';
+import { ReactComponent as Logo2 } from '../../assets/Logo/Logo2.svg';
+// import { jsPDF } from 'jspdf';
+// import { CtrlKeyDown } from '../ContextMenu/CtrlKeyDown';
 //import 'fabric-history';
 
 export const HeaderNavContents = () => {
@@ -261,15 +265,15 @@ export const HeaderNavContents = () => {
   };
 
   // 붙여넣기 함수
-  const handlePasteObject = (x, y) => {
+  const handlePasteObject = (x, y, Cx, Cy) => {
     if (copiedObject !== null) {
       if (copiedObject.type !== 'activeSelection') {
         // 선택된 객체가 단일 객체인 경우
         if (copiedObject.type === 'image') {
           fabric.Image.fromObject(copiedObject, function (img) {
             img.set({
-              left: x / 3,
-              top: y / 3,
+              left: x / 3 || Cx,
+              top: y / 3 || Cy,
 
               evented: true,
               svgViewportTransformation: true,
@@ -280,8 +284,8 @@ export const HeaderNavContents = () => {
         } else if (copiedObject.type === 'i-text') {
           fabric.IText.fromObject(copiedObject, function (text) {
             text.set({
-              left: x / 3,
-              top: y / 3,
+              left: x / 3 || Cx,
+              top: y / 3 || Cy,
               evented: true,
               svgViewportTransformation: true,
             });
@@ -297,8 +301,8 @@ export const HeaderNavContents = () => {
             if (copiedObject.objects[i].type === 'image') {
               fabric.Image.fromObject(copiedObject.objects[i], function (img) {
                 img.set({
-                  left: x / 3,
-                  top: y / 3,
+                  left: x / 3 || Cx,
+                  top: y / 3 || Cy,
                   evented: true,
                   svgViewportTransformation: true,
                 });
@@ -308,8 +312,8 @@ export const HeaderNavContents = () => {
             } else if (copiedObject.objects[i].type === 'i-text') {
               fabric.IText.fromObject(copiedObject.objects[i], function (text) {
                 text.set({
-                  left: x / 3,
-                  top: y / 3,
+                  left: x / 3 || Cx,
+                  top: y / 3 || Cy,
                   evented: true,
                   svgViewportTransformation: true,
                 });
@@ -432,6 +436,9 @@ export const HeaderNavContents = () => {
     <>
       <s.Header>
         <s.NavigationBar>
+          <s.LogoContainer>
+            <Logo2 className='logo' />
+          </s.LogoContainer>
           <s.NavTabs
             className={toggleState === 0 ? 'active' : ''}
             onClick={() => toggleTab(0)}
@@ -457,22 +464,7 @@ export const HeaderNavContents = () => {
         </s.NavigationBar>
       </s.Header>
 
-      <s.Body
-        onContextMenu={handleContextMenu} // 컨텍스트 메뉴 표시 이벤트
-        onClick={closeContextMenu} // 컨텍스트 메뉴 영역 외 클릭 시 컨텍스트 메뉴 닫기
-      >
-        {isContextMenuVisible && (
-          <ContextMenu
-            canvas={canvas}
-            x={contextMenuPos.x} // 컨텍스트 메뉴 표시 위치 x
-            y={contextMenuPos.y} // 컨텍스트 메뉴 표시 위치 y
-            onClose={closeContextMenu} // 컨텍스트 메뉴 닫기 이벤트
-            onCopy={handleCopyObject} // 복사 이벤트
-            onPaste={handlePasteObject} // 붙여넣기 이벤트
-            onCut={handleCutObject} // 잘라내기 이벤트
-            onDelete={handleDeleteObject} // 삭제 이벤트
-          />
-        )}
+      <s.Body>
         <s.Content className={toggleState === 0 ? 'active' : ''}>
           <s.ContentWrapper>
             {isSelectPage ? (
@@ -482,7 +474,22 @@ export const HeaderNavContents = () => {
               />
             ) : (
               <>
-                <s.LeftContainer>
+                {isContextMenuVisible && (
+                  <ContextMenu
+                    canvas={canvas}
+                    x={contextMenuPos.x} // 컨텍스트 메뉴 표시 위치 x
+                    y={contextMenuPos.y} // 컨텍스트 메뉴 표시 위치 y
+                    onClose={closeContextMenu} // 컨텍스트 메뉴 닫기 이벤트
+                    onCopy={handleCopyObject} // 복사 이벤트
+                    onPaste={handlePasteObject} // 붙여넣기 이벤트
+                    onCut={handleCutObject} // 잘라내기 이벤트
+                    onDelete={handleDeleteObject} // 삭제 이벤트
+                  />
+                )}
+                <s.LeftContainer
+                  onContextMenu={handleContextMenu} // 컨텍스트 메뉴 표시 이벤트
+                  onClick={closeContextMenu} // 컨텍스트 메뉴 영역 외 클릭 시 컨텍스트 메뉴 닫기
+                >
                   {/* <s.ButtonGroupWrapper> */}
                   <ButtonGroupContainer
                     handleChangedFile={handleChangedFile}

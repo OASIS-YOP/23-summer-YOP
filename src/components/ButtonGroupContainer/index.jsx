@@ -78,13 +78,13 @@ export const ButtonGroupContainer = ({
   //     console.log('undo');
 
   //     index2 = index - 1;
-  //     current = list[index2];
+  //     100% = list[index2];
   //     console.log("index2",index2);
   //     console.log("state", state)
-  //     current.setOptions(JSON.parse(state[index2]));
+  //     100%.setOptions(JSON.parse(state[index2]));
 
   //     index--;
-  //     current.setCoords();
+  //     100%.setCoords();
   //     canvas.renderAll();
   //     action = true;
   // }
@@ -99,11 +99,11 @@ export const ButtonGroupContainer = ({
   //     console.log('redo');
 
   //     index2 = index + 1;
-  //     current = list[index2];
-  //     current.setOptions(JSON.parse(state[index2]));
+  //     100% = list[index2];
+  //     100%.setOptions(JSON.parse(state[index2]));
 
   //     index++;
-  //     current.setCoords();
+  //     100%.setCoords();
   //     canvas.renderAll();
   // }
 
@@ -148,7 +148,7 @@ export const ButtonGroupContainer = ({
     <s.ButtonGroupWrapper>
       <s.Container>
         <s.Button onClick={onClickHome}>
-          <HomeIcon id='home_icon' className='icon' width={30} height={30} />
+          <HomeIcon id='home_icon' className='icon' width='4vh' height='100%' />
         </s.Button>
         <Tooltip
           anchorSelect='#home_icon'
@@ -166,8 +166,8 @@ export const ButtonGroupContainer = ({
             <LoadImageIcon
               id='loadImage_icon'
               className='icon'
-              width={30}
-              height={30}
+              width='4vh'
+              height='100%'
             />
           </s.ImageLoadButtonLabel>
           <s.Input
@@ -185,7 +185,7 @@ export const ButtonGroupContainer = ({
           style={{ backgroundColor: 'white', color: 'gray' }}
         />
         <s.Button>
-          <SaveIcon id='save_icon' className='icon' width={30} height={30} />
+          <SaveIcon id='save_icon' className='icon' width='4vh' height='100%' />
         </s.Button>
         <Tooltip
           anchorSelect='#save_icon'
@@ -198,8 +198,8 @@ export const ButtonGroupContainer = ({
           <ViewGallaryIcon
             id='viewGallary_icon'
             className='icon'
-            width={30}
-            height={30}
+            width='4vh'
+            height='100%'
           />
         </s.Button>
         <Tooltip
@@ -210,7 +210,7 @@ export const ButtonGroupContainer = ({
           style={{ backgroundColor: 'white', color: 'gray' }}
         />
         <s.Button onClick={Undo} canvas={canvas}>
-          <UndoIcon id='undo_icon' className='icon' width={30} height={30} />
+          <UndoIcon id='undo_icon' className='icon' width='4vh' height='100%' />
         </s.Button>
         <Tooltip
           anchorSelect='#undo_icon'
@@ -220,7 +220,7 @@ export const ButtonGroupContainer = ({
           style={{ backgroundColor: 'white', color: 'gray' }}
         />
         <s.Button onClick={Redo} canvas={canvas}>
-          <RedoIcon id='redo_icon' className='icon' width={30} height={30} />
+          <RedoIcon id='redo_icon' className='icon' width='4vh' height='100%' />
         </s.Button>
         <Tooltip
           anchorSelect='#redo_icon'
@@ -233,8 +233,8 @@ export const ButtonGroupContainer = ({
           <ClearIcon
             id='removeAll_icon'
             className='icon'
-            width={30}
-            height={30}
+            width='4vh'
+            height='100%'
           />
         </s.Button>
         <Tooltip
