@@ -1,6 +1,6 @@
 import * as s from './styles';
 import 'fabric-history';
-import { ReactComponent as ViewGallaryIcon } from '../../assets/Button/ViewGallaryIcon.svg';
+// import { ReactComponent as ViewGallaryIcon } from '../../assets/Button/ViewGallaryIcon.svg';
 import { ReactComponent as SaveIcon } from '../../assets/Button/SaveIcon.svg';
 import { ReactComponent as HomeIcon } from '../../assets/Button/HomeIcon.svg';
 import { ReactComponent as RedoIcon } from '../../assets/Button/RedoIcon.svg';
@@ -110,8 +110,8 @@ export const ButtonGroupContainer = ({
   const Undo = () => {
     if (canvas) {
       canvas.undo();
-      console.log("undo");
-      
+      console.log('undo');
+
       canvas.renderAll();
     }
   };
@@ -119,17 +119,23 @@ export const ButtonGroupContainer = ({
   const Redo = () => {
     if (canvas) {
       canvas.redo();
-      console.log("redo");
-      
+      console.log('redo');
+
       canvas.renderAll();
     }
   };
 
   const RemoveAll = () => {
     if (canvas) {
-      canvas.backgroundImage = null;
-      canvas.remove(...canvas.getObjects());
-      canvas.renderAll();
+      if (
+        confirm(
+          '이미지를 포함한 모든 요소가 초기화됩니다. 정말 삭제하시겠습니까?'
+        )
+      ) {
+        canvas.backgroundImage = null;
+        canvas.remove(...canvas.getObjects());
+        canvas.renderAll();
+      }
     }
   };
 
