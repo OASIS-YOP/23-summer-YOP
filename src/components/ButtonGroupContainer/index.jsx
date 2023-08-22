@@ -8,6 +8,7 @@ import { ReactComponent as UndoIcon } from '../../assets/Button/UndoIcon.svg';
 import { ReactComponent as LoadImageIcon } from '../../assets/Button/LoadImageIcon.svg';
 import { ReactComponent as ClearIcon } from '../../assets/Button/ClearIcon.svg';
 import { Tooltip } from 'react-tooltip';
+import { saveAs } from 'file-saver';
 
 // eslint-disable-next-line react/prop-types
 export const ButtonGroupContainer = ({
@@ -158,6 +159,21 @@ export const ButtonGroupContainer = ({
     }
   };
 
+  //이미지 저장
+  const onClickSave = () => {
+    if (confirm('편집한 이미지를 저장하시겠습니까?')) {
+      const imageData = canvas.toDataURL({
+        format: 'png',
+        quality: 1,
+      });
+
+      const img = new Image();
+      img.src = imageData;
+      document.body.appendChild(img);
+      saveAs(imageData, 'YOP.png');
+    }
+  };
+
   const tooltipStyle = {
     backgroundColor: 'white',
     color: 'gray',
@@ -191,7 +207,7 @@ export const ButtonGroupContainer = ({
           border='1px solid gray'
           style={tooltipStyle}
         />
-        <s.Button>
+        <s.Button onClick={onClickSave}>
           <SaveIcon id='save_icon' className='icon' width='4vh' height='100%' />
         </s.Button>
         <Tooltip

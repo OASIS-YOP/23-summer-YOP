@@ -37,46 +37,36 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 4vh;
   height: 7vh;
-
   background-color: ${whiteColor};
   border-style: none;
-
   cursor: pointer;
-
   padding: 0;
   margin: 0;
-
   .icon {
     path {
       fill: black;
     }
-
   }
 
   &:hover {
     path {
       fill: ${pointColor};
     }
-
     fill: ${pointColor};
-    cursor: pointer;
   }
 `;
 
 export const ImageLoadButtonLabel = styled.label`
   cursor: pointer;
-  height: fit-content;
 
-  .icon{
-    path{
+  height: fit-content;
+  .icon {
+    path {
       fill: black;
     }
-    width: 4vh
   }
-
 `;
 
 export const Input = styled.input`
