@@ -3,27 +3,30 @@ import * as s from './styles';
 import { fabric } from 'fabric';
 import { Demo } from '../../ColorPicker';
 
-
 export const TextTab = ({ canvas }) => {
   const [color, setColor] = useState('#6979ffff');
-  
+
   // 폰트 변경
   const [selectedFont, setSelectedFont] = useState('(default)Times New Roman');
-  const fonts = ['Black Han Sans', 'Noto Sans Korean','Noto Sans Korean(bold)', 'Orbit'];
+  const fonts = [
+    'Black Han Sans',
+    'Noto Sans Korean',
+    'Noto Sans Korean(bold)',
+    'Orbit',
+  ];
   fonts.unshift('(default)Times New Roman');
 
-    useEffect(() => {
-        const select = document.getElementById('font-family');
-        select.innerHTML = '';
+  useEffect(() => {
+    const select = document.getElementById('font-family');
+    select.innerHTML = '';
 
-        fonts.forEach(font => {
-            const option = document.createElement('option');
-            option.innerHTML = font;
-            option.value = font;
-            select.appendChild(option);
-        });
-      });
-
+    fonts.forEach((font) => {
+      const option = document.createElement('option');
+      option.innerHTML = font;
+      option.value = font;
+      select.appendChild(option);
+    });
+  });
 
   const AddDate = () => {
     // 캔버스에 텍스트 추가될 때 디폴트로 표시될 날짜 포맷팅 함수
@@ -46,9 +49,7 @@ export const TextTab = ({ canvas }) => {
       canvas.add(text);
     }
   };
-  
 
-  
   const AddText = () => {
     if (canvas) {
       let text = new fabric.IText('double click!', {
@@ -156,50 +157,44 @@ export const TextTab = ({ canvas }) => {
   //텍스트 그리기 기능
   const handleBeforePathCreated = (opt) => {
     if (opt.e.type === 'path:created') {
-    const path = opt.path;
-    const pathInfo = fabric.util.getPathSegmentsInfo(path.path);
-    path.segmentsInfo = pathInfo;
-    const pathLength = pathInfo[pathInfo.length - 1].length;
-    const text = 'This is a demo of text on a path. This text should be small enough to fit in what you drawn.';
-    const fontSize = (2.5 * pathLength) / text.length;
+      const path = opt.path;
+      const pathInfo = fabric.util.getPathSegmentsInfo(path.path);
+      path.segmentsInfo = pathInfo;
+      const pathLength = pathInfo[pathInfo.length - 1].length;
+      const text =
+        'This is a demo of text on a path. This text should be small enough to fit in what you drawn.';
+      const fontSize = (2.5 * pathLength) / text.length;
 
-    const textObject = new fabric.Text(text, {
-      fontSize: fontSize,
-      path: path,
-      top: path.top,
-      left: path.left,
-    });
+      const textObject = new fabric.Text(text, {
+        fontSize: fontSize,
+        path: path,
+        top: path.top,
+        left: path.left,
+      });
 
-    canvas.add(textObject);
+      canvas.add(textObject);
+    }
   };
-  }
-
-    
 
   const handlePathCreated = (opt) => {
     if (opt.e.type === 'path:created') {
       canvas.remove(opt.path);
     }
-   
   };
 
   const handleTextDrawClick = () => {
     // fabric.js canvas 생성
-    if(canvas){
-    canvas.isDrawingMode= true;
-    canvas.freeDrawingBrush = new fabric.PencilBrush({ decimate: 8 });
-   
+    if (canvas) {
+      canvas.isDrawingMode = true;
+      canvas.freeDrawingBrush = new fabric.PencilBrush({ decimate: 8 });
 
-    // before:path:created 이벤트 등록
-    canvas.on('before:path:created', handleBeforePathCreated);
+      // before:path:created 이벤트 등록
+      canvas.on('before:path:created', handleBeforePathCreated);
 
-    // path:created 이벤트 등록
-    canvas.on('path:created', handlePathCreated);
+      // path:created 이벤트 등록
+      canvas.on('path:created', handlePathCreated);
     }
-      
   };
-    
-  
 
   const TextFonts = () => {
     if (
@@ -208,48 +203,54 @@ export const TextTab = ({ canvas }) => {
     ) {
       let fontFamily = '';
       let fontWeight = 400; // Default font-weight value
-  
+
       if (selectedFont === 'Black Han Sans') {
         fontFamily = "'Black Han Sans', sans-serif";
       } else if (selectedFont === 'Noto Sans Korean') {
         fontFamily = "'Noto Sans KR', sans-serif";
-      } else if(selectedFont ==='Noto Sans Korean(bold)'){
+      } else if (selectedFont === 'Noto Sans Korean(bold)') {
         fontFamily = "'Noto Sans KR', sans-serif";
         fontWeight = 700;
-      }
-      else if(selectedFont ==='Orbit') {
+      } else if (selectedFont === 'Orbit') {
         fontFamily = "'Orbit', sans-serif";
-      }else if(selectedFont ==='(default)Times New Roman'){
+      } else if (selectedFont === '(default)Times New Roman') {
         fontFamily = "'Times New Roman', sans-serif";
       }
 
       canvas.getActiveObject().set({
         fontFamily,
-        fontWeight
+        fontWeight,
       });
-  
+
       canvas.renderAll();
       console.log(canvas.getActiveObject());
       console.log(fontFamily, fontWeight);
     }
   };
 
-
   return (
     <>
       <s.ContainerText>
         <s.BtnAddText onClick={AddText}>텍스트 추가</s.BtnAddText>
         <s.BtnAddText onClick={AddDate}>날짜 추가</s.BtnAddText>
-        <Demo color={color} setColor={setColor} />
+        <s.ColorpickerWrapper>
+          <Demo color={color} setColor={setColor} />
+        </s.ColorpickerWrapper>
         <s.BtnChangeColor onClick={ChangeTextColor}>
           색깔 적용하기
         </s.BtnChangeColor>
-        <s.BtnBackgroundColor onClick={TextBackgroundColor}>배경색 넣기</s.BtnBackgroundColor>
+        <s.BtnBackgroundColor onClick={TextBackgroundColor}>
+          배경색 넣기
+        </s.BtnBackgroundColor>
         <s.BtnFixText onClick={FixText}>선택한 텍스트 고정</s.BtnFixText>
         {/* <s.BtnFixImage onClick={FixImage}>선택한 이미지 고정</s.BtnFixImage> */}
         {/* <s.BtnDrawText onClick={handleTextDrawClick}>텍스트 그리기</s.BtnDrawText> */}
-        <select id="font-family" onChange={(e) => setSelectedFont(e.target.value)} value={selectedFont}>
-            {/* Options will be added dynamically through the useEffect */}
+        <select
+          id='font-family'
+          onChange={(e) => setSelectedFont(e.target.value)}
+          value={selectedFont}
+        >
+          {/* Options will be added dynamically through the useEffect */}
         </select>
         <s.BtnFontChange onClick={TextFonts}>글꼴 바꾸기</s.BtnFontChange>
       </s.ContainerText>
