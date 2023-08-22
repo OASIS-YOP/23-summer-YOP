@@ -122,8 +122,9 @@ export const ButtonGroupContainer = ({
 
   const RemoveAll = () => {
     if (canvas) {
-      canvas.remove(...canvas.getObjects());
       canvas.backgroundImage = null;
+      canvas.remove(...canvas.getObjects());
+      canvas.renderAll();
     }
   };
 
