@@ -45,9 +45,9 @@ import {
     margin-right: 58%;
     margin-bottom: 1.2vh;
     padding: 0 1vh;
-    background: linear-gradient(to top, ${pointColor}, white 50% );
-    box-shadow: 0px 10px 10px 3px rgb(0, 0, 0, 0.1);
-    border-radius: 2vh;
+    // background: linear-gradient(to top, ${pointColor}, white 50% );
+    // box-shadow: 0px 10px 10px 3px rgb(0, 0, 0, 0.1);
+    // border-radius: 2vh;
 
     .logo {
       path {
@@ -259,7 +259,7 @@ export const ContentWrapper = styled.div`
 export const InfoContainer = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 
   width: 130vh;
@@ -269,10 +269,19 @@ export const InfoContainer = styled.section`
   box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
   border-radius: 1.5rem;
 
-  margin: 0 auto;
-
-    // 임시로 넣어둔 설명 문구 div
-    & > div {
-      font-size: 2.2vh;
-    }  
+  margin: 0 auto; 
 `;
+
+export const Title = styled.div`
+  white-space: pre-line;
+  line-height: 1.5;
+  font-size: 3.0vh;
+  text-align: center;
+  font-weight: bold;
+`
+export const Info = styled.div`
+  white-space: pre-line;
+  line-height: 2.8vh;
+  text-align: center;
+  font-size: 17px;
+`
