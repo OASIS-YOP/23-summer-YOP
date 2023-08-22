@@ -45,9 +45,9 @@ import {
     margin-right: 58%;
     margin-bottom: 1.2vh;
     padding: 0 1vh;
-    background: linear-gradient(to top, ${pointColor}, white 50% );
-    box-shadow: 0px 10px 10px 3px rgb(0, 0, 0, 0.1);
-    border-radius: 2vh;
+    // background: linear-gradient(to top, ${pointColor}, white 50% );
+    // box-shadow: 0px 10px 10px 3px rgb(0, 0, 0, 0.1);
+    // border-radius: 2vh;
 
     .logo {
       path {

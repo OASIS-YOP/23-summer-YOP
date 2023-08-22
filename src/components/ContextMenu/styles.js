@@ -16,8 +16,8 @@ export const ContextMenu = styled.div`
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-  left: x,
-  top: y,
+  left: x;
+  top: y;
   z-index: 1.3;
   font-size: 1.7vh;
 
