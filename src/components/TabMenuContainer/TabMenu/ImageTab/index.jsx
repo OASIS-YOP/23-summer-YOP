@@ -2,22 +2,12 @@ import { useState, useEffect } from 'react';
 import { fabric } from 'fabric';
 import * as s from './styles';
 
-export const ImageTab = ({ canvas, image }) => {
+export const ImageTab = ({ canvas, image, isDisableButton }) => {
   const [reverseXToggle, setReverseXToggle] = useState(true);
   const [reverseYToggle, setReverseYToggle] = useState(true);
   const [applyGray, setApplyGray] = useState(false);
-  const [isDisableButton, setIsDisableButton] = useState(true);
 
   //filter part
-
-  canvas.on({
-    'after:render': () => {
-      setIsDisableButton(false);
-      // fabric.util
-      //   .toArray(document.getElementsByClassName('image-input'))
-      //   .forEach((el) => (el.disabled = false));
-    },
-  });
 
   const applyFilter = (index, filter) => {
     image.filters[index] = filter;

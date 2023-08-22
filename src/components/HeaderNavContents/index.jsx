@@ -10,12 +10,7 @@ import { ImageTab } from '../TabMenuContainer/TabMenu/ImageTab';
 import { Frames } from '../TabMenuContainer/TabMenu/Frames';
 import { ContextMenu } from '../ContextMenu';
 import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
-import { jsPDF } from 'jspdf';
 //import 'fabric-history';
-
-//crop
-// import Cropper from 'react-cropper';
-// import 'cropperjs/dist/cropper.css';
 
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
@@ -27,12 +22,20 @@ export const HeaderNavContents = () => {
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
 
+  const [isDisableButton, setIsDisableButton] = useState(true);
+
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
     {
       id: 1,
       label: '이미지',
-      function: () => <ImageTab canvas={canvas} image={image} />,
+      function: () => (
+        <ImageTab
+          canvas={canvas}
+          image={image}
+          isDisableButton={isDisableButton}
+        />
+      ),
       level: 'top',
     },
     {
@@ -104,6 +107,7 @@ export const HeaderNavContents = () => {
           imgFile.scaleToWidth(canvasSize[0]);
           canvas.backgroundImage = imgFile;
           canvas.renderAll();
+          setIsDisableButton(false);
         });
       };
       loadImage();
@@ -148,6 +152,7 @@ export const HeaderNavContents = () => {
       });
 
     setCanvas(initCanvas());
+    setIsDisableButton(true);
   }, [isSelectPage]);
 
   useEffect(() => {

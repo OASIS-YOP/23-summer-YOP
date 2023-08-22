@@ -9,13 +9,6 @@ import { ReactComponent as LoadImageIcon } from '../../assets/Button/LoadImageIc
 import { ReactComponent as ClearIcon } from '../../assets/Button/ClearIcon.svg';
 import { Tooltip } from 'react-tooltip';
 
-// const Tooltip = ({ message }) => {
-//   return (
-//     <s.TooltipContainer>
-//       <s.TooltipContent className='tooltip'>{message}</s.TooltipContent>
-//     </s.TooltipContainer>
-//   );
-// };
 // eslint-disable-next-line react/prop-types
 export const ButtonGroupContainer = ({
   handleChangedFile,
@@ -152,42 +145,14 @@ export const ButtonGroupContainer = ({
   };
 
   return (
-    // <s.ButtonGroupWrapper>
-    //   <s.Container>
-    //     <s.ImageLoadButton htmlFor='file'>
-    //       <s.ImageLoadButtonLabel htmlFor='file'>
-    //         이미지 불러오기
-    //       </s.ImageLoadButtonLabel>
-    //       <s.Input
-    //         type='file'
-    //         id='file'
-    //         onChange={handleChangedFile}
-    //         ref={fileInputRef}
-    //       />
-    //     </s.ImageLoadButton>
-    //     <s.Button>저장하기</s.Button>
-    //     <s.Button>내 이미지 보기</s.Button>
-    //     <s.Button onClick={Undo} canvas={canvas}>
-    //       ←
-    //     </s.Button>
-    //     <s.Button onClick={Redo} canvas={canvas}>
-    //       →
-    //     </s.Button>
-    //     <s.Button onClick={RemoveAll} canvas={canvas}>
-    //       모두 지우기
-    //     </s.Button>
-    //   {/* <s.Button onClick={ReturnToSelect}>
-    //     폴라로이드 크기 다시 선택하기
-    //   </s.Button> */}
-    // {/* </s.Container> */}
     <s.ButtonGroupWrapper>
       <s.Container>
         <s.Button onClick={onClickHome}>
           <HomeIcon id='home_icon' className='icon' width={30} height={30} />
         </s.Button>
         <Tooltip
-          key={`tooltip`}
           anchorSelect='#home_icon'
+          key={`tooltip_home_icon`}
           content={'사이즈 다시 선택'}
           place='right-start'
           style={{
@@ -214,6 +179,7 @@ export const ButtonGroupContainer = ({
         </s.Button>
         <Tooltip
           anchorSelect='#loadImage_icon'
+          key={`tooltip_loadImage_icon`}
           content={'이미지 불러오기'}
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
@@ -222,6 +188,8 @@ export const ButtonGroupContainer = ({
           <SaveIcon id='save_icon' className='icon' width={30} height={30} />
         </s.Button>
         <Tooltip
+          anchorSelect='#save_icon'
+          key={`tooltip_save_icon`}
           content={'이미지 저장하기'}
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
@@ -236,6 +204,7 @@ export const ButtonGroupContainer = ({
         </s.Button>
         <Tooltip
           anchorSelect='#viewGallary_icon'
+          key={`tooltip_viewGallary_icon`}
           content={'내 이미지 보기'}
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
@@ -244,8 +213,8 @@ export const ButtonGroupContainer = ({
           <UndoIcon id='undo_icon' className='icon' width={30} height={30} />
         </s.Button>
         <Tooltip
-          key={`tooltip`}
           anchorSelect='#undo_icon'
+          key={`tooltip_undo_icon`}
           content={'실행취소'}
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
@@ -254,8 +223,8 @@ export const ButtonGroupContainer = ({
           <RedoIcon id='redo_icon' className='icon' width={30} height={30} />
         </s.Button>
         <Tooltip
-          key={`tooltip`}
           anchorSelect='#redo_icon'
+          key={`tooltip_redo_icon`}
           content={'되돌리기'}
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
@@ -269,8 +238,8 @@ export const ButtonGroupContainer = ({
           />
         </s.Button>
         <Tooltip
-          key={`tooltip`}
           anchorSelect='#removeAll_icon'
+          key={`tooltip_removeAll_icon`}
           content={'모두 지우기'}
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
