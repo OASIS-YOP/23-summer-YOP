@@ -148,25 +148,25 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
           onClick={reverseX}
           disabled={isDisableButton}
         >
-          reverseX
+          좌우대칭
         </button>
         <button
           className='image-input'
           onClick={reverseY}
           disabled={isDisableButton}
         >
-          reverseY
+          상하대칭
         </button>
-        <p>
-          <button
-            className='image-input'
-            id='grayscale'
-            onClick={onClickGray}
-            disabled={isDisableButton}
-          >
-            gray
-          </button>
-        </p>
+
+        <button
+          className='image-input'
+          id='grayscale'
+          onClick={onClickGray}
+          disabled={isDisableButton}
+        >
+          흑백
+        </button>
+
         <p>
           <label>
             <span>명도:</span>
@@ -256,7 +256,7 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
 
       <s.RightContainer>
         <p>
-          ang:
+          회전:
           <input
             className='image-input'
             id='angle-control'
@@ -269,7 +269,7 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
           />
         </p>
         <p>
-          size:
+          크기:
           <input
             className='image-input'
             id='scale-control'
@@ -279,20 +279,7 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
           />
         </p>
         <p>
-          Y:
-          <input
-            className='image-input'
-            id='top-control'
-            type='range'
-            defaultValue={-50}
-            min={-200}
-            max={100}
-            onInput={topControl}
-            disabled={isDisableButton}
-          />
-        </p>
-        <p>
-          X:
+          가로축:
           <input
             className='image-input'
             id='left-control'
@@ -301,6 +288,19 @@ export const ImageTab = ({ canvas, image, isDisableButton }) => {
             min={-100}
             max={100}
             onInput={leftControl}
+            disabled={isDisableButton}
+          />
+        </p>
+        <p>
+          세로축:
+          <input
+            className='image-input'
+            id='top-control'
+            type='range'
+            defaultValue={-50}
+            min={-200}
+            max={100}
+            onInput={topControl}
             disabled={isDisableButton}
           />
         </p>

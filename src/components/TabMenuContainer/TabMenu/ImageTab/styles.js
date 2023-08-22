@@ -8,8 +8,9 @@ export const Wrapper = styled.div`
 
 export const LeftContainer = styled.div`
   width: 50%;
+  text-align: center;
 
-  & > button {
+  & button {
     font-size: 1.7vh;
     margin: 0.3rem 0.3rem;
     border-radius: 0.5rem;
@@ -29,6 +30,7 @@ export const LeftContainer = styled.div`
 `;
 export const RightContainer = styled.div`
   width: 50%;
+  text-align: center;
 `;
 
 // range바 커스텀
