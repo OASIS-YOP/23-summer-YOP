@@ -439,6 +439,7 @@ export const HeaderNavContents = () => {
         <s.NavigationBar>
           <s.LogoContainer>
             <Logo2 className='logo' />
+            <p>YOP</p>
           </s.LogoContainer>
           <s.NavTabs
             className={toggleState === 0 ? 'active' : ''}
@@ -526,23 +527,25 @@ export const HeaderNavContents = () => {
           </s.ContentWrapper>
         </s.Content>
         <s.Content className={toggleState === 1 ? 'active' : ''} id='info'>
-        <s.InfoContainer>
+        {/* <s.InfoContentWrapper> */}
+          <s.InfoContainer>
             <s.Title>온폴(Y.O.P) 프로젝트란?</s.Title>
-            <s.Info>
-            <Typewriter
-              // options={{ autoStart: true, loop: false }}
-              onInit={(typewriter) => {
-                typewriter
+              <s.Info>
+                <Typewriter
+                  // options={{ autoStart: true, loop: false }}
+                  onInit={(typewriter) => {
+                    typewriter
 
-                  .typeString("<br/>온폴(Your Own Polaroid)은 팀 오아시스의 온라인 폴라로이드 꾸미기 솔루션입니다. <br/> 온폴을 통해서, 인터넷과 브라우저만 있으면 온라인 상에서 폴라로이드 꾸미기가 가능합니다.<br/><br/> 회원가입도 비용 지불도 없이 온폴에서 제공하는 무궁무진한 오픈소스를 사용해보세요.<br/> 이미지를 규격에 맞춰 자르고 자유롭게 편집하여 당신만의 폴라로이드 사진을 직접 제작해보세요!")
+                      .typeString("<br/>온폴(Your Own Polaroid)은 팀 오아시스의 온라인 폴라로이드 꾸미기 솔루션입니다. <br/> 온폴을 통해서, 인터넷과 브라우저만 있으면 온라인 상에서 폴라로이드 꾸미기가 가능합니다.<br/><br/> 회원가입도 비용 지불도 없이 온폴에서 제공하는 무궁무진한 오픈소스를 사용해보세요.<br/> 이미지를 규격에 맞춰 자르고 자유롭게 편집하여 당신만의 폴라로이드 사진을 직접 제작해보세요!")
 
-                  .pauseFor(100)
+                      .pauseFor(100)
 
-                  .start();
-              }}
-            />
-            </s.Info>
-          </s.InfoContainer>
+                      .start();
+                  }}
+                  />
+                </s.Info>
+            </s.InfoContainer>
+          {/* </s.InfoContentWrapper> */}
         </s.Content>
       </s.Body>
     </>

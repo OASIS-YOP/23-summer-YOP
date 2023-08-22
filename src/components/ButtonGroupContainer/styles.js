@@ -42,7 +42,7 @@ export const Button = styled.button`
   height: 7vh;
 
   background-color: ${whiteColor};
-  border-style: none;
+  border: none;
 
   cursor: pointer;
 
@@ -64,6 +64,7 @@ export const Button = styled.button`
     fill: ${pointColor};
     cursor: pointer;
   }
+
 `;
 
 export const ImageLoadButtonLabel = styled.label`
