@@ -6,6 +6,12 @@ import {
   whiteColor,
 } from '../../GlobalStyles';
 
+export const TooltipContent = styled.div`
+  display: none;
+  position: absolute;
+  z-index: 200;
+`;
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;

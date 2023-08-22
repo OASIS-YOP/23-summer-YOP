@@ -16,10 +16,6 @@ import { ReactComponent as Logo2 } from '../../assets/Logo/Logo2.svg';
 // import { CtrlKeyDown } from '../ContextMenu/CtrlKeyDown';
 //import 'fabric-history';
 
-//crop
-// import Cropper from 'react-cropper';
-// import 'cropperjs/dist/cropper.css';
-
 export const HeaderNavContents = () => {
   const [canvas, setCanvas] = useState(null);
   const [toggleState, setToggleState] = useState(0);
@@ -30,12 +26,20 @@ export const HeaderNavContents = () => {
   const [contextMenuPos, setContextMenuPos] = useState({ x: 0, y: 0 });
   const [isContextMenuVisible, setContextMenuVisible] = useState(false);
 
+  const [isDisableButton, setIsDisableButton] = useState(true);
+
   //tabMenuDataList : tabMenuContainer의 props.
   const tabMenuDataList = [
     {
       id: 1,
       label: '이미지',
-      function: () => <ImageTab canvas={canvas} image={image} />,
+      function: () => (
+        <ImageTab
+          canvas={canvas}
+          image={image}
+          isDisableButton={isDisableButton}
+        />
+      ),
       level: 'top',
     },
     {
@@ -107,6 +111,7 @@ export const HeaderNavContents = () => {
           imgFile.scaleToWidth(canvasSize[0]);
           canvas.backgroundImage = imgFile;
           canvas.renderAll();
+          setIsDisableButton(false);
         });
       };
       loadImage();
@@ -151,6 +156,7 @@ export const HeaderNavContents = () => {
       });
 
     setCanvas(initCanvas());
+    setIsDisableButton(true);
   }, [isSelectPage]);
 
   useEffect(() => {
@@ -234,14 +240,12 @@ export const HeaderNavContents = () => {
 
   ////////////////컨텍스트 메뉴 ////////////////////
 
-
-
   const handleContextMenu = (e) => {
     e.preventDefault();
     // 마우스 우클릭 시 마우스 위치에 컨텍스트 메뉴를 표시하기 위한 정보 설정
     setContextMenuPos({ x: e.clientX, y: e.clientY });
     // 컨텍스트 메뉴를 표시
-    setContextMenuVisible(true);    
+    setContextMenuVisible(true);
   };
 
   // 컨텍스트 메뉴를 닫는 함수
@@ -433,7 +437,7 @@ export const HeaderNavContents = () => {
       <s.Header>
         <s.NavigationBar>
           <s.LogoContainer>
-            <Logo2 className='logo'/>
+            <Logo2 className='logo' />
           </s.LogoContainer>
           <s.NavTabs
             className={toggleState === 0 ? 'active' : ''}
