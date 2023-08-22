@@ -194,7 +194,7 @@ export const ButtonGroupContainer = ({
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
         />
-        <s.Button>
+        {/* <s.Button>
           <ViewGallaryIcon
             id='viewGallary_icon'
             className='icon'
@@ -208,7 +208,7 @@ export const ButtonGroupContainer = ({
           content={'내 이미지 보기'}
           place='right-start'
           style={{ backgroundColor: 'white', color: 'gray' }}
-        />
+        /> */}
         <s.Button onClick={Undo} canvas={canvas}>
           <UndoIcon id='undo_icon' className='icon' width='4vh' height='100%' />
         </s.Button>
