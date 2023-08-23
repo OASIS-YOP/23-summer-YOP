@@ -46,11 +46,11 @@ export const Footer = styled.div`
     justify-content: center;
     align-items: center;
 
- `   
+`   
 export const GitHub = styled.div`
     font-size: 2vh;
     font-align: center;
-    color: #d1d1d1;
+    color: #f5f5f5;
 `
 
 

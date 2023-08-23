@@ -323,15 +323,15 @@ export const InfoContainer = styled.section`
 export const Title = styled.div`
   white-space: pre-line;
   line-height: 1.5;
-  font-size: 3.0vh;
+  font-size: 3.6vh;
   text-align: center;
   font-weight: bold;
 `
 export const Info = styled.div`
   white-space: pre-line;
-  line-height: 2.8vh;
+  line-height: 1.5;
   text-align: center;
-  font-size: 17px;
+  font-size: 2.6vh;
 `
 
 // export const InfoCanvas = styled.div`
