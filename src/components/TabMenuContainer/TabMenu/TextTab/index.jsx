@@ -2,18 +2,16 @@ import { useEffect, useState } from 'react';
 import * as s from './styles';
 import { fabric } from 'fabric';
 import { Demo } from '../../ColorPicker';
+import './fonts/font.css';
 
 export const TextTab = ({ canvas }) => {
   const [color, setColor] = useState('#6979ffff');
 
   // 폰트 변경
   const [selectedFont, setSelectedFont] = useState('(default)Times New Roman');
-  const fonts = [
-    'Black Han Sans',
-    'Noto Sans Korean',
-    'Noto Sans Korean(bold)',
-    'Orbit',
-  ];
+
+  const fonts = ['MBC1961굴림', '강원모두교육체','에스코어드림', '김정철명조', 'Neo둥근고딕Pro'];
+
   fonts.unshift('(default)Times New Roman');
 
   useEffect(() => {
@@ -202,20 +200,22 @@ export const TextTab = ({ canvas }) => {
       canvas.getActiveObject() instanceof fabric.IText
     ) {
       let fontFamily = '';
-      let fontWeight = 400; // Default font-weight value
-
-      if (selectedFont === 'Black Han Sans') {
-        console.log(selectedFont);
-        fontFamily = "'Black Han Sans', sans-serif";
-      } else if (selectedFont === 'Noto Sans Korean') {
-        fontFamily = "'Noto Sans KR', sans-serif";
-      } else if (selectedFont === 'Noto Sans Korean(bold)') {
-        fontFamily = "'Noto Sans KR', sans-serif";
-        fontWeight = 700;
-      } else if (selectedFont === 'Orbit') {
-        fontFamily = "'Orbit', sans-serif";
-      } else if (selectedFont === '(default)Times New Roman') {
-        fontFamily = "'Times New Roman', sans-serif";
+      let fontWeight = 'normal'; // Default font-weight value
+  
+      if (selectedFont === 'MBC1961굴림') {
+        fontFamily = 'MBC1961GulimM';
+      } else if(selectedFont === '강원모두교육체') {
+        fontFamily = 'GangwonEdu_OTFBoldA';
+      } else if(selectedFont ==='에스코어드림') {
+        fontFamily = 'S-CoreDream-3Light';
+      }
+      else if(selectedFont ==='김정철명조') {
+        fontFamily = 'KimjungchulMyungjo-Bold';
+        fontWeight  = 700;
+      }else if(selectedFont ==='(default)Times New Roman'){
+        fontFamily = 'Times New Roman';
+      }else if(selectedFont ==='Neo둥근고딕Pro'){
+        fontFamily = 'NeoDunggeunmoPro-Regular';
       }
 
       canvas.getActiveObject().set({
@@ -224,6 +224,7 @@ export const TextTab = ({ canvas }) => {
       });
 
       canvas.renderAll();
+      console.log("se",selectedFont);
       console.log(canvas.getActiveObject());
       console.log(fontFamily, fontWeight);
     }
