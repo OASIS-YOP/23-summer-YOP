@@ -17,12 +17,12 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 10vh;
+  width: 7vh;
   height: 55vh;
   border-radius: 3vh;
   border: 1.5vh solid #d9d9d9;
   background-color: ${whiteColor};
-  margin-left: 40%;
+  margin-left: 48%;
   box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 25%);
 `;
 

@@ -39,14 +39,16 @@ export const Container = styled.div`
 // 푸터
 export const Footer = styled.div`
     height: 8vh;
-    width: 100%;
+    width: 170vh;
     background-color: ${secondaryColor};
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-`   
+    z-index: 3;
+
+ `   
 export const GitHub = styled.div`
     font-size: 2vh;
     font-align: center;
