@@ -169,7 +169,6 @@ export const ButtonGroupContainer = ({
 
       const img = new Image();
       img.src = imageData;
-      document.body.appendChild(img);
       saveAs(imageData, 'YOP.png');
     }
   };
