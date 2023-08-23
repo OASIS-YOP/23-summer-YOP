@@ -15,7 +15,7 @@ import {
     justify-content: flex-end;
     align-items: center;
 
-    width: 170vh;
+    width: 180vh;
     height: 11vh;
 
     z-index: 0;
@@ -152,7 +152,7 @@ export const Body = styled.div`
   display: flex;
   justify-content: center;
 
-  width: 170vh;
+  width: 180vh;
   height: 100%;
 
   z-index: 2;
@@ -164,7 +164,7 @@ export const Content = styled.div`
   display: none;
 
   height: 100%;
-  width: 170vh;
+  width: 180vh;
 
   background-color: #ffffff;
 
@@ -175,7 +175,7 @@ export const Content = styled.div`
     &.active {
       display: block;
       height: 100%;
-      width: 170vh;
+      width: 180vh;
       background-color: #ffffff;
     }
 
@@ -187,7 +187,7 @@ export const ContentWrapper = styled.div`
   justify-content: center;
   align-items: center;
   
-  width: 170vh;
+  width: 180vh;
   height: 90%;
 `;
 
@@ -238,7 +238,7 @@ export const ContentWrapper = styled.div`
 
     border: 5px dashed #ccc;
 
-    margin: 25px auto;
+    margin: 1.3vh auto;
   `;
   // export const CanvasSpace = styled.div
   //     justify-content: center;
@@ -255,12 +255,12 @@ export const ContentWrapper = styled.div`
       display: flex;
       justify-content: center;
 
-      width: 70%;
+      width: 60%;
     `
 
     export const BringTo = styled.button`
-      width: 10vh;
-      height: 3.5vh;
+      width: 8vh;
+      height: 2.5vh;
 
       border: 1px solid #ccc;
       border-radius: 1.3vh;
@@ -268,7 +268,7 @@ export const ContentWrapper = styled.div`
       margin: 0.3rem 0.3rem;
 
       cursor: pointer;
-      font-size: 1.5vh;
+      font-size: 1.4vh;
 
         &:hover {
           background-color: ${pointColor};
@@ -355,7 +355,7 @@ export const Info = styled.div`
   white-space: pre-line;
   line-height: 1.5;
   text-align: center;
-  font-size: 2.6vh;
+  font-size: 2.1vh;
 `
 
 // export const InfoCanvas = styled.div`
