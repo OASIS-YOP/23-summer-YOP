@@ -15,7 +15,7 @@ import {
     justify-content: flex-end;
     align-items: center;
 
-    width: 180vh;
+    width: 175vh;
     height: 11vh;
 
     z-index: 0;
@@ -55,7 +55,7 @@ import {
     flex-direction: row;
     justify-content: space-around;
 
-    margin-right: 59%;
+    margin-right: 58%;
     margin-bottom: 1.2vh;
     padding: 0 1vh;
     // background: linear-gradient(to top, ${pointColor}, white 50% );
@@ -152,7 +152,7 @@ export const Body = styled.div`
   display: flex;
   justify-content: center;
 
-  width: 180vh;
+  width: 175vh;
   height: 100%;
 
   z-index: 2;
@@ -164,7 +164,7 @@ export const Content = styled.div`
   display: none;
 
   height: 100%;
-  width: 180vh;
+  width: 175vh;
 
   background-color: #ffffff;
 
@@ -175,7 +175,7 @@ export const Content = styled.div`
     &.active {
       display: block;
       height: 100%;
-      width: 180vh;
+      width: 175vh;
       background-color: #ffffff;
     }
 
@@ -187,7 +187,7 @@ export const ContentWrapper = styled.div`
   justify-content: center;
   align-items: center;
   
-  width: 180vh;
+  width: 175vh;
   height: 90%;
 `;
 
