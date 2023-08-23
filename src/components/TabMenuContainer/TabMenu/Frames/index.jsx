@@ -11,6 +11,10 @@ export const Frames = ({ canvas }) => {
         'FrameWH1.svg', 
         'FramePointColor1.svg',
         'FrameLP1.svg',
+        'FrameGR1.svg',
+        'GdFrameP1.png',
+        'ChFrameG1.png',
+        'ChFrameR1.png',
         ] 
     },
     { id: 2,
@@ -19,6 +23,7 @@ export const Frames = ({ canvas }) => {
         'FrameWH2.svg',
         'FramePointColor2.svg',
         'FrameLP2.svg',
+        'FrameGR2.svg'
       ] 
     },
     { id: 3,
@@ -27,6 +32,7 @@ export const Frames = ({ canvas }) => {
         'FrameWH3.svg', 
         'FramePointColor3.svg',
         'FrameLP3.svg',
+        'FrameGR3.svg'
       ] 
     },
   ];

@@ -38,7 +38,7 @@ export const Container = styled.div`
 
 // 푸터
 export const Footer = styled.div`
-    height: 14vh;
+    height: 8vh;
     width: 100%;
     background-color: ${secondaryColor};
     display: flex;
@@ -48,7 +48,7 @@ export const Footer = styled.div`
 
 `   
 export const GitHub = styled.div`
-    font-size: 2.2vh;
+    font-size: 2vh;
     font-align: center;
     color: #f5f5f5;
 `

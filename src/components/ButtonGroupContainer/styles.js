@@ -37,46 +37,44 @@ export const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
   width: 4vh;
   height: 7vh;
-
   background-color: ${whiteColor};
   border-style: none;
-  border: none;
   cursor: pointer;
-
   padding: 0;
   margin: 0;
-  border: none;
+  
+  /* 클릭 시 생기는 테두리 없애기 */
+  &:active,
+  :focus {
+    border: none;
+    outline: none;
+  }
+
   .icon {
     path {
       fill: black;
     }
-
   }
 
   &:hover {
     path {
       fill: ${pointColor};
     }
-
     fill: ${pointColor};
-    cursor: pointer;
   }
+
 `;
 
 export const ImageLoadButtonLabel = styled.label`
   cursor: pointer;
   height: fit-content;
-
-  .icon{
-    path{
+  .icon {
+    path {
       fill: black;
     }
-    width: 4vh
   }
-  border: none;
 `;
 
 export const Input = styled.input`

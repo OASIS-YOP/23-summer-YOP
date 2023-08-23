@@ -13,7 +13,7 @@ import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
 import { ReactComponent as Logo1 } from '../../assets/Logo/Logo1.svg';
 import { ReactComponent as Logo2 } from '../../assets/Logo/Logo2.svg';
 import Typewriter from 'typewriter-effect';
-// import { jsPDF } from 'jspdf';
+
 // import { CtrlKeyDown } from '../ContextMenu/CtrlKeyDown';
 //import 'fabric-history';
 
@@ -268,15 +268,15 @@ export const HeaderNavContents = () => {
   };
 
   // 붙여넣기 함수
-  const handlePasteObject = (x, y, Cx, Cy) => {
+  const handlePasteObject = (x, y) => {
     if (copiedObject !== null) {
       if (copiedObject.type !== 'activeSelection') {
         // 선택된 객체가 단일 객체인 경우
         if (copiedObject.type === 'image') {
           fabric.Image.fromObject(copiedObject, function (img) {
             img.set({
-              left: x / 3 || Cx,
-              top: y / 3 || Cy,
+              left: x / 3 ,
+              top: y / 3 ,
 
               evented: true,
               svgViewportTransformation: true,
@@ -287,8 +287,8 @@ export const HeaderNavContents = () => {
         } else if (copiedObject.type === 'i-text') {
           fabric.IText.fromObject(copiedObject, function (text) {
             text.set({
-              left: x / 3 || Cx,
-              top: y / 3 || Cy,
+              left: x / 3,
+              top: y / 3,
               evented: true,
               svgViewportTransformation: true,
             });
@@ -304,8 +304,8 @@ export const HeaderNavContents = () => {
             if (copiedObject.objects[i].type === 'image') {
               fabric.Image.fromObject(copiedObject.objects[i], function (img) {
                 img.set({
-                  left: x / 3 || Cx,
-                  top: y / 3 || Cy,
+                  left: x / 3,
+                  top: y / 3 ,
                   evented: true,
                   svgViewportTransformation: true,
                 });
@@ -315,8 +315,8 @@ export const HeaderNavContents = () => {
             } else if (copiedObject.objects[i].type === 'i-text') {
               fabric.IText.fromObject(copiedObject.objects[i], function (text) {
                 text.set({
-                  left: x / 3 || Cx,
-                  top: y / 3 || Cy,
+                  left: x / 3,
+                  top: y / 3,
                   evented: true,
                   svgViewportTransformation: true,
                 });
@@ -401,18 +401,25 @@ export const HeaderNavContents = () => {
         // 프레임 객체를 제외한 객체 수를 state에 저장
       };
 
+      // //이미지 저장
       // const onClickSave = () => {
       //   let imageData = canvas.toDataURL({
       //     format: 'png',
       //     quality: 1,
       //   });
 
-      //   let img = new Image();
+      //   const img = new Image();
       //   img.src = imageData;
 
       //   document.body.appendChild(img);
 
-      //   let doc = new jsPDF();
+      //   // eslint-disable-next-line no-undef
+      //   saveAs(imageData, 'file.png');
+
+      //   const doc = new jsPDF();
+
+      //   doc.addImage(imageData, 'PNG', 10, 10);
+      //   doc.save('canvas.pdf');
       // };
 
       canvas.on('selection:created', handleObjectSelectionChange);
@@ -441,6 +448,7 @@ export const HeaderNavContents = () => {
         <s.NavigationBar>
           <s.LogoContainer>
             <Logo2 className='logo' />
+            <p>YOP</p>
           </s.LogoContainer>
           <s.NavTabs
             className={toggleState === 0 ? 'active' : ''}
@@ -477,7 +485,11 @@ export const HeaderNavContents = () => {
               />
             ) : (
               <>
-                {isContextMenuVisible && (
+                <s.LeftContainer
+                  onContextMenu={handleContextMenu} // 컨텍스트 메뉴 표시 이벤트
+                  onClick={closeContextMenu} // 컨텍스트 메뉴 영역 외 클릭 시 컨텍스트 메뉴 닫기
+                >
+                  {isContextMenuVisible && (
                   <ContextMenu
                     canvas={canvas}
                     x={contextMenuPos.x} // 컨텍스트 메뉴 표시 위치 x
@@ -489,10 +501,6 @@ export const HeaderNavContents = () => {
                     onDelete={handleDeleteObject} // 삭제 이벤트
                   />
                 )}
-                <s.LeftContainer
-                  onContextMenu={handleContextMenu} // 컨텍스트 메뉴 표시 이벤트
-                  onClick={closeContextMenu} // 컨텍스트 메뉴 영역 외 클릭 시 컨텍스트 메뉴 닫기
-                >
                   {/* <s.ButtonGroupWrapper> */}
                   <ButtonGroupContainer
                     handleChangedFile={handleChangedFile}
@@ -528,7 +536,8 @@ export const HeaderNavContents = () => {
           </s.ContentWrapper>
         </s.Content>
         <s.Content className={toggleState === 1 ? 'active' : ''} id='info'>
-        <s.InfoContainer>
+        {/* <s.InfoContentWrapper> */}
+          <s.InfoContainer>
             <s.Title>온폴(Y.O.P) 프로젝트란?</s.Title>
             <s.Info id="info">
             {toggleState === 1 && ( // toggleState가 1일 때에만 Typewriter를 시작
