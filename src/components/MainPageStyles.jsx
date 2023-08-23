@@ -39,7 +39,7 @@ export const Container = styled.div`
 // 푸터
 export const Footer = styled.div`
     height: 8vh;
-    width: 170vh;
+    width: 175vh;
     background-color: ${secondaryColor};
     display: flex;
     flex-direction: column;
