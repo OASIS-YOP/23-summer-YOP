@@ -62,6 +62,7 @@ export const Button = styled.button`
     }
     fill: ${pointColor};
   }
+
 `;
 
 export const ImageLoadButtonLabel = styled.label`

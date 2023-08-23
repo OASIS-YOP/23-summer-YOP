@@ -10,13 +10,17 @@ import {
 //--------------Header--------------
 
   export const Header = styled.div`
-    width: 100%;
-    height: 13vh;
-    background: linear-gradient(to bottom, ${pointColor}, white );
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+
+    width: 100%;
+    height: 11vh;
+    
+    background: linear-gradient(to bottom, ${pointColor}, white );
+
+
   `;
 
   // 안 쓰임
@@ -30,65 +34,102 @@ import {
 
   // 페이지 상단 네브바
   export const NavigationBar = styled.div`
-    width: 100%;
-    height: 10.2vh;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    margin-right: 2%;
     align-items: end;
+
+    width: 100%;
+    height: 10vh;
+
+    margin-right: 5%;
 
       
   `;
 
   export const LogoContainer = styled.div`
-    margin-right: 58%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    margin-right: 59%;
     margin-bottom: 1.2vh;
     padding: 0 1vh;
     // background: linear-gradient(to top, ${pointColor}, white 50% );
     // box-shadow: 0px 10px 10px 3px rgb(0, 0, 0, 0.1);
     // border-radius: 2vh;
 
+    font-family: 'NeoDunggeunmoPro-Regular';
+
+    > p {
+      color: ${pointColor};
+      align-self: end;
+      margin: 0;
+      font-size: 3vh;
+      
+    }
+
     .logo {
       path {
         fill: navy;
       }
-      width: 6vh;
+      width: 5.3vh;
       height: auto;
-      
-      &:hover {
+      margin-right: 0.8vh;
+    }
+
+    &:hover {
+      > p {
+        color: navy;
+      }
+
+      .logo {
         path {
           fill: ${pointColor};
         }
-      }
-    }
 
+    }
+  
   
   `
 
   export const NavTabs = styled.div`
-    cursor: pointer;
-    width: 25vh;
-    height: 7vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    row-wrap: wrap;
+
+    padding: 0.1vh;
+
+    text-align: center;
+    
+    width: 21vh;
+    height: 4vh;
+
     border-color: #ffffff;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-color: #e0e0e0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     box-shadow: 5px 3px 2px 0.1px rgb(0, 0, 0, 0.1);
-    flex-flow: column;
+  
     overflow: hidden;
-    font-size: 2.5vh;
+
+    font-size: 2vh;
+
+    cursor: pointer;
 
     &.active {
-      height: 10vh;
-      background-color: #ffffff;
       display: flex;
       text-align: center;
+
+      height: 8vh;
+
+      background-color: #ffffff;
       box-shadow: 5px 3px 2px 0.1px rgb(0, 0, 0, 0.1);
+
+      padding: 0.1vh;
+      
       z-index: 1;
     }
 
@@ -189,7 +230,7 @@ export const ContentWrapper = styled.div`
     height: fit-content;
     //문제의 구간 : 반응형이 안됨
 
-    border: 5px dashed #979797;
+    border: 5px dashed #ccc;
 
     margin: 25px auto;
   `;
@@ -256,18 +297,25 @@ export const ContentWrapper = styled.div`
   `;
 
 // 소개페이지 콘텐츠 컨테이너
+// export const InfoContentWrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: row;
+// `
+
 export const InfoContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  width: 130vh;
+  width: 110vh;
   height: 70vh;
 
   background-color: #ededed;
-  box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
+  // box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
   border-radius: 1.5rem;
+  border: 7px dashed #ccc;
 
   margin: 0 auto; 
 `;
@@ -275,13 +323,21 @@ export const InfoContainer = styled.section`
 export const Title = styled.div`
   white-space: pre-line;
   line-height: 1.5;
-  font-size: 3.0vh;
+  font-size: 3.6vh;
   text-align: center;
   font-weight: bold;
 `
 export const Info = styled.div`
   white-space: pre-line;
-  line-height: 2.8vh;
+  line-height: 1.5;
   text-align: center;
-  font-size: 17px;
+  font-size: 2.6vh;
 `
+
+// export const InfoCanvas = styled.div`
+
+//   display: flex;
+//   justify-content: center;
+  
+
+// `

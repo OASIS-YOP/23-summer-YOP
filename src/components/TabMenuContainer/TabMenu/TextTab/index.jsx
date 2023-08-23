@@ -171,10 +171,10 @@ export const TextTab = ({ canvas }) => {
         top: path.top,
         left: path.left,
       });
-
       canvas.add(textObject);
     }
   };
+
 
   const handlePathCreated = (opt) => {
     if (opt.e.type === 'path:created') {
@@ -205,6 +205,7 @@ export const TextTab = ({ canvas }) => {
       let fontWeight = 400; // Default font-weight value
 
       if (selectedFont === 'Black Han Sans') {
+        console.log(selectedFont);
         fontFamily = "'Black Han Sans', sans-serif";
       } else if (selectedFont === 'Noto Sans Korean') {
         fontFamily = "'Noto Sans KR', sans-serif";

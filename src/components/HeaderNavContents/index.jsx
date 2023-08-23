@@ -173,6 +173,8 @@ export const HeaderNavContents = () => {
     handleChangedFile;
   }, [image]);
 
+  
+
   // const moveBackgroundImage = (leftOffset, topOffset) => {
   //   if (canvas.backgroundImage) {
   //     // 현재 배경 이미지의 위치 가져오기
@@ -266,15 +268,15 @@ export const HeaderNavContents = () => {
   };
 
   // 붙여넣기 함수
-  const handlePasteObject = (x, y, Cx, Cy) => {
+  const handlePasteObject = (x, y) => {
     if (copiedObject !== null) {
       if (copiedObject.type !== 'activeSelection') {
         // 선택된 객체가 단일 객체인 경우
         if (copiedObject.type === 'image') {
           fabric.Image.fromObject(copiedObject, function (img) {
             img.set({
-              left: x / 3 || Cx,
-              top: y / 3 || Cy,
+              left: x / 3 ,
+              top: y / 3 ,
 
               evented: true,
               svgViewportTransformation: true,
@@ -285,8 +287,8 @@ export const HeaderNavContents = () => {
         } else if (copiedObject.type === 'i-text') {
           fabric.IText.fromObject(copiedObject, function (text) {
             text.set({
-              left: x / 3 || Cx,
-              top: y / 3 || Cy,
+              left: x / 3,
+              top: y / 3,
               evented: true,
               svgViewportTransformation: true,
             });
@@ -302,8 +304,8 @@ export const HeaderNavContents = () => {
             if (copiedObject.objects[i].type === 'image') {
               fabric.Image.fromObject(copiedObject.objects[i], function (img) {
                 img.set({
-                  left: x / 3 || Cx,
-                  top: y / 3 || Cy,
+                  left: x / 3,
+                  top: y / 3 ,
                   evented: true,
                   svgViewportTransformation: true,
                 });
@@ -313,8 +315,8 @@ export const HeaderNavContents = () => {
             } else if (copiedObject.objects[i].type === 'i-text') {
               fabric.IText.fromObject(copiedObject.objects[i], function (text) {
                 text.set({
-                  left: x / 3 || Cx,
-                  top: y / 3 || Cy,
+                  left: x / 3,
+                  top: y / 3,
                   evented: true,
                   svgViewportTransformation: true,
                 });
@@ -446,6 +448,7 @@ export const HeaderNavContents = () => {
         <s.NavigationBar>
           <s.LogoContainer>
             <Logo2 className='logo' />
+            <p>YOP</p>
           </s.LogoContainer>
           <s.NavTabs
             className={toggleState === 0 ? 'active' : ''}
@@ -482,7 +485,11 @@ export const HeaderNavContents = () => {
               />
             ) : (
               <>
-                {isContextMenuVisible && (
+                <s.LeftContainer
+                  onContextMenu={handleContextMenu} // 컨텍스트 메뉴 표시 이벤트
+                  onClick={closeContextMenu} // 컨텍스트 메뉴 영역 외 클릭 시 컨텍스트 메뉴 닫기
+                >
+                  {isContextMenuVisible && (
                   <ContextMenu
                     canvas={canvas}
                     x={contextMenuPos.x} // 컨텍스트 메뉴 표시 위치 x
@@ -494,10 +501,6 @@ export const HeaderNavContents = () => {
                     onDelete={handleDeleteObject} // 삭제 이벤트
                   />
                 )}
-                <s.LeftContainer
-                  onContextMenu={handleContextMenu} // 컨텍스트 메뉴 표시 이벤트
-                  onClick={closeContextMenu} // 컨텍스트 메뉴 영역 외 클릭 시 컨텍스트 메뉴 닫기
-                >
                   {/* <s.ButtonGroupWrapper> */}
                   <ButtonGroupContainer
                     handleChangedFile={handleChangedFile}
@@ -533,23 +536,23 @@ export const HeaderNavContents = () => {
           </s.ContentWrapper>
         </s.Content>
         <s.Content className={toggleState === 1 ? 'active' : ''} id='info'>
+        {/* <s.InfoContentWrapper> */}
           <s.InfoContainer>
             <s.Title>온폴(Y.O.P) 프로젝트란?</s.Title>
-            <s.Info>
-              <Typewriter
-                // options={{ autoStart: true, loop: false }}
-                onInit={(typewriter) => {
-                  typewriter
-
-                    .typeString(
-                      '<br/>온폴(Your Own Polaroid)은 팀 오아시스의 온라인 폴라로이드 꾸미기 솔루션입니다. <br/> 온폴을 통해서, 인터넷과 브라우저만 있으면 온라인 상에서 폴라로이드 꾸미기가 가능합니다.<br/><br/> 회원가입도 비용 지불도 없이 온폴에서 제공하는 무궁무진한 오픈소스를 사용해보세요.<br/> 이미지를 규격에 맞춰 자르고 자유롭게 편집하여 당신만의 폴라로이드 사진을 직접 제작해보세요!'
-                    )
-
-                    .pauseFor(100)
-
-                    .start();
-                }}
-              />
+            <s.Info id="info">
+            {toggleState === 1 && ( // toggleState가 1일 때에만 Typewriter를 시작
+                <Typewriter
+                  options={{ delay: 75 }}
+                  onInit={(typewriter) => {
+                    typewriter
+                      .typeString(
+                        "<br/>온폴(Your Own Polaroid)은 팀 오아시스의 온라인 폴라로이드 꾸미기 솔루션입니다. <br/> 온폴을 통해서, 인터넷과 브라우저만 있으면 온라인 상에서 폴라로이드 꾸미기가 가능합니다.<br/><br/> 회원가입도 비용 지불도 없이 온폴에서 제공하는 무궁무진한 오픈소스를 사용해보세요.<br/> 이미지를 규격에 맞춰 자르고 자유롭게 편집하여 당신만의 폴라로이드 사진을 직접 제작해보세요!"
+                      )
+                      .pauseFor(100)
+                      .start();
+                  }}
+                />
+              )}
             </s.Info>
           </s.InfoContainer>
         </s.Content>
