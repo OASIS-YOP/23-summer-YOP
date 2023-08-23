@@ -6,6 +6,15 @@ import {
   whiteColor,
 } from '../../GlobalStyles';
 
+export const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 170vh;
+  height: 90%;
+`;
+
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,7 +26,7 @@ export const ContentContainer = styled.div`
   margin: 0 auto;
   background-color: #ededed;
   box-shadow: 3px 5px 20px 12px rgba(0, 0, 0, 13%);
-  border-radius: 30px;
+  border-radius: 2vh;
 
   padding: 20px;
 `;

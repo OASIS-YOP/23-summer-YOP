@@ -527,7 +527,7 @@ export const HeaderNavContents = () => {
           </s.ContentWrapper>
         </s.Content>
         <s.Content className={toggleState === 1 ? 'active' : ''} id='info'>
-        {/* <s.InfoContentWrapper> */}
+        <s.ContentWrapper>
           <s.InfoContainer>
             <s.Title>온폴(Y.O.P) 프로젝트란?</s.Title>
               <s.Info>
@@ -545,7 +545,7 @@ export const HeaderNavContents = () => {
                   />
                 </s.Info>
             </s.InfoContainer>
-          {/* </s.InfoContentWrapper> */}
+          </s.ContentWrapper>
         </s.Content>
       </s.Body>
     </>

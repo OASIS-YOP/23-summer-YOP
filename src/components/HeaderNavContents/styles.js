@@ -15,8 +15,10 @@ import {
     justify-content: flex-end;
     align-items: center;
 
-    width: 100%;
+    width: 170vh;
     height: 11vh;
+
+    z-index: 0;
     
     background: linear-gradient(to bottom, ${pointColor}, white );
 
@@ -43,6 +45,7 @@ import {
     height: 10vh;
 
     margin-right: 5%;
+    margin-bottom: 0;
 
       
   `;
@@ -130,7 +133,7 @@ import {
 
       padding: 0.1vh;
       
-      z-index: 1;
+      z-index: 99;
     }
 
     &:hover {
@@ -149,10 +152,11 @@ export const Body = styled.div`
   display: flex;
   justify-content: center;
 
-  width: fit-content;
+  width: 170vh;
   height: 100%;
+
+  z-index: 2;
   
-  z-index: 99;
 `;
 
 // 바디 전체 컨테이너 안에 들어가는 컨테이너
@@ -160,9 +164,10 @@ export const Content = styled.div`
   display: none;
 
   height: 100%;
-  width: 160vh;
+  width: 170vh;
 
   background-color: #ffffff;
+
 
   padding-top: 2%;
   padding-bottom: 2%;
@@ -170,7 +175,7 @@ export const Content = styled.div`
     &.active {
       display: block;
       height: 100%;
-      width: 160vh;
+      width: 170vh;
       background-color: #ffffff;
     }
 
@@ -179,9 +184,10 @@ export const Content = styled.div`
 // 플렉스 설정 위해 편집 페이지 좌우 컨테이너 한번 더 감싸줌 (인포 페이지는 해당 없음)
 export const ContentWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   
-  width: 100%;
+  width: 170vh;
   height: 90%;
 `;
 
@@ -199,7 +205,7 @@ export const ContentWrapper = styled.div`
 
     background-color: #ededed;
     box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
-    border-radius: 2vh;
+    border-radius: 2hv;
 
     margin: 0 2.5vh;
 
@@ -302,6 +308,24 @@ export const ContentWrapper = styled.div`
 //   justify-content: center;
 //   flex-direction: row;
 // `
+
+
+export const InfoContainerWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 110vh;
+  height: 70vh;
+
+  background-color: #ededed;
+  // box-shadow: 10px 10px 20px 10px rgba(0, 0, 0, 18%);
+  border-radius: 1.5rem;
+  border: 7px dashed #ccc;
+
+  margin: 0 auto; 
+`;
 
 export const InfoContainer = styled.section`
   display: flex;
