@@ -44,12 +44,14 @@ export const Button = styled.button`
   cursor: pointer;
   padding: 0;
   margin: 0;
+  
   /* 클릭 시 생기는 테두리 없애기 */
   &:active,
   :focus {
     border: none;
     outline: none;
   }
+
   .icon {
     path {
       fill: black;
@@ -62,6 +64,7 @@ export const Button = styled.button`
     }
     fill: ${pointColor};
   }
+
 `;
 
 export const ImageLoadButtonLabel = styled.label`

@@ -16,6 +16,15 @@ export const Wrapper = styled.div`
   margin: 10px 0;
 `;
 
+export const SitckerTabBar = styled.div`
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  `;
+
+
   export const TabNavBar = styled.div`
     display: flex;
     
