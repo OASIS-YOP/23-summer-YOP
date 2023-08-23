@@ -13,7 +13,7 @@ import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
 import { ReactComponent as Logo1 } from '../../assets/Logo/Logo1.svg';
 import { ReactComponent as Logo2 } from '../../assets/Logo/Logo2.svg';
 import Typewriter from 'typewriter-effect';
-// import { jsPDF } from 'jspdf';
+
 // import { CtrlKeyDown } from '../ContextMenu/CtrlKeyDown';
 //import 'fabric-history';
 
@@ -401,18 +401,25 @@ export const HeaderNavContents = () => {
         // 프레임 객체를 제외한 객체 수를 state에 저장
       };
 
+      // //이미지 저장
       // const onClickSave = () => {
       //   let imageData = canvas.toDataURL({
       //     format: 'png',
       //     quality: 1,
       //   });
 
-      //   let img = new Image();
+      //   const img = new Image();
       //   img.src = imageData;
 
       //   document.body.appendChild(img);
 
-      //   let doc = new jsPDF();
+      //   // eslint-disable-next-line no-undef
+      //   saveAs(imageData, 'file.png');
+
+      //   const doc = new jsPDF();
+
+      //   doc.addImage(imageData, 'PNG', 10, 10);
+      //   doc.save('canvas.pdf');
       // };
 
       canvas.on('selection:created', handleObjectSelectionChange);
