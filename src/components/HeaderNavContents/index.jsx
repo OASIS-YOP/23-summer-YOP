@@ -13,7 +13,7 @@ import { PaintTab } from '../TabMenuContainer/TabMenu/PaintTab';
 import { ReactComponent as Logo1 } from '../../assets/Logo/Logo1.svg';
 import { ReactComponent as Logo2 } from '../../assets/Logo/Logo2.svg';
 import Typewriter from 'typewriter-effect';
-// import { jsPDF } from 'jspdf';
+
 // import { CtrlKeyDown } from '../ContextMenu/CtrlKeyDown';
 //import 'fabric-history';
 
@@ -172,6 +172,8 @@ export const HeaderNavContents = () => {
   useEffect(() => {
     handleChangedFile;
   }, [image]);
+
+  
 
   // const moveBackgroundImage = (leftOffset, topOffset) => {
   //   if (canvas.backgroundImage) {
@@ -399,18 +401,25 @@ export const HeaderNavContents = () => {
         // 프레임 객체를 제외한 객체 수를 state에 저장
       };
 
+      // //이미지 저장
       // const onClickSave = () => {
       //   let imageData = canvas.toDataURL({
       //     format: 'png',
       //     quality: 1,
       //   });
 
-      //   let img = new Image();
+      //   const img = new Image();
       //   img.src = imageData;
 
       //   document.body.appendChild(img);
 
-      //   let doc = new jsPDF();
+      //   // eslint-disable-next-line no-undef
+      //   saveAs(imageData, 'file.png');
+
+      //   const doc = new jsPDF();
+
+      //   doc.addImage(imageData, 'PNG', 10, 10);
+      //   doc.save('canvas.pdf');
       // };
 
       canvas.on('selection:created', handleObjectSelectionChange);
@@ -530,20 +539,21 @@ export const HeaderNavContents = () => {
         <s.ContentWrapper>
           <s.InfoContainer>
             <s.Title>온폴(Y.O.P) 프로젝트란?</s.Title>
-              <s.Info>
-                <Typewriter
-                  // options={{ autoStart: true, loop: false }}
-                  onInit={(typewriter) => {
-                    typewriter
-
-                      .typeString("<br/>온폴(Your Own Polaroid)은 팀 오아시스의 온라인 폴라로이드 꾸미기 솔루션입니다. <br/> 온폴을 통해서, 인터넷과 브라우저만 있으면 온라인 상에서 폴라로이드 꾸미기가 가능합니다.<br/><br/> 회원가입도 비용 지불도 없이 온폴에서 제공하는 무궁무진한 오픈소스를 사용해보세요.<br/> 이미지를 규격에 맞춰 자르고 자유롭게 편집하여 당신만의 폴라로이드 사진을 직접 제작해보세요!")
-
-                      .pauseFor(100)
-
-                      .start();
-                  }}
-                  />
-                </s.Info>
+            <s.Info id="info">
+            {toggleState === 1 && ( // toggleState가 1일 때에만 Typewriter를 시작
+              <Typewriter
+                options={{ delay: 75 }}
+                onInit={(typewriter) => {
+                  typewriter
+                    .typeString(
+                      "<br/>온폴(Your Own Polaroid)은 팀 오아시스의 온라인 폴라로이드 꾸미기 솔루션입니다. <br/> 온폴을 통해서, 인터넷과 브라우저만 있으면 온라인 상에서 폴라로이드 꾸미기가 가능합니다.<br/><br/> 회원가입도 비용 지불도 없이 온폴에서 제공하는 무궁무진한 오픈소스를 사용해보세요.<br/> 이미지를 규격에 맞춰 자르고 자유롭게 편집하여 당신만의 폴라로이드 사진을 직접 제작해보세요!"
+                    )
+                    .pauseFor(100)
+                    .start();
+                }}
+              />
+            )}
+            </s.Info>
             </s.InfoContainer>
           </s.ContentWrapper>
         </s.Content>
